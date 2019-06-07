@@ -7,11 +7,14 @@ import java.util.List;
 @Dao
 public interface IWordDAO {
     @Insert
-    void insertWord(Word word);
+    Long insertWord(Word word);
     @Update
     void updateWord(Word word);
     @Delete
     void deleteWord(Word word);
     @Query("SELECT * FROM Word WHERE list_id=:id")
     List<Word> getWordsByListId(Long id);
+    @Query("SELECT * FROM Word")
+    List<Word> getAllWord();
+
 }
