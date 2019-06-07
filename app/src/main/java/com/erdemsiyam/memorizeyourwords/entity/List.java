@@ -1,7 +1,5 @@
 package com.erdemsiyam.memorizeyourwords.entity;
 
-import android.graphics.drawable.ColorDrawable;
-
 import androidx.room.*;
 
 @Entity(tableName = "List")
@@ -11,7 +9,7 @@ public class List {
     @ColumnInfo()
     private String name;
     @ColumnInfo()
-    private ColorDrawable color;
+    private String color;
     @Ignore
     private java.util.List<Word> words;
 
@@ -31,11 +29,11 @@ public class List {
         this.name = name;
     }
 
-    public ColorDrawable getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(ColorDrawable color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
