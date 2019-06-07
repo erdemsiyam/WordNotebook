@@ -2,8 +2,10 @@ package com.erdemsiyam.memorizeyourwords.entity;
 
 import androidx.room.*;
 
-@Entity(tableName = "List")
-public class List {
+import java.util.List;
+
+@Entity(tableName = "Category")
+public class Category {
     @PrimaryKey(autoGenerate = true)
     private Long id;
     @ColumnInfo()
@@ -11,7 +13,7 @@ public class List {
     @ColumnInfo()
     private String color;
     @Ignore
-    private java.util.List<Word> words;
+    private List<Word> words;
 
     public Long getId() {
         return id;
@@ -37,11 +39,11 @@ public class List {
         this.color = color;
     }
 
-    public java.util.List<Word> getWords() {
+    public List<Word> getWords() {
         return words;
     }
 
-    public void setWords(java.util.List<Word> words) {
+    public void setWords(List<Word> words) {
         this.words = words;
     }
 }

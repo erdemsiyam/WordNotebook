@@ -12,8 +12,8 @@ public interface IWordDAO {
     void updateWord(Word word);
     @Delete
     void deleteWord(Word word);
-    @Query("SELECT * FROM Word WHERE list_id=:id")
-    List<Word> getWordsByListId(Long id);
+    @Query("SELECT * FROM Word WHERE category_id=:id")
+    List<Word> getWordsByCategoryId(Long id);
     @Query("SELECT * FROM Word")
     List<Word> getAllWord();
 

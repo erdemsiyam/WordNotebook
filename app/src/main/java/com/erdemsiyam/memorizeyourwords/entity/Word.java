@@ -5,9 +5,9 @@ import androidx.room.*;
 @Entity(tableName = "Word",
     foreignKeys = {
         @ForeignKey(
-                entity = List.class,
+                entity = Category.class,
                 parentColumns = "id",
-                childColumns = "list_id",
+                childColumns = "category_id",
                 onDelete = ForeignKey.CASCADE,
                 onUpdate = ForeignKey.CASCADE
         )
@@ -32,8 +32,8 @@ public class Word {
     private Boolean active;
     @ColumnInfo()
     private Integer density;
-    @ColumnInfo(name = "list_id",index = true)
-    private Long List;
+    @ColumnInfo(name = "category_id",index = true)
+    private Long categoryId;
 
     public Long getId() {
         return id;
@@ -108,10 +108,10 @@ public class Word {
     }
 
     public Long getList() {
-        return List;
+        return categoryId;
     }
 
-    public void setList(Long list) {
-        List = list;
+    public void setList(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

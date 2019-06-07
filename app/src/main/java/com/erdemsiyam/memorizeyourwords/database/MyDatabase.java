@@ -4,16 +4,16 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import com.erdemsiyam.memorizeyourwords.entity.List;
+import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
-import com.erdemsiyam.memorizeyourwords.repository.IListDAO;
+import com.erdemsiyam.memorizeyourwords.repository.ICategoryDAO;
 import com.erdemsiyam.memorizeyourwords.repository.IWordDAO;
 
-@Database(entities = {Word.class, List.class}, version = 1, exportSchema= false)
+@Database(entities = {Word.class, Category.class}, version = 1, exportSchema= false)
 public abstract class MyDatabase extends RoomDatabase {
 
-    private static final String DB_NAME = "MemorizeYourWords.db";
-    public abstract IListDAO getListDAO();
+    private static final String DB_NAME = "MemorizeYourWords2.db";
+    public abstract ICategoryDAO getCategoryDAO();
     public abstract IWordDAO getWordDAO();
 
     private static MyDatabase myDatabase;
