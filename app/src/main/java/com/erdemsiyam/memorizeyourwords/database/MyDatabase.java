@@ -17,7 +17,7 @@ public abstract class MyDatabase extends RoomDatabase {
     public abstract IWordDAO getWordDAO();
 
     private static MyDatabase myDatabase;
-    public static MyDatabase getAppDatabase(Context context) {
+    public static MyDatabase getMyDatabase(Context context) {
         if (myDatabase == null)
             myDatabase =  Room.databaseBuilder(context, MyDatabase.class, DB_NAME).allowMainThreadQueries().build();
         return myDatabase;
