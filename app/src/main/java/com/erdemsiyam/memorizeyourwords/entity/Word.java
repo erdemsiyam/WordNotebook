@@ -32,7 +32,7 @@ public class Word {
     private Boolean active;
     @ColumnInfo()
     private Integer density;
-    @ColumnInfo(name = "list_id")
+    @ColumnInfo(name = "list_id",index = true)
     private Long List;
 
     public Long getId() {
