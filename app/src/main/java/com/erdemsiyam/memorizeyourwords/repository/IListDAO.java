@@ -11,4 +11,6 @@ public interface IListDAO {
     void updateList(List list);
     @Delete
     void deleteList(List list);
+    @Query("SELECT * FROM List")
+    java.util.List<List> getAllList();
 }
