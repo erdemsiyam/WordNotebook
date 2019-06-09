@@ -107,11 +107,11 @@ public class Word {
         this.density = density;
     }
 
-    public Long getList() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setList(Long categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
 }
