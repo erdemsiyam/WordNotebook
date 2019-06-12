@@ -7,7 +7,7 @@ import com.erdemsiyam.memorizeyourwords.entity.Category;
 import java.util.List;
 
 public final class CategoryService {
-    protected static List<Category> categories;
+    private static List<Category> categories;
 
     public static List<Category> getCategories(Context context){
         if(categories == null)
@@ -27,15 +27,19 @@ public final class CategoryService {
         categories.remove(existsCategory);
         MyDatabase.getMyDatabase(context).getCategoryDAO().deleteCategory(willRemoveCategory);
     }
-
-    protected static Category findCategoryInStaticList(Category willSearchCategory){
+    public static void addCategory(Context context, Category category){
+        category.setId(MyDatabase.getMyDatabase(context).getCategoryDAO().insertCategory(category));
+        categories.add(category);
+    }
+    // buna gerek var mı
+    private static Category findCategoryInStaticList(Category willSearchCategory){
         Category existsCategory = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            existsCategory = categories.stream().filter(x -> willSearchCategory.getId() == x.getId()).findAny().orElse(null);
+            existsCategory = categories.stream().filter(x -> willSearchCategory.getId().equals(x.getId())).findAny().orElse(null);
         }
         else {
             for (Category c : categories) {
-                if(c.getId() == willSearchCategory.getId()){
+                if(c.getId().equals(willSearchCategory.getId())){
                     existsCategory = c;
                     break;
                 }
