@@ -87,9 +87,7 @@ public class Word {
         return falseSelectTime;
     }
 
-    public void setFalseSelectTime(Integer falseSelectTime) {
-        this.falseSelectTime = falseSelectTime;
-    }
+    public void setFalseSelectTime(Integer falseSelectTime) { this.falseSelectTime = falseSelectTime; }
 
     public Boolean getActive() {
         return active;
