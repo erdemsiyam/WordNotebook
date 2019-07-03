@@ -12,9 +12,24 @@ public interface IWordDAO {
     void updateWord(Word word);
     @Delete
     void deleteWord(Word word);
+    @Query("SELECT * FROM Word WHERE id=:id")
+    Word getWordById(Long id);
     @Query("SELECT * FROM Word WHERE category_id=:id")
     List<Word> getWordsByCategoryId(Long id);
     @Query("SELECT * FROM Word")
     List<Word> getAllWord();
-
+    @Query("UPDATE Word SET trueSelect = trueSelect + 1 WHERE id =:id")
+    void trueSelectIncrease(Long id);
+    @Query("UPDATE Word SET falseSelect = falseSelect + 1 WHERE id =:id")
+    void falseSelectIncrease(Long id);
+    @Query("UPDATE Word SET learned = :status WHERE id =:id")
+    void changeLearned(Long id, boolean status);
+    @Query("UPDATE Word SET mark = :status WHERE id =:id")
+    void changeMark(Long id, boolean status);
+    @Query("UPDATE Word SET spendTime = spendTime + :spendTime WHERE id =:id")
+    void addSpendTime(Long id,long spendTime);
+    @Query("UPDATE Word SET strange = :newStrange WHERE id =:id")
+    void changeWordStrange(Long id, String newStrange);
+    @Query("UPDATE Word SET 'explain' = :newExplain WHERE id =:id")
+    void changeWordExplain(Long id, String newExplain);
 }
