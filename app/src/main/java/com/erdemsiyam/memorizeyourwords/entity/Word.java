@@ -21,95 +21,42 @@ public class Word {
     @ColumnInfo()
     private String explain;
     @ColumnInfo()
-    private Integer trueSelect;
+    private int writeTrue;
     @ColumnInfo()
-    private Integer falseSelect;
+    private int writeFalse;
     @ColumnInfo()
-    private Integer trueSelectTime;
+    private int trueSelect;
     @ColumnInfo()
-    private Integer falseSelectTime;
+    private int falseSelect;
     @ColumnInfo()
-    private Boolean active;
+    private long spendTime;
     @ColumnInfo()
-    private Integer density;
+    private boolean mark;
+    @ColumnInfo()
+    private boolean learned;
     @ColumnInfo(name = "category_id",index = true)
     private Long categoryId;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getStrange() {
-        return strange;
-    }
-
-    public void setStrange(String strange) {
-        this.strange = strange;
-    }
-
-    public String getExplain() {
-        return explain;
-    }
-
-    public void setExplain(String explain) {
-        this.explain = explain;
-    }
-
-    public Integer getTrueSelect() {
-        return trueSelect;
-    }
-
-    public void setTrueSelect(Integer trueSelect) {
-        this.trueSelect = trueSelect;
-    }
-
-    public Integer getFalseSelect() {
-        return falseSelect;
-    }
-
-    public void setFalseSelect(Integer falseSelect) {
-        this.falseSelect = falseSelect;
-    }
-
-    public Integer getTrueSelectTime() {
-        return trueSelectTime;
-    }
-
-    public void setTrueSelectTime(Integer trueSelectTime) {
-        this.trueSelectTime = trueSelectTime;
-    }
-
-    public Integer getFalseSelectTime() {
-        return falseSelectTime;
-    }
-
-    public void setFalseSelectTime(Integer falseSelectTime) { this.falseSelectTime = falseSelectTime; }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public Integer getDensity() {
-        return density;
-    }
-
-    public void setDensity(Integer density) {
-        this.density = density;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getStrange() { return strange; }
+    public void setStrange(String strange) { this.strange = strange; }
+    public String getExplain() { return explain; }
+    public void setExplain(String explain) { this.explain = explain; }
+    public int getTrueSelect() { return trueSelect; }
+    public void setTrueSelect(int trueSelect) { this.trueSelect = trueSelect; }
+    public int getFalseSelect() { return falseSelect; }
+    public void setFalseSelect(int falseSelect) { this.falseSelect = falseSelect; }
+    public long getSpendTime() { return spendTime; }
+    public void setSpendTime(long spendTime) { this.spendTime = spendTime; }
+    public boolean isLearned() { return learned; }
+    public void setLearned(boolean learned) {this.learned = learned;}
+    public Long getCategoryId() { return categoryId; }
+    public void setCategoryId(Long categoryId) { this.categoryId = categoryId; }
+    public int getWriteTrue() { return writeTrue; }
+    public void setWriteTrue(int writeTrue) { this.writeTrue = writeTrue; }
+    public int getWriteFalse() { return writeFalse; }
+    public void setWriteFalse(int writeFalse) { this.writeFalse = writeFalse; }
+    public boolean isMark() { return mark; }
+    public void setMark(boolean mark) { this.mark = mark; }
 }
