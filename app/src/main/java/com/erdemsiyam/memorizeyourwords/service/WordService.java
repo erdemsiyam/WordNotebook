@@ -3,59 +3,66 @@ package com.erdemsiyam.memorizeyourwords.service;
 import android.content.Context;
 
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
-import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 
 import java.util.List;
 
 public final class WordService {
 
-    public static List<Word> getWordsByCategoryId(Context context, Category category){
-        if(category.getWords() == null) // if there allready words puted. we dont waiting client, we services the words being fast.
-            category.setWords(MyDatabase.getMyDatabase(context).getWordDAO().getWordsByCategoryId(category.getId())); // when we put words. We also put who owner category.
-        return category.getWords();
+    public static List<Word> getWordsByCategoryId(Context context, Long categoryId){
+        return MyDatabase.getMyDatabase(context).getWordDAO().getWordsByCategoryId(categoryId);
     }
-    public static void updateWord(Context context, Category category, Word updatedWord){
-        Word existsWord = findWordInCategoryWordList(category,updatedWord); // buna gerek var mı?
-        existsWord.setExplain(updatedWord.getExplain());
-        existsWord.setStrange(updatedWord.getStrange());
-        existsWord.setActive(updatedWord.getActive());
-        existsWord.setCategoryId(updatedWord.getCategoryId());
-        existsWord.setDensity(updatedWord.getDensity());
-        existsWord.setFalseSelect(updatedWord.getFalseSelect());
-        existsWord.setTrueSelect(updatedWord.getTrueSelect()); // buna gerek var mı?
-        MyDatabase.getMyDatabase(context).getWordDAO().updateWord(updatedWord);
+    public static List<Word>  getAllWords(Context context){
+        return MyDatabase.getMyDatabase(context).getWordDAO().getAllWord();
     }
-    public static void deleteWord(Context context, Category category, Word willRemoveWord){
-        Word existsWord = findWordInCategoryWordList(category,willRemoveWord); // buna gerek var mı?
-        List<Word> words = category.getWords();
-        words.remove(existsWord);
-        category.setWords(words); // buna gerek var mı?
-        MyDatabase.getMyDatabase(context).getWordDAO().deleteWord(willRemoveWord);
+    public static Word getWordById(Context context, Long wordId){
+        Word word = MyDatabase.getMyDatabase(context).getWordDAO().getWordById(wordId);
+        if(word == null)
+            throw new RuntimeException("Word Not Found.");
+        return word;
     }
-    public static void addWord(Context context, Category category, Word word){
-        word.setCategoryId(category.getId());
+    public static Word addWord(Context context, Long categoryId, String strange, String explain){
+        Word word = new Word();
+        word.setStrange(strange.trim());
+        word.setExplain(explain.trim());
+        word.setWriteTrue(0);
+        word.setWriteFalse(0);
+        word.setTrueSelect(0);
+        word.setFalseSelect(0);
+        word.setSpendTime(0);
+        word.setLearned(false);
+        word.setMark(false);
+        word.setCategoryId(categoryId);
         word.setId(MyDatabase.getMyDatabase(context).getWordDAO().insertWord(word));
-        List<Word> words = category.getWords();
-        if(words != null){
-            words.add(word);
-            category.setWords(words);
-        }
+        return word;
     }
-    //buna gerek var mı?
-    private static Word findWordInCategoryWordList(Category category,Word searchWord){
-        Word existsWord = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            existsWord = category.getWords().stream().filter(x -> searchWord.getId().equals(x.getId())).findAny().orElse(null);
-        }
-        else {
-            for (Word w : category.getWords()) {
-                if(w.getId().equals(searchWord.getId())){
-                    existsWord = w;
-                    break;
-                }
-            }
-        }
-        return existsWord;
+    public static void deleteWord(Context context, Word removeWord){
+        MyDatabase.getMyDatabase(context).getWordDAO().deleteWord(removeWord);
+        MyDatabase.getMyDatabase(context).getConfuseDAO().deleteWord(removeWord.getId());
     }
+    public static void changeWordStrange(Context context, Long wordId, String newStrange){
+        Word word = getWordById(context,wordId);
+        MyDatabase.getMyDatabase(context).getWordDAO().changeWordStrange(word.getId(),newStrange);
+    }
+    public static void changeWordExplain(Context context, Long wordId, String newExplain){
+        Word word = getWordById(context,wordId);
+        MyDatabase.getMyDatabase(context).getWordDAO().changeWordExplain(word.getId(),newExplain);
+    }
+    public static void trueSelectIncrease(Context context, Long wordId, Long spendTime){
+        Word word = getWordById(context,wordId);
+        MyDatabase.getMyDatabase(context).getWordDAO().trueSelectIncrease(word.getId());
+        MyDatabase.getMyDatabase(context).getWordDAO().addSpendTime(wordId,spendTime);
+    }
+    public static void falseSelectIncrease(Context context, Long wordId, Long spendTime){
+        Word word = getWordById(context,wordId);
+        MyDatabase.getMyDatabase(context).getWordDAO().falseSelectIncrease(word.getId());
+        MyDatabase.getMyDatabase(context).getWordDAO().addSpendTime(wordId,spendTime);
+    }
+    public static void changeLearned(Context context, Long wordId, boolean status){
+        MyDatabase.getMyDatabase(context).getWordDAO().changeLearned(wordId,status);
+    }
+    public static void changeMark(Context context, Long wordId, boolean status){
+        MyDatabase.getMyDatabase(context).getWordDAO().changeMark(wordId,status);
+    }
+
 }
