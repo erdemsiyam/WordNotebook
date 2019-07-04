@@ -12,6 +12,8 @@ public class Category {
     private String name;
     @ColumnInfo()
     private String color;
+    @ColumnInfo()
+    private long alarm;
     @Ignore
     private List<Word> words;
 
@@ -26,4 +28,8 @@ public class Category {
     public String getColor() { return color; }
 
     public void setColor(String color) { this.color = color; }
+
+    public long getAlarm() { return alarm; }
+
+    public void setAlarm(long alarm) { this.alarm = alarm; }
 }

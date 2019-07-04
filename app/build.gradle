@@ -35,4 +35,7 @@ dependencies {
 
     implementation 'androidx.room:room-runtime:2.1.0-alpha04'
     annotationProcessor 'androidx.room:room-compiler:2.1.0-alpha04'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    implementation 'co.dift.ui.swipetoaction:library:1.1'
 }
