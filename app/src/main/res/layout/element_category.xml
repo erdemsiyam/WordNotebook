@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorEnterBackground"
+        android:tag="reveal-right">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_forward"
+            android:tint="@color/colorEnter"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorEditBackground"
+        android:tag="reveal-left">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_edit"
+            android:tint="@color/colorEdit" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="5px"
+        android:tag="front">
+
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/categoryWordCount"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="5px"
+            android:gravity="center|left"
+            android:text="TextViews"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:fontFamily="@font/ubuntu" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/categoryWordCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="60px"
+            android:layout_marginRight="50px"
+            android:layout_marginBottom="60px"
+            android:layout_toLeftOf="@id/alarmButton"
+            android:text="1234"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            app:chipBackgroundColor="@color/colorAccent"
+            app:chipCornerRadius="18dp" />
+
+        <ImageButton
+            android:id="@+id/alarmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5px"
+            android:layout_marginTop="5px"
+            android:layout_marginRight="50px"
+            app:srcCompat="@drawable/ic_alarm_off"
+            tools:ignore="VectorDrawableCompat"
+            android:background="?android:selectableItemBackground"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
