@@ -3,4 +3,10 @@
     <color name="colorPrimary">#00a2e8</color>
     <color name="colorPrimaryDark">#0071a2</color>
     <color name="colorAccent">#66c7f1</color>
+    <color name="colorEdit">#ff9529</color>
+    <color name="colorEditBackground">#66FFEB3B</color>
+    <color name="colorEnter">#22BE00</color>
+    <color name="colorEnterBackground">#668BC34A</color>
+    <color name="colorDelete">#ff0000</color>
+    <color name="white">#ffffff</color>
 </resources>
