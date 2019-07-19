@@ -10,12 +10,8 @@ import com.erdemsiyam.memorizeyourwords.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class NavigationItemSelectListener implements NavigationView.OnNavigationItemSelectedListener {
-    private static Context context;
-
-    public NavigationItemSelectListener(Context ctx) {
-        context = ctx;
-    }
-
+    private Context context;
+    public NavigationItemSelectListener(Context ctx) {this.context = ctx;}
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         // which item selected at navigation menu. then these action works.
