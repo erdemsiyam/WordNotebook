@@ -15,14 +15,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.util.adapter.CategoryRecyclerViewAdapter;
+import com.erdemsiyam.memorizeyourwords.util.listener.CategoryAddFABListener;
 import com.erdemsiyam.memorizeyourwords.util.listener.CategorySearchListener;
 import com.erdemsiyam.memorizeyourwords.util.listener.CategorySwipeListener;
 import com.erdemsiyam.memorizeyourwords.util.listener.NavigationItemSelectListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,8 +35,10 @@ import co.dift.ui.SwipeToAction;
 public class CategoryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView; // our recycler of category list
+    private CategoryRecyclerViewAdapter adapter;
     private SwipeToAction swipeToAction; // when recycler item moved right or left then handle methods.
     private DrawerLayout drawerLayout; // our navigation menu
+    private FloatingActionButton floatingActionButton; // add category FloatingActionButton.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,6 @@ public class CategoryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         // category search icon adding to tool bar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.category_search,menu);
@@ -67,11 +72,10 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void initComponents(){
-
         //our custimozed tool bar include
         Toolbar toolBar = findViewById(R.id.toolbar_category);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false); // enabled view for action bar title
+
         recyclerView = findViewById(R.id.recyclerView);
         drawerLayout = findViewById(R.id.category_activity);
 
@@ -81,6 +85,11 @@ public class CategoryActivity extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolBar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        //floating action button include for "Add Category"
+        floatingActionButton = findViewById(R.id.categoryAddFAButton);
+        floatingActionButton.setOnClickListener(new CategoryAddFABListener(this));
+
     }
     private void loadData(){
         Category category1 = new Category();
@@ -103,15 +112,32 @@ public class CategoryActivity extends AppCompatActivity {
             category4.setName("Ev Eşyaları");
             category4.setColor("");
             category4.setAlarm(0l);
-        List<Category> categories = Arrays.asList(new Category[] {category1,category2,category3,category4});
+        List<Category> categories = new ArrayList<>();
+        categories.add(category1);
+        categories.add(category2);
+        categories.add(category3);
+        categories.add(category4);
 
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new CategoryRecyclerViewAdapter(categories)); // the category list sended.
+        adapter = new CategoryRecyclerViewAdapter(this,categories);
+        recyclerView.setAdapter(adapter); // the category list sended.
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        swipeToAction = new SwipeToAction(recyclerView, new CategorySwipeListener());
+        swipeToAction = new SwipeToAction(recyclerView, new CategorySwipeListener(adapter));
     }
+
+    public void deleteCategories(){
+        List<Integer> positions = adapter.getSelectedCategoryPositions();
+        for(int i = positions.size()-1; i>=0; i--){
+            adapter.removeData(positions.get(i));
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+
+    /*########### GET-SET #############*/
+    public CategoryRecyclerViewAdapter getAdapter(){ return adapter;}
 
 }
