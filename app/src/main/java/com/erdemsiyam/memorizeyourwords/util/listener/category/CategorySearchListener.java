@@ -1,4 +1,4 @@
-package com.erdemsiyam.memorizeyourwords.util.listener;
+package com.erdemsiyam.memorizeyourwords.util.listener.category;
 
 import androidx.appcompat.widget.SearchView;
 
