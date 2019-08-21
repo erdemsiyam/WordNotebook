@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="left|center_vertical"
+    android:padding="16dp"
+    >
+
+    <EditText
+        android:id="@+id/txtEditWordStrange"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtEditWordExplain"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="Yabancı Kelime"
+        android:textSize="26sp" />
+
+    <EditText
+        android:id="@+id/txtEditWordExplain"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/txtEditWordStrange"
+        app:layout_constraintBottom_toTopOf="@id/btnEditWord"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="Liste Adı"
+        android:textSize="26sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEditWord"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toBottomOf="@id/txtEditWordExplain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="Save Word"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
