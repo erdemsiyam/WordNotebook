@@ -16,9 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.erdemsiyam.memorizeyourwords.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
-import com.erdemsiyam.memorizeyourwords.util.listener.CategorySelectActionModeCallBack;
+import com.erdemsiyam.memorizeyourwords.util.listener.category.CategoryNotificationButtonOnClickListener;
+import com.erdemsiyam.memorizeyourwords.util.listener.category.CategorySelectActionModeCallBack;
 import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
@@ -28,26 +30,28 @@ import co.dift.ui.SwipeToAction;
 
 public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.CategoryViewHolder> implements Filterable {
     public static CategoryRecyclerViewAdapter instance; // this instance created for reaching to filter methods from listener class (CategorySearchListener)
-    private AppCompatActivity context;
+    private CategoryActivity context;
     private List<Category> categories;
 
-    public CategoryRecyclerViewAdapter(Context context, List<Category> categories) {
+    public CategoryRecyclerViewAdapter(CategoryActivity context, List<Category> categories) {
         instance = this;
         this.categories = categories;
         filteredCategories = new ArrayList<>(categories);
-        this.context = (AppCompatActivity) context;
+        this.context = context;
         selectedCategories = new SparseBooleanArray();
     }
     public class CategoryViewHolder extends SwipeToAction.ViewHolder<Category> {
         public TextView categoryName;
         public Chip wordCount;
-        public ImageButton alarmButton;
+        public ImageButton btnCategoryNotification;
+        public ImageButton btnCategoryWordsNotification;
         public RelativeLayout background; // if this object selected, then background color changing to PrimaryColor
         public CategoryViewHolder(View layout) {
             super(layout);
             categoryName = layout.findViewById(R.id.categoryName);
             wordCount = layout.findViewById(R.id.categoryWordCount);
-            alarmButton = layout.findViewById(R.id.alarmButton);
+            btnCategoryNotification = layout.findViewById(R.id.btnCategoryNotification);
+            btnCategoryWordsNotification = layout.findViewById(R.id.btnCategoryWordsNotification);
             background = layout.findViewById(R.id.elementCategoryContainer);
         }
     }
@@ -61,9 +65,16 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         Category category = filteredCategories.get(position);
         holder.categoryName.setText(category.getName());
         holder.wordCount.setText("123");
+        holder.btnCategoryNotification.setOnClickListener(new CategoryNotificationButtonOnClickListener(context,this,category));
         holder.data = category;
 
+        if(category.getAlarm() > 0)
+            holder.btnCategoryNotification.setColorFilter(Color.argb(255, 0, 255, 0));
+        else
+            holder.btnCategoryNotification.setColorFilter(Color.argb(255, 150, 150, 150));
+
         toggleBackgroundColor(holder,position); // if this item selected Then set this background color gray.
+
     }
     @Override
     public int getItemCount() { return filteredCategories.size(); }
@@ -74,11 +85,10 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     private SparseBooleanArray selectedCategories;
     private int currentSelectedPosition= -1;
     public ActionMode selectingCategoriesActionMode;
-    public ActionMode.Callback selectingCategoriesActionModeCallBack = new CategorySelectActionModeCallBack(this,context);
 
     public void displaySelectingActionModeIfNotExist(){
         if(selectingCategoriesActionMode == null) {
-            selectingCategoriesActionMode = context.startSupportActionMode(selectingCategoriesActionModeCallBack);
+            selectingCategoriesActionMode = context.startSupportActionMode(new CategorySelectActionModeCallBack(this,context));
         }
     }
     public void toggleBackgroundColor(CategoryViewHolder holder,int position){ // switch background color.
@@ -114,6 +124,14 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             selectedPositions.add(selectedCategories.keyAt(i));
         }
         return selectedPositions;
+    }
+    public long[] getSelectedCategoryIds(){ // for starting exam.
+        List<Integer> positions = getSelectedCategoryPositions();
+        long[] ids = new long[positions.size()];
+        for (Integer i : positions) {
+            ids[i] = filteredCategories.get(i).getId();
+        }
+        return ids;
     }
     public void removeData(int position){
         categories.remove(position);
@@ -161,5 +179,16 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         filteredCategories.add(newCategory);
         notifyDataSetChanged();
         //notifyItemInserted(categories.size() - 1);
+    }
+    public void deleteCategory(Category category){
+        int index = categories.indexOf(category);
+        categories.remove(category);
+        filteredCategories.remove(category);
+        notifyDataSetChanged();
+        //notifyItemInserted(categories.size() - 1);
+    }
+    public void updateCategory(Category category){
+        int index = categories.indexOf(category);
+        notifyItemChanged(index);
     }
 }
