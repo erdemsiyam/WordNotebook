@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    android:id="@+id/elementWord">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <ImageButton
+           android:id="@+id/btnWordStar"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           app:layout_constraintRight_toLeftOf="@id/txtWordStrange"
+           app:layout_constraintLeft_toLeftOf="parent"
+
+           android:background="?android:selectableItemBackground"
+           app:srcCompat="@drawable/ic_star_on"
+           tools:ignore="VectorDrawableCompat" />
+
+       <TextView
+           android:id="@+id/txtWordStrange"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           app:layout_constraintRight_toLeftOf="@id/txtWordExplain"
+           app:layout_constraintLeft_toRightOf="@id/btnWordStar"
+
+           android:gravity="center"
+           android:text="STRANGE"
+           android:textSize="18sp"
+           android:textStyle="normal"
+           app:fontFamily="@font/ubuntu" />
+
+       <TextView
+           android:id="@+id/txtWordExplain"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:layout_marginLeft="50px"
+           android:layout_marginTop="5px"
+           app:layout_constraintRight_toLeftOf="@id/btnWordCheck"
+           app:layout_constraintLeft_toRightOf="@id/txtWordStrange"
+
+           android:gravity="center"
+           android:text="EXPLAIN"
+           android:textSize="18sp"
+           android:textStyle="normal"
+           app:fontFamily="@font/ubuntu" />
+
+
+       <ImageButton
+           android:id="@+id/btnWordCheck"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintLeft_toRightOf="@id/txtWordExplain"
+
+           android:background="?android:selectableItemBackground"
+           app:srcCompat="@drawable/ic_check_off"
+           tools:ignore="VectorDrawableCompat" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
