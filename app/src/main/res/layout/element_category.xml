@@ -71,7 +71,7 @@
             android:layout_marginTop="60px"
             android:layout_marginRight="50px"
             android:layout_marginBottom="60px"
-            android:layout_toLeftOf="@id/alarmButton"
+            android:layout_toLeftOf="@id/btnCategoryNotification"
             android:text="1234"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
@@ -79,16 +79,30 @@
             app:chipCornerRadius="18dp" />
 
         <ImageButton
-            android:id="@+id/alarmButton"
+            android:id="@+id/btnCategoryNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="1px"
+            android:layout_marginTop="5px"
+            android:layout_marginRight="50px"
+            android:layout_toLeftOf="@id/btnCategoryWordsNotification"
+            app:srcCompat="@drawable/ic_alarm_off"
+            tools:ignore="VectorDrawableCompat"
+            android:background="?android:selectableItemBackground"/>
+
+        <ImageButton
+            android:id="@+id/btnCategoryWordsNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="5px"
+            android:layout_marginLeft="1px"
             android:layout_marginTop="5px"
             android:layout_marginRight="50px"
-            app:srcCompat="@drawable/ic_alarm_off"
+            app:srcCompat="@drawable/ic_notifications_none"
             tools:ignore="VectorDrawableCompat"
             android:background="?android:selectableItemBackground"/>
 
