@@ -16,6 +16,12 @@ public interface IWordDAO {
     Word getWordById(Long id);
     @Query("SELECT * FROM Word WHERE category_id=:id")
     List<Word> getWordsByCategoryId(Long id);
+    @Query("SELECT * FROM Word WHERE category_id=:id AND learned=1")
+    List<Word> getLearnedWordsByCategoryId(Long id);
+    @Query("SELECT * FROM Word WHERE category_id=:id AND mark=1")
+    List<Word> getMarkedWordsByCategoryId(Long id);
+    @Query("SELECT * FROM Word WHERE category_id=:id AND learned=0")
+    List<Word> getNotLearnedWordsByCategoryId(Long id);
     @Query("SELECT * FROM Word")
     List<Word> getAllWord();
     @Query("UPDATE Word SET trueSelect = trueSelect + 1 WHERE id =:id")

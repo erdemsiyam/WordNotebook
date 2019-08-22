@@ -12,6 +12,15 @@ public final class WordService {
     public static List<Word> getWordsByCategoryId(Context context, Long categoryId){
         return MyDatabase.getMyDatabase(context).getWordDAO().getWordsByCategoryId(categoryId);
     }
+    public static List<Word> getLearnedWordsByCategoryId(Context context, Long categoryId){
+        return MyDatabase.getMyDatabase(context).getWordDAO().getLearnedWordsByCategoryId(categoryId);
+    }
+    public static List<Word> getMarkedWordsByCategoryId(Context context, Long categoryId){
+        return MyDatabase.getMyDatabase(context).getWordDAO().getMarkedWordsByCategoryId(categoryId);
+    }
+    public static List<Word> getNotLearnedWordsByCategoryId(Context context, Long categoryId){
+        return MyDatabase.getMyDatabase(context).getWordDAO().getNotLearnedWordsByCategoryId(categoryId);
+    }
     public static List<Word>  getAllWords(Context context){
         return MyDatabase.getMyDatabase(context).getWordDAO().getAllWord();
     }
