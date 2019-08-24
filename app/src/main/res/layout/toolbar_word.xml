@@ -6,6 +6,13 @@
     android:background="@color/colorAccent"
     android:elevation="0dp">
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnBackToCategoryFromWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:background="@null"/>
+
     <TextView
         android:id="@+id/wordTitle"
         android:layout_width="wrap_content"

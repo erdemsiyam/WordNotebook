@@ -2,6 +2,8 @@ package com.erdemsiyam.memorizeyourwords;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,6 +46,9 @@ public class WordActivity extends AppCompatActivity {
     private WordRecyclerViewAdapter adapter;
     private Button btnFreezeToggle;
     public long selectedCategoryId;
+    private AppCompatImageButton btnBackToCategoryFromWord;
+    private AppCompatTextView txtCategoryName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +156,16 @@ public class WordActivity extends AppCompatActivity {
         //freeze button WordFreezeToggleOnClickListener
         btnFreezeToggle = findViewById(R.id.btnFreezeToggle);
         btnFreezeToggle.setOnClickListener(new WordFreezeToggleOnClickListener(this));
+
+        btnBackToCategoryFromWord = findViewById(R.id.btnBackToCategoryFromWord);
+        btnBackToCategoryFromWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        txtCategoryName = findViewById(R.id.txtCategoryName);
     }
 
     private void loadData() {
@@ -157,6 +173,7 @@ public class WordActivity extends AppCompatActivity {
         //get intent and words.
         Intent intent = getIntent();
         selectedCategoryId = intent.getLongExtra(CategoryActivity.INTENT_CATEGORY_ID,0L);
+        txtCategoryName.setText(intent.getStringExtra(CategoryActivity.INTENT_CATEGORY_NAME));
         List<Word> words = WordService.getWordsByCategoryId(this,selectedCategoryId); // get words from db
 
         //recyclerview
