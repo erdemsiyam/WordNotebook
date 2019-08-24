@@ -197,23 +197,35 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     public static class ComparatorMuchSelectedTrue implements Comparator<Word> {
         @Override
         public int compare(Word w1, Word w2) {
-            if(w1.getTrueSelect() > w2.getTrueSelect())
+            if(w1.getTrueSelect() < w2.getTrueSelect())
                 return 1;
-            else if (w1.getTrueSelect() < w2.getTrueSelect())
+            else if (w1.getTrueSelect() > w2.getTrueSelect())
                 return -1;
-            else
-                return 0;
+            else {
+                if(w1.getFalseSelect() > w2.getFalseSelect())
+                    return 1;
+                else if(w1.getFalseSelect() > w2.getFalseSelect())
+                    return -1;
+                else
+                    return 0;
+            }
         }
     }
     public static class ComparatorMuchSelectedFalse implements Comparator<Word> {
         @Override
         public int compare(Word w1, Word w2) {
-            if(w1.getFalseSelect() > w2.getFalseSelect())
+            if(w1.getFalseSelect() < w2.getFalseSelect())
                 return 1;
-            else if (w1.getFalseSelect() < w2.getFalseSelect())
+            else if (w1.getFalseSelect() > w2.getFalseSelect())
                 return -1;
-            else
-                return 0;
+            else {
+                if(w1.getTrueSelect() > w2.getTrueSelect())
+                    return 1;
+                else if(w1.getTrueSelect() > w2.getTrueSelect())
+                    return -1;
+                else
+                    return 0;
+            }
         }
     }
     public static class ComparatorStrangeAZ implements Comparator<Word> {
