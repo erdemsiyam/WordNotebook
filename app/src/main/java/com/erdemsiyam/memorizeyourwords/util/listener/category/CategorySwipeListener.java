@@ -33,6 +33,7 @@ public class CategorySwipeListener implements SwipeToAction.SwipeListener<Catego
     public boolean swipeRight(Category itemData) {
         Intent intent = new Intent(context, WordActivity.class);
         intent.putExtra(CategoryActivity.INTENT_CATEGORY_ID,itemData.getId());
+        intent.putExtra(CategoryActivity.INTENT_CATEGORY_NAME,itemData.getName());
         context.startActivity(intent);
         return true;
     }
