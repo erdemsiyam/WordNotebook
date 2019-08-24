@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.Confuse;
-import com.erdemsiyam.memorizeyourwords.entity.Word;
+
 import java.util.List;
 
 public class ConfuseService {
@@ -23,10 +23,13 @@ public class ConfuseService {
     public static List<Confuse> getAllConfuse(Context context){
         return MyDatabase.getMyDatabase(context).getConfuseDAO().getAllConfuse();
     }
-    public static List<Confuse> getWrongsInsteadOfThisWord(Context context, Long wordId){
-        return MyDatabase.getMyDatabase(context).getConfuseDAO().getWrongsInsteadOfThisWord(wordId);
+    public static List<Confuse> getConfusesWordsByFirstId(Context context, Long wordId){
+        return MyDatabase.getMyDatabase(context).getConfuseDAO().getConfusesWordsByFirstId(wordId);
     }
-    public static List<Confuse> getThisWordInsteadOfOthers(Context context, Long wordId){
-        return MyDatabase.getMyDatabase(context).getConfuseDAO().getThisWordInsteadOfOthers(wordId);
+    public static List<Confuse> getConfusesWordsBySecondId(Context context, Long wordId){
+        return MyDatabase.getMyDatabase(context).getConfuseDAO().getConfusesWordsBySecondId(wordId);
+    }
+    public static void deleteAllConfuse(Context context){
+        MyDatabase.getMyDatabase(context).getConfuseDAO().deleteAllConfuse();
     }
 }
