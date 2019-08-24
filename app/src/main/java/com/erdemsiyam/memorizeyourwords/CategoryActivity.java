@@ -31,6 +31,8 @@ import com.erdemsiyam.memorizeyourwords.util.listener.NavigationItemSelectListen
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import co.dift.ui.SwipeToAction;
@@ -38,6 +40,7 @@ import co.dift.ui.SwipeToAction;
 public class CategoryActivity extends AppCompatActivity {
 
     public static final String INTENT_CATEGORY_ID = "category_id";
+    public static final String INTENT_CATEGORY_NAME = "category_name";
     public static final String INTENT_EXAM_SELECT_INDEX = "examSelectIndex";
     public static final String INTENT_SELECTED_CATEGORY_IDS = "selectedCategoryIds";
     private int examSelectIndex=-1;
@@ -123,8 +126,8 @@ public class CategoryActivity extends AppCompatActivity {
     public AlertDialog examWordsSelecting(ActionMode mode){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Sınav Seçiniz");
-        String[] options = {"Hepsi","Öğrenilenler","Yıldızlananlar","Öğrenilmeyenler"};
-        builder.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
+        String[] options = {"All","Learned","Marked","Not Learned"};
+        builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 examSelectIndex = i;
