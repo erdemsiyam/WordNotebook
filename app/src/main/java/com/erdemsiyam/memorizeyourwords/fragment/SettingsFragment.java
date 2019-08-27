@@ -1,4 +1,4 @@
-package com.erdemsiyam.memorizeyourwords;
+package com.erdemsiyam.memorizeyourwords.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,9 @@ import androidx.preference.ListPreference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
-public class SettingsDetailFragment extends PreferenceFragmentCompat {
+import com.erdemsiyam.memorizeyourwords.R;
+
+public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         getPreferenceManager().setSharedPreferencesName("settings");

@@ -1,13 +1,14 @@
-package com.erdemsiyam.memorizeyourwords.util.listener.category;
+package com.erdemsiyam.memorizeyourwords.listener;
 
 import android.app.TimePickerDialog;
 import android.view.View;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.erdemsiyam.memorizeyourwords.entity.Category;
-import com.erdemsiyam.memorizeyourwords.util.adapter.CategoryRecyclerViewAdapter;
+import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 
 public class CategoryNotificationButtonOnClickListener implements View.OnClickListener {
     public AppCompatActivity context;
@@ -32,9 +33,12 @@ public class CategoryNotificationButtonOnClickListener implements View.OnClickLi
     public class MyTimeHandler implements TimePickerDialog.OnTimeSetListener {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            Toast.makeText(context, "Soon.", Toast.LENGTH_SHORT).show();
+            /*
             category.setAlarm(hourOfDay+minute); // gerekeni yap
             // servise ve db'ye yüklenir ?
             adapter.updateCategory(category); // görünürdeki alarm simgesi yenilenmesi için.
+            */
         }
     }
 }

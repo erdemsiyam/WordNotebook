@@ -18,4 +18,7 @@ public interface ICategoryDAO {
     List<Category> getAllCategory();
     @Query("SELECT * FROM Category WHERE id =:id")
     Category getCategoryById(Long id);
+    @Query("Select COUNT(*) from Word WHERE category_id =:id")
+    int getCategoryWordCount(Long id);
+
 }

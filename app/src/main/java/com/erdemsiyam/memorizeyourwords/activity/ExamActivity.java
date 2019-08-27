@@ -1,13 +1,11 @@
-package com.erdemsiyam.memorizeyourwords;
+package com.erdemsiyam.memorizeyourwords.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.erdemsiyam.memorizeyourwords.entity.Category;
+import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
-import com.erdemsiyam.memorizeyourwords.util.listener.category.CategorySelectActionModeCallBack;
+import com.erdemsiyam.memorizeyourwords.util.ExamWordType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,26 +74,26 @@ public class ExamActivity extends AppCompatActivity {
     }
     private void loadData() {
         Intent intent = getIntent();
-        int examSelectIndex = intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0);
+        ExamWordType examWordType = ExamWordType.getTypeByValue(intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0));
         long[] selectedCategoryIds = intent.getLongArrayExtra(CategoryActivity.INTENT_SELECTED_CATEGORY_IDS);
         words = new ArrayList<>();
-        switch (examSelectIndex){
-            case 0:
+        switch (examWordType){
+            case All:
                     for(long l : selectedCategoryIds){
                         words.addAll(WordService.getWordsByCategoryId(this,l));
                     }
                 break;
-            case 1:
+            case Learned:
                     for(long l : selectedCategoryIds){
                         words.addAll(WordService.getLearnedWordsByCategoryId(this,l));
                     }
                 break;
-            case 2:
+            case Marked:
                     for(long l : selectedCategoryIds){
                         words.addAll(WordService.getMarkedWordsByCategoryId(this,l));
                     }
                 break;
-            case 3:
+            case NotLearned:
                     for(long l : selectedCategoryIds){
                         words.addAll(WordService.getNotLearnedWordsByCategoryId(this,l));
                     }
@@ -156,10 +154,10 @@ public class ExamActivity extends AppCompatActivity {
         btnWord4.setTag(w4);
         btnWord4.setText(w4.getExplain());
 
-        btnWord1.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-        btnWord2.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-        btnWord3.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-        btnWord4.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        btnWord1.getBackground().setColorFilter(getResources().getColor(R.color.main_blue_3), PorterDuff.Mode.SRC_ATOP);
+        btnWord2.getBackground().setColorFilter(getResources().getColor(R.color.main_blue_3), PorterDuff.Mode.SRC_ATOP);
+        btnWord3.getBackground().setColorFilter(getResources().getColor(R.color.main_blue_3), PorterDuff.Mode.SRC_ATOP);
+        btnWord4.getBackground().setColorFilter(getResources().getColor(R.color.main_blue_3), PorterDuff.Mode.SRC_ATOP);
         btnDone.setOnClickListener(new DoneButtonOnClickListener());
         swAutoPass.setOnClickListener(new SwitchAutoPassOnClickListener());
 
@@ -179,7 +177,7 @@ public class ExamActivity extends AppCompatActivity {
             selectedButton = (Button) v;
             String trueAnswer = lastAskedWord.getExplain();
             if(trueAnswer.equals(selectedButton.getText())){
-                selectedButton.getBackground().setColorFilter(getResources().getColor(R.color.colorEnter), PorterDuff.Mode.SRC_ATOP);
+                selectedButton.getBackground().setColorFilter(getResources().getColor(R.color.category_enter), PorterDuff.Mode.SRC_ATOP);
                 txtTrueCount.setText(++trueCount +"");
 
                 WordService.trueSelectIncrease(getApplicationContext(),lastAskedWord.getId(),timePassing);
@@ -187,15 +185,15 @@ public class ExamActivity extends AppCompatActivity {
                 //yanlis
                 txtFalseCount.setText(++falseCount +"");
 
-                selectedButton.getBackground().setColorFilter(getResources().getColor(R.color.colorDelete), PorterDuff.Mode.SRC_ATOP);
+                selectedButton.getBackground().setColorFilter(getResources().getColor(R.color.red), PorterDuff.Mode.SRC_ATOP);
                 if(btnWord1.getText().equals(trueAnswer))
-                    btnWord1.getBackground().setColorFilter(getResources().getColor(R.color.colorEnter), PorterDuff.Mode.SRC_ATOP);
+                    btnWord1.getBackground().setColorFilter(getResources().getColor(R.color.category_enter), PorterDuff.Mode.SRC_ATOP);
                 else if(btnWord2.getText().equals(trueAnswer))
-                    btnWord2.getBackground().setColorFilter(getResources().getColor(R.color.colorEnter), PorterDuff.Mode.SRC_ATOP);
+                    btnWord2.getBackground().setColorFilter(getResources().getColor(R.color.category_enter), PorterDuff.Mode.SRC_ATOP);
                 else if(btnWord3.getText().equals(trueAnswer))
-                    btnWord3.getBackground().setColorFilter(getResources().getColor(R.color.colorEnter), PorterDuff.Mode.SRC_ATOP);
+                    btnWord3.getBackground().setColorFilter(getResources().getColor(R.color.category_enter), PorterDuff.Mode.SRC_ATOP);
                 else if(btnWord4.getText().equals(trueAnswer))
-                    btnWord4.getBackground().setColorFilter(getResources().getColor(R.color.colorEnter), PorterDuff.Mode.SRC_ATOP);
+                    btnWord4.getBackground().setColorFilter(getResources().getColor(R.color.category_enter), PorterDuff.Mode.SRC_ATOP);
 
                 WordService.falseSelectIncrease(getApplicationContext(),lastAskedWord.getId(),timePassing);
                 ConfuseService.addConfuse(getApplicationContext(),lastAskedWord.getId(),((Word)selectedButton.getTag()).getId());

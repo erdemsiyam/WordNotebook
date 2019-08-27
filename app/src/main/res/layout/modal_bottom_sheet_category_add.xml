@@ -28,9 +28,9 @@
         app:layout_constraintLeft_toRightOf="@id/newCategoryName"
         app:layout_constraintRight_toRightOf="parent"
         android:textColor="#fff"
-        android:backgroundTint="@color/colorAccentOpen"
+        android:backgroundTint="@color/main_blue_1"
         app:icon="@drawable/ic_add"
-        app:iconTint="@color/colorPrimaryDark"
+        app:iconTint="@color/main_blue_4"
         app:cornerRadius="100dp"
         />
 

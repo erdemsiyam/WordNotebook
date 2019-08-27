@@ -26,9 +26,9 @@
         app:layout_constraintLeft_toRightOf="@id/txtEditCategoryName"
         app:layout_constraintRight_toLeftOf="@id/btnDeleteCategory"
         android:textColor="#fff"
-        android:backgroundTint="@color/colorAccentOpen"
+        android:backgroundTint="@color/main_blue_1"
         app:icon="@drawable/ic_check"
-        app:iconTint="@color/colorAccent"
+        app:iconTint="@color/main_blue_2"
         app:cornerRadius="50dp"
         />
     <com.google.android.material.button.MaterialButton
@@ -42,9 +42,9 @@
         app:layout_constraintLeft_toRightOf="@id/btnEditCategory"
         app:layout_constraintRight_toRightOf="parent"
         android:textColor="#fff"
-        android:backgroundTint="@color/colorAccentOpen"
+        android:backgroundTint="@color/main_blue_1"
         app:icon="@drawable/ic_delete"
-        app:iconTint="@color/colorDelete"
+        app:iconTint="@color/red"
         app:cornerRadius="50dp"
         />
 

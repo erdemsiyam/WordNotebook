@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WordActivity">
+    tools:categoryActivity=".WordActivity">
 
         <include
             android:id="@+id/toolbar_word"
@@ -64,7 +64,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
-            app:rippleColor="@color/colorAccent"
+            app:rippleColor="@color/main_blue_2"
             app:srcCompat="@drawable/ic_add"
             tools:ignore="VectorDrawableCompat" />
 

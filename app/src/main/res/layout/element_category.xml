@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorEnterBackground"
+        android:background="@color/category_enter_background"
         android:tag="reveal-right">
         <ImageView
             android:layout_width="wrap_content"
@@ -19,14 +19,14 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:src="@drawable/ic_forward"
-            android:tint="@color/colorEnter"
+            android:tint="@color/category_enter"
             />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorEditBackground"
+        android:background="@color/category_edit_background"
         android:tag="reveal-left">
         <ImageView
             android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/ic_edit"
-            android:tint="@color/colorEdit" />
+            android:tint="@color/category_edit" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -72,10 +72,9 @@
             android:layout_marginRight="50px"
             android:layout_marginBottom="60px"
             android:layout_toLeftOf="@id/btnCategoryNotification"
-            android:text="1234"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
-            app:chipBackgroundColor="@color/colorAccent"
+            app:chipBackgroundColor="@color/main_blue_2"
             app:chipCornerRadius="18dp" />
 
         <ImageButton

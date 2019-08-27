@@ -27,5 +27,8 @@ public final class CategoryService {
     public static void deleteCategory(Context context, Category willRemoveCategory){
         MyDatabase.getMyDatabase(context).getCategoryDAO().deleteCategory(willRemoveCategory);
     }
+    public static int getCategoryWordCount(Context context, Category category){
+        return MyDatabase.getMyDatabase(context).getCategoryDAO().getCategoryWordCount(category.getId());
+    }
 
 }

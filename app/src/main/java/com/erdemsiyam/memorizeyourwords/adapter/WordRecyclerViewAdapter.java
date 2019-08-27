@@ -1,9 +1,6 @@
-package com.erdemsiyam.memorizeyourwords.util.adapter;
+package com.erdemsiyam.memorizeyourwords.adapter;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.BlurMaskFilter;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +10,15 @@ import android.widget.Filterable;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.erdemsiyam.memorizeyourwords.WordActivity;
+import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
-import com.erdemsiyam.memorizeyourwords.util.listener.word.WordCheckButtonOnClickListener;
-import com.erdemsiyam.memorizeyourwords.util.listener.word.WordOnClickListener;
-import com.erdemsiyam.memorizeyourwords.util.listener.word.WordStarButtonOnClickListener;
+import com.erdemsiyam.memorizeyourwords.fragment.WordDetailDialogFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,24 +26,29 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
-public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerViewAdapter.WordViewHolder> implements Filterable {
+public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerViewAdapter.WordViewHolder> implements Filterable, SearchView.OnQueryTextListener {
 
-    private AppCompatActivity context;
-    private List<Word> words;
-    public FreezeType freezeType=FreezeType.NONE;
-    private HashSet<Integer> unFreezIndexs = new HashSet<>();
+    /* Variables of Top. */
+    private WordActivity     wordActivity;      // Instance of dependent Activity.
+    private List<Word>       words;             // All words.
+    private FreezeType       freezeType = FreezeType.NONE; // At start, appears the all "Strange,Explain".
+    private HashSet<Integer> unFreezeIndexs = new HashSet<>(); // Words to show by clicked while freeze.
 
-
-    public WordRecyclerViewAdapter(Context context, List<Word> words){
-        this.context = (AppCompatActivity) context;
+    /* Constructor (gets instances, creating some objects). */
+    public WordRecyclerViewAdapter(WordActivity wordActivity, List<Word> words){
+        this.wordActivity = wordActivity;
         this.words = words;
         this.filteredWords= new ArrayList<>(words);
     }
 
+    /* The "ViewHolder" inner class. */
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{ // impl for when long click to the item then show up context menu
+        /* Holder UI components. */
         public ImageButton btnStar,btnCheck;
         public TextView txtStrange,txtExplain;
         public FrameLayout frameLayout;
+
+        /* Constructor. */
         public WordViewHolder(View layout){
             super(layout);
             btnStar = layout.findViewById(R.id.btnWordStar);
@@ -59,49 +56,97 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
             txtStrange =  layout.findViewById(R.id.txtWordStrange);
             txtExplain =  layout.findViewById(R.id.txtWordExplain);
             frameLayout = layout.findViewById(R.id.elementWord);
-            frameLayout.setOnCreateContextMenuListener(this); // whe have implement to this class at bottom you can see override func.
+
+            /* At long click on words, we want to appear ContextMenu to "Edit,Delete" them.
+               So we implement the "View.OnCreateContextMenuListener",
+               to fill override method "onCreateContextMenu" at below in this class.
+               And here, we put this object.*/
+            frameLayout.setOnCreateContextMenuListener(this);
         }
 
+        /* The override method "ContextMenu" of "View.OnCreateContextMenuListener". */
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            /* We add items to "ContextMenu". The need items are "Edit","Delete". */
             menu.add(this.getAdapterPosition(), WordActivity.CONTEXT_MENU_DELETE,0,"Delete");
             menu.add(this.getAdapterPosition(), WordActivity.CONTEXT_MENU_EDIT,0,"Edit");
         }
     }
 
-    @NonNull
+    /* Override methods of RecyclerView. */
     @Override
-    public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.element_word, parent, false);
         return new WordViewHolder(layout);
     }
     @Override
-    public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
-        Word word = filteredWords.get(position);
-        holder.btnStar.setImageResource((word.isMark())?R.drawable.ic_star_on:R.drawable.ic_star_off);
-        holder.btnCheck.setImageResource((word.isLearned())?R.drawable.ic_check_on:R.drawable.ic_check_off);
-        holder.txtStrange.setText((freezeType != FreezeType.STRANGE || unFreezIndexs.contains(position))?word.getStrange():"");
-        holder.txtExplain.setText((freezeType != FreezeType.EXPLAIN || unFreezIndexs.contains(position))?word.getExplain():"");
-        holder.btnStar.setOnClickListener(new WordStarButtonOnClickListener((WordActivity)context,word));
-        holder.btnCheck.setOnClickListener(new WordCheckButtonOnClickListener((WordActivity)context,word));
-        holder.frameLayout.setOnClickListener(new WordOnClickListener((WordActivity)context,word));
+    public void onBindViewHolder(WordViewHolder holder, int position) {
+        /* UI datas loading. */
+        Word word = filteredWords.get(position); // Get the next word to UI data loading.
+        holder.btnStar.setImageResource((word.isMark())?R.drawable.ic_star_on:R.drawable.ic_star_off); // Set "star_on" if this word marked.
+        holder.btnCheck.setImageResource((word.isLearned())?R.drawable.ic_check_on:R.drawable.ic_check_off); // Set "check_on" if is this word learned.
+        holder.txtStrange.setText((freezeType != FreezeType.STRANGE || unFreezeIndexs.contains(position))?word.getStrange():""); // The word's Strange : show if not freeze.
+        holder.txtExplain.setText((freezeType != FreezeType.EXPLAIN || unFreezeIndexs.contains(position))?word.getExplain():""); // The word's Explain : show if not freeze.
+
+        /* Giving the listeners for each word. */
+        holder.btnStar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WordService.changeMark(wordActivity,word.getId(),!word.isMark());
+                word.setMark(!word.isMark());
+                refreshWord(word);
+            }
+        });
+        holder.btnCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WordService.changeLearned(wordActivity,word.getId(),!word.isLearned());
+                word.setLearned(!word.isLearned());
+                refreshWord(word);
+            }
+        });
+        holder.frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* When click to holder, change show according to current freeze type.*/
+                switch (freezeType){
+                    case NONE: /* Show word detail if not any freeze at word click. */
+                            /* A Pop-up show up for word detail when click the word.
+                               This Pop-up is "DialogFragment". */
+                            WordDetailDialogFragment dialog = new WordDetailDialogFragment(wordActivity,word);
+                            dialog.show(wordActivity.getSupportFragmentManager(),WordDetailDialogFragment.TAG);
+                        break;
+                    case STRANGE: /* Toggle the clicked word's strange visibility .*/
+                            unFreezeTheClickedItem(word);
+                        break;
+                    case EXPLAIN: /* Toggle the clicked word's explain visibility .*/
+                            unFreezeTheClickedItem(word);
+                        break;
+                }
+            }
+        });
     }
     @Override
     public int getItemCount() { return filteredWords.size(); }
     @Override
-    public long getItemId(int position) { return filteredWords.get(position).getId(); } //changed
+    public long getItemId(int position) {
+        /* As you can see, not Words list, the FilteredWordsList is shown in ListView.
+           Words showing according to filtering by searching . */
+        return filteredWords.get(position).getId();
+    } //changed
 
-    /*######### FILTER SECTION ##########*/
-    private List<Word> filteredWords;
-    @Override
-    public Filter getFilter() { return filter; }
+
+    /*################# FILTERING SECTION #################*/
+
+    /* Variables of "Filtering Section". */
+    private List<Word> filteredWords; // Search-filtered words. These words are shown on the ListView.
     private Filter filter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Word> filteredList = new ArrayList<>();
-            if(constraint == null || constraint.length() == 0){
+            if(constraint == null || constraint.length() == 0){ // If there is no any search data then put all words to ListView.
                 filteredList.addAll(words);
-            }else{
+            }else{ // Search by word entered.
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 for(Word c : words){
                     if(c.getStrange().toLowerCase().contains(filterPattern) || c.getExplain().toLowerCase().contains(filterPattern)){
@@ -110,7 +155,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
                 }
             }
             FilterResults results = new FilterResults();
-            results.values = filteredList;
+            results.values = filteredList; // We got the result words, At below OverrideMethod we will put this to ListView.
             return results;
         }
         @Override
@@ -119,9 +164,25 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
             filteredWords.addAll((List) results.values);
             notifyDataSetChanged();
         }
-    };
+    }; // Custom Filter anonim class.
 
-    /*######### OTHER ############*/
+    /* Override method of Filterable. */
+    @Override
+    public Filter getFilter() { return filter; }
+
+    /* Override methods of SearchView.OnQueryTextListener : Filtering "Words" with query words */
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        getFilter().filter(newText); // Will be filtered according to the changing search word.
+        return false;
+    }
+
+
+    /*################# OTHER #################*/
 
     public void addWord(Word newWord) {
         words.add(newWord);
@@ -131,13 +192,13 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     public void deleteWord(int index){
         Word word = filteredWords.get(index);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog.Builder builder = new AlertDialog.Builder(wordActivity);
         builder.setTitle("Silmek İstediğinize Emin Misiniz?");
         builder.setMessage(word.getStrange()+" : "+ word.getExplain());
         builder.setPositiveButton("Evet",new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                WordService.deleteWord(context,word); // word deleting from backend
+                WordService.deleteWord(wordActivity,word); // word deleting from backend
                 // word deleting from frontend
                 words.remove(word);
                 filteredWords.remove(word);
@@ -167,14 +228,16 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         notifyItemChanged(index);
     }
 
-    /*######### Freeze Events ###########*/
+
+    /*################# FREEZE SECTION #################*/
+
     public enum FreezeType{ NONE, STRANGE, EXPLAIN }
     public void unFreezeTheClickedItem(Word word){
         int index = filteredWords.indexOf(word);
-        if(unFreezIndexs.contains(index))
-            unFreezIndexs.remove(index);
+        if(unFreezeIndexs.contains(index))
+            unFreezeIndexs.remove(index);
         else
-            unFreezIndexs.add(index);
+            unFreezeIndexs.add(index);
         notifyItemChanged(index);
     }
     public void toggleFreeze(){
@@ -190,11 +253,13 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
                 break;
         }
         notifyDataSetChanged();
-        unFreezIndexs = new HashSet<>();
+        unFreezeIndexs = new HashSet<>();
     }
 
-    /*######### SORTING #################*/
-    public static class ComparatorMuchSelectedTrue implements Comparator<Word> {
+
+    /*################# SORTING #################*/
+
+    public static class ComparatorMostCorrectlySelected implements Comparator<Word> {
         @Override
         public int compare(Word w1, Word w2) {
             if(w1.getTrueSelect() < w2.getTrueSelect())
@@ -211,7 +276,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
             }
         }
     }
-    public static class ComparatorMuchSelectedFalse implements Comparator<Word> {
+    public static class ComparatorMostIncorrectlySelected implements Comparator<Word> {
         @Override
         public int compare(Word w1, Word w2) {
             if(w1.getFalseSelect() < w2.getFalseSelect())
