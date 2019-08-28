@@ -8,9 +8,9 @@ public enum WordSortType {
     public int value;
     WordSortType(String key, int value){this.key = key;this.value = value;}
     public static String[] getKeysAsStringArray(){
-        String[] values = new String[ExamWordType.values().length];
-        for(int i = 0; i < ExamWordType.values().length; i++){
-            values[i] = ExamWordType.values()[i].key;
+        String[] values = new String[WordSortType.values().length];
+        for(int i = 0; i < WordSortType.values().length; i++){
+            values[i] = WordSortType.values()[i].key;
         }
         return values;
     }

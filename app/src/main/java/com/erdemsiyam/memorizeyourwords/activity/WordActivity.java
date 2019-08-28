@@ -166,8 +166,8 @@ public class WordActivity extends AppCompatActivity {
         btnFabWordAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WordAddModalBottomSheetDialog bottomSheetDialog = new WordAddModalBottomSheetDialog((WordActivity)getApplicationContext());
-                bottomSheetDialog.show(((WordActivity)getApplicationContext()).getSupportFragmentManager(),WordAddModalBottomSheetDialog.TAG);
+                WordAddModalBottomSheetDialog bottomSheetDialog = new WordAddModalBottomSheetDialog(getActivity());
+                bottomSheetDialog.show(getActivity().getSupportFragmentManager(),WordAddModalBottomSheetDialog.TAG);
             }
         }); // "FloatingActionButton" Listener For "AddWord".
         btnFreezeToggle.setOnClickListener(new View.OnClickListener() {
@@ -203,4 +203,5 @@ public class WordActivity extends AppCompatActivity {
 
     /* Getter-Setter. */
     public WordRecyclerViewAdapter getAdapter(){ return adapter;}
+    public WordActivity getActivity(){ return this; }
 }

@@ -123,8 +123,8 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
             @Override
             public void onClick(View v) {
                 /* A Pop-up shown below to add categories. The Pop-up is "ModalBottomSheetDialog". */
-                CategoryAddModalBottomSheetDialog bottomSheetDialog = new CategoryAddModalBottomSheetDialog((CategoryActivity)getApplicationContext());
-                bottomSheetDialog.show(((CategoryActivity)getApplicationContext()).getSupportFragmentManager(),CategoryAddModalBottomSheetDialog.TAG);
+                CategoryAddModalBottomSheetDialog bottomSheetDialog = new CategoryAddModalBottomSheetDialog(getActivity());
+                bottomSheetDialog.show(getActivity().getSupportFragmentManager(),CategoryAddModalBottomSheetDialog.TAG);
             }
         });
 
@@ -148,5 +148,5 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
     /* Getter-Setter. */
     public CategoryRecyclerViewAdapter getAdapter(){ return adapter;}
-
+    private CategoryActivity getActivity(){ return this;}
 }
