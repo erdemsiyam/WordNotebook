@@ -82,7 +82,7 @@ public class ExamActivity extends AppCompatActivity {
         /* We will get the word type selected when entering the exam.
         *  Than take the words which as specified. */
         Intent intent = getIntent();
-        ExamWordType examWordType = ExamWordType.getTypeByValue(intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0));
+        ExamWordType examWordType = ExamWordType.getTypeByKey(intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0));
         long[] selectedCategoryIds = intent.getLongArrayExtra(CategoryActivity.INTENT_SELECTED_CATEGORY_IDS);
         words = new ArrayList<>();
         switch (examWordType){
@@ -110,12 +110,13 @@ public class ExamActivity extends AppCompatActivity {
 
         /* Exam finish if the number of words is less than 4. */
         if(words.size()<4){
-            Toast.makeText(this, "En az 4 kelime olmalı", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.exam_word_size_error, Toast.LENGTH_LONG).show();
             finish();
+        }else{
+            /* First question comes. */
+            startNewWordExam();
         }
 
-        /* First question comes. */
-        startNewWordExam();
     }
 
     /* Util Methods. */
