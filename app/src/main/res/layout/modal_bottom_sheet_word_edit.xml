@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@id/txtEditWordExplain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:hint="Yabancı Kelime"
+        android:hint="Strange"
         android:textSize="26sp" />
 
     <EditText
@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnEditWord"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:hint="Liste Adı"
+        android:hint="Explain"
         android:textSize="26sp" />
 
     <com.google.android.material.button.MaterialButton
@@ -37,6 +37,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="Save Word"/>
+        android:text="@string/ui_word_edit_button_save"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

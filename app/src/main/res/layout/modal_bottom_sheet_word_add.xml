@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@id/txtNewWordExplain"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:hint="Yabancı Kelime"
+        android:hint="@string/ui_word_add_strange_hint"
         android:textSize="26sp" />
 
     <EditText
@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnCreateWord"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:hint="Liste Adı"
+        android:hint="@string/ui_word_add_explain_hint"
         android:textSize="26sp" />
 
     <com.google.android.material.button.MaterialButton
@@ -37,6 +37,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="Add Word"/>
+        android:text="@string/ui_word_add_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

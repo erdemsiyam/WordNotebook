@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btnEditCategory"
-        android:hint="Liste Adı"
+        android:hint="List New Name"
         android:textSize="26sp" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEditCategory"

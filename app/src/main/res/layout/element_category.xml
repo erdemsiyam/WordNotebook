@@ -57,7 +57,7 @@
             android:layout_marginLeft="50px"
             android:layout_marginTop="5px"
             android:gravity="center|left"
-            android:text="TextViews"
+            android:text=""
             android:textSize="18sp"
             android:textStyle="normal"
             app:fontFamily="@font/ubuntu" />
@@ -68,12 +68,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="60px"
+            android:layout_marginTop="50px"
             android:layout_marginRight="50px"
-            android:layout_marginBottom="60px"
+            android:layout_marginBottom="50px"
             android:layout_toLeftOf="@id/btnCategoryNotification"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
+            android:text="00"
             app:chipBackgroundColor="@color/main_blue_2"
             app:chipCornerRadius="18dp" />
 
