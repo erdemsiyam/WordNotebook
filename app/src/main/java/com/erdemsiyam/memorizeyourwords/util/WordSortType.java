@@ -1,22 +1,34 @@
 package com.erdemsiyam.memorizeyourwords.util;
 
+import android.content.Context;
+
+import androidx.annotation.StringRes;
+
+import com.erdemsiyam.memorizeyourwords.R;
+
 public enum WordSortType {
-    MostCorrectlySelected("En çok doğru seçilenler",0),MostIncorrectlySelected("En çok yanlış seçilenler",1),
-    StrangeAZ("Yabancı A-Z",2),StrangeZA("Yabancı Z-A",3),
-    ExplainAZ("Ana Dil A-Z",4),ExplainZA("Ana Dil Z-A",5);
-    public String key;
-    public int value;
-    WordSortType(String key, int value){this.key = key;this.value = value;}
-    public static String[] getKeysAsStringArray(){
+    MostCorrectlySelected(0, R.string.type_word_sort_mostcorrectlyselected),
+    MostIncorrectlySelected(1, R.string.type_word_sort_mostincorrectlyselected),
+    StrangeAZ(2, R.string.type_word_sort_strangeaz),
+    StrangeZA(3, R.string.type_word_sort_strangeza),
+    ExplainAZ(4, R.string.type_word_sort_explainaz),
+    ExplainZA(5, R.string.type_word_sort_Explainza);
+
+    public int key; // It is an identity
+    @StringRes
+    public int value; // It is a string resource. Equals multiple language texts.
+    WordSortType(int key,@StringRes int value){this.key = key;this.value = value;}
+
+    public static String[] getValuesAsStringArray(Context context){
         String[] values = new String[WordSortType.values().length];
         for(int i = 0; i < WordSortType.values().length; i++){
-            values[i] = WordSortType.values()[i].key;
+            values[i] =  context.getResources().getString(WordSortType.values()[i].value);
         }
         return values;
     }
-    public static WordSortType getTypeByValue(int val){
+    public static WordSortType getTypeByKey(int key){
         for (WordSortType type : values()) {
-            if (type.value == val)
+            if (type.key == key)
                 return type;
         }
         return null;
