@@ -74,9 +74,9 @@ public class WordEditModalBottomSheetDialog extends BottomSheetDialogFragment {
                 String strange = txtEditWordStrange.getText().toString().trim(); // Get word new strange.
                 String explain = txtEditWordExplain.getText().toString().trim(); // Get word new explain.
                 if(strange.equals("") || explain.equals("") ) // If empty.
-                    throw new MyException(MyException.NO_CONTENT); // Throw exception.
+                    throw new MyException(wordActivity.getResources().getString(R.string.exception_no_content)); // Throw exception.
                 if(strange.length() > 30 || explain.length() > 30) // If more than 30 characters.
-                    throw new MyException(MyException.CONTENT_LIMIT_EXCEEDED); // Throw exception.
+                    throw new MyException(wordActivity.getResources().getString(R.string.exception_content_limit_exceeded)); // Throw exception.
                 word.setStrange(strange);   // Set word's new strange.
                 word.setExplain(explain);   // Set word's new explain.
                 WordService.changeWordStrange(wordActivity,word.getId(),strange);// Update at DB side.

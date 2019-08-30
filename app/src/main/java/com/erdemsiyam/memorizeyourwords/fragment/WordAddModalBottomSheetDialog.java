@@ -66,9 +66,9 @@ public class WordAddModalBottomSheetDialog  extends BottomSheetDialogFragment {
                 String strange = txtNewWordStrange.getText().toString().trim(); // Get new word's strange.
                 String explain = txtNewWordExplain.getText().toString().trim(); // Get new word's explain.
                 if(strange.equals("") || explain.equals("")) // If empty.
-                    throw new MyException(MyException.NO_CONTENT); // Throw exception.
+                    throw new MyException(wordActivity.getResources().getString(R.string.exception_no_content)); // Throw exception.
                 if(strange.length() > 30|| explain.length() > 30) // If more than 30 characters.
-                    throw new MyException(MyException.NO_CONTENT); // Throw exception.
+                    throw new MyException(wordActivity.getResources().getString(R.string.exception_content_limit_exceeded)); // Throw exception.
                 Word newWord = WordService.addWord(wordActivity, wordActivity.selectedCategoryId,strange,explain); // Create the new word at DB side.
                 wordActivity.getAdapter().addWord(newWord); // Add the new word to UI ListView.
                 dismiss(); // Close the "ModalBottomSheetDialog".

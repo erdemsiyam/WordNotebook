@@ -73,9 +73,9 @@ public class CategoryEditModalBottomSheetDialog extends BottomSheetDialogFragmen
             try{
                 String categoryNewName = txtEditCategory.getText().toString().trim(); // Fetch new name for category.
                 if(categoryNewName.equals("")) // If empty.
-                    throw new MyException(MyException.NO_CONTENT); // Throw exception.
+                    throw new MyException(categoryActivity.getString(R.string.exception_no_content)); // Throw exception.
                 if(categoryNewName.length() > 30) // If more than 30 characters.
-                    throw new MyException(MyException.CONTENT_LIMIT_EXCEEDED); // Throw exception.
+                    throw new MyException(categoryActivity.getString(R.string.exception_content_limit_exceeded)); // Throw exception.
                 category.setName(categoryNewName); // Set category's new name.
                 CategoryService.updateCategory(categoryActivity,category); // Update at DB side.
                 categoryActivity.getAdapter().updateCategory(category); // Refreshing at UI(RecyclerView).
@@ -93,16 +93,16 @@ public class CategoryEditModalBottomSheetDialog extends BottomSheetDialogFragmen
             try {
                 /* "AlertDialog" is created to confirm the deletion. */
                 AlertDialog.Builder builder = new AlertDialog.Builder(categoryActivity);
-                builder.setTitle("Silmek İstediğinize Emin Misiniz?");
-                builder.setMessage("Kategori : " + category.getName());
-                builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.category_delete_alert_title);
+                builder.setMessage(categoryActivity.getResources().getString(R.string.category_delete_alert_message)+ " " + category.getName());
+                builder.setPositiveButton(R.string.category_delete_alert_button_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         CategoryService.deleteCategory(categoryActivity, category); // Category is deleted from DB.
                         categoryActivity.getAdapter().deleteCategory(category); // Category deleted from frontend.
                     }
                 });
-                builder.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.category_delete_alert_button_negative, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss(); // Close the "ModalBottomSheetDialog".

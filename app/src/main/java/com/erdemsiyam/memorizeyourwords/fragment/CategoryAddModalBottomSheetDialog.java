@@ -63,9 +63,9 @@ public class CategoryAddModalBottomSheetDialog extends BottomSheetDialogFragment
             try {
                 String categoryName = txtNewCategoryName.getText().toString().trim(); // Fetch new category's name.
                 if(categoryName.equals("")) // If empty.
-                    throw new MyException(MyException.NO_CONTENT); // Throw exception.
+                    throw new MyException(categoryActivity.getResources().getString(R.string.exception_no_content)); // Throw exception.
                 if(categoryName.length() > 30) // If more than 30 characters.
-                    throw new MyException(MyException.CONTENT_LIMIT_EXCEEDED); // Throw exception.
+                    throw new MyException(categoryActivity.getResources().getString(R.string.exception_content_limit_exceeded)); // Throw exception.
                 Category newCategory = CategoryService.addCategory(categoryActivity,categoryName,""); // Create the new category at DB side.
                 categoryActivity.getAdapter().addCategory(newCategory); // Add the new category to UI ListView.
                 dismiss(); // Close the "ModalBottomSheetDialog".
