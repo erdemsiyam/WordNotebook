@@ -68,8 +68,8 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             /* We add items to "ContextMenu". The need items are "Edit","Delete". */
-            menu.add(this.getAdapterPosition(), WordActivity.CONTEXT_MENU_DELETE,0,"Delete");
-            menu.add(this.getAdapterPosition(), WordActivity.CONTEXT_MENU_EDIT,0,"Edit");
+            menu.add(this.getAdapterPosition(), WordActivity.CONTEXT_MENU_DELETE,0,R.string.word_context_menu_delete);
+            menu.add(this.getAdapterPosition(), WordActivity.CONTEXT_MENU_EDIT,0,R.string.word_context_menu_edit);
         }
     }
 
@@ -193,9 +193,9 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         Word word = filteredWords.get(index);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(wordActivity);
-        builder.setTitle("Silmek İstediğinize Emin Misiniz?");
+        builder.setTitle(R.string.word_delete_alert_title);
         builder.setMessage(word.getStrange()+" : "+ word.getExplain());
-        builder.setPositiveButton("Evet",new DialogInterface.OnClickListener(){
+        builder.setPositiveButton(R.string.word_delete_alert_button_positive,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 WordService.deleteWord(wordActivity,word); // word deleting from backend
@@ -206,7 +206,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
                 //notifyItemInserted(categories.size() - 1);
             }
         });
-        builder.setNegativeButton("Hayır",new DialogInterface.OnClickListener(){
+        builder.setNegativeButton(R.string.word_delete_alert_button_negative,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
@@ -226,6 +226,12 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     public void refreshWord(Word word){
         int index = filteredWords.indexOf(word);
         notifyItemChanged(index);
+    }
+    public void refreshRecyclerView(List<Word> newWords){
+        /* This method works after "ExcelWordsImport". */
+        words = newWords;
+        filteredWords = new ArrayList<>(words);
+        notifyDataSetChanged();
     }
 
 
