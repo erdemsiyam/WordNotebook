@@ -21,12 +21,12 @@ import android.widget.Button;
 
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
+import com.erdemsiyam.memorizeyourwords.fragment.ExcelImportDialogFragment;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.WordSortType;
 import com.erdemsiyam.memorizeyourwords.adapter.WordRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.WordAddModalBottomSheetDialog;
 import com.erdemsiyam.memorizeyourwords.fragment.WordEditModalBottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.Comparator;
 import java.util.List;
 
@@ -42,9 +42,9 @@ public class WordActivity extends AppCompatActivity {
 
     /* UI Components */
     private RecyclerView            recyclerViewWord; // Word list.
-    private FloatingActionButton    btnFabWordAdd; // add category FloatingActionButton.
+    private Button    btnAddWord; // Add category button.
     private WordRecyclerViewAdapter adapter; // Word list custom adapter.
-    private Button                  btnFreezeToggle; // A button to change the appearance of words.
+    private Button    btnToggleFreeze; // A button to change the appearance of words.
     private AppCompatImageButton    btnBackToCategoryFromWord; // Back button to "CategoryActivity".
     private AppCompatTextView       txtCategoryName; // Shows words belongs to which category.
 
@@ -94,23 +94,28 @@ public class WordActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         /* Menu item actions defined here. */
         switch (item.getItemId()){
+            case R.id.wordImportExcel:
+                /* Adding words with Excel Import */
+                ExcelImportDialogFragment dialog = new ExcelImportDialogFragment(this,selectedCategoryId);
+                dialog.show(getSupportFragmentManager(),ExcelImportDialogFragment.TAG);
+                break;
             case R.id.wordSort:
                 /* If user wants sorting the words. Then we will ask sort type with "AlertDialog".  */
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Sıralama Seçiniz");
-                String[] options = WordSortType.getKeysAsStringArray(); // Enum options are taken as Array of String type.
+                builder.setTitle(R.string.word_sort_alert_title);
+                String[] options = WordSortType.getValuesAsStringArray(this); // Enum options are taken as Array of String type.
                 builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         wordSortSelectedIndex = i; // The index is keeping at each click to options at AlertDialog.
                     }
                 });
-                builder.setPositiveButton("Sırala", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.word_sort_alert_button_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         /* Get the comparator by selectiong of sorting type. */
                         Comparator<Word> comparator = null;
-                        switch (WordSortType.getTypeByValue(wordSortSelectedIndex)){
+                        switch (WordSortType.getTypeByKey(wordSortSelectedIndex)){
                             case MostCorrectlySelected:
                                  comparator = new WordRecyclerViewAdapter.ComparatorMostCorrectlySelected();
                                 break;
@@ -136,7 +141,7 @@ public class WordActivity extends AppCompatActivity {
                         wordSortSelectedIndex=-1; // Clearing the index holder for after use.
                     }
                 });
-                builder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.word_sort_alert_button_negative, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
@@ -154,23 +159,26 @@ public class WordActivity extends AppCompatActivity {
         /* Loading UI items. */
         Toolbar toolBar = findViewById(R.id.toolbar_word);
         recyclerViewWord = findViewById(R.id.recyclerViewWord);
-        btnFabWordAdd = findViewById(R.id.btnFabWordAdd);
-        btnFreezeToggle = findViewById(R.id.btnFreezeToggle);
+        btnAddWord = findViewById(R.id.btnAddWord);
+        btnToggleFreeze = findViewById(R.id.btnToggleFreeze);
         btnBackToCategoryFromWord = findViewById(R.id.btnBackToCategoryFromWord);
         txtCategoryName = findViewById(R.id.txtCategoryName);
+
+        /* Hiding the app name "Label at Manifest". */
+        toolBar.setTitle("");
 
         /* Custom Toolbar including to activity.*/
         setSupportActionBar(toolBar);
 
         /* Listeners giving to components. */
-        btnFabWordAdd.setOnClickListener(new View.OnClickListener() {
+        btnAddWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WordAddModalBottomSheetDialog bottomSheetDialog = new WordAddModalBottomSheetDialog(getActivity());
                 bottomSheetDialog.show(getActivity().getSupportFragmentManager(),WordAddModalBottomSheetDialog.TAG);
             }
-        }); // "FloatingActionButton" Listener For "AddWord".
-        btnFreezeToggle.setOnClickListener(new View.OnClickListener() {
+        }); // Click Listener For "AddWord".
+        btnToggleFreeze.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adapter.toggleFreeze();
@@ -202,6 +210,17 @@ public class WordActivity extends AppCompatActivity {
     }
 
     /* Getter-Setter. */
-    public WordRecyclerViewAdapter getAdapter(){ return adapter;}
+    public WordRecyclerViewAdapter getAdapter(){ return adapter; }
     public WordActivity getActivity(){ return this; }
+
+    /* Util method. */
+    public void refreshRecyclerView(){
+        /* This method works after "ExcelWordsImport". */
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.refreshRecyclerView(WordService.getWordsByCategoryId(getApplicationContext(),selectedCategoryId));
+            }
+        });
+    }
 }
