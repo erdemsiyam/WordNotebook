@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/wordSort"
-        android:icon="@drawable/ic_sort"
-        android:title="Sort"
-        app:showAsAction="always" />
+
     <item
         android:id="@+id/wordSearch"
         android:icon="@drawable/ic_search"
-        android:title="Search"
+        android:title="@string/ui_word_menu_exam"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/wordSort"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/ui_word_menu_exam"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/wordImportExcel"
+        android:icon="@drawable/ic_import"
+        android:title="@string/ui_word_menu_importexcel"
+        app:showAsAction="never" />
 
 </menu>
