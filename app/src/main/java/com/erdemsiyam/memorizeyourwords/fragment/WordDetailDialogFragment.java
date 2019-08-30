@@ -17,6 +17,7 @@ import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.ConfuseTempModel;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,9 +36,9 @@ public class WordDetailDialogFragment extends AppCompatDialogFragment {
     private Word word;
 
     /* UI components. */
-    private AppCompatTextView txtWordDetailTrueCount;
-    private AppCompatTextView txtWordDetailFalseCount;
-    private AppCompatTextView txtWordDetailConfuses;
+    private Chip chipTrueCount;
+    private Chip chipFalseCount;
+    private AppCompatTextView txtWordDetailConfusesTitle;
 
     /* Constructor. */
     public WordDetailDialogFragment(WordActivity wordActivity, Word word){
@@ -57,27 +58,29 @@ public class WordDetailDialogFragment extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.dialog_detail_word,null);
 
         /* UI components are installed. */
-        txtWordDetailTrueCount = view.findViewById(R.id.txtWordDetailTrueCount);
-        txtWordDetailFalseCount = view.findViewById(R.id.txtWordDetailFalseCount);
-        txtWordDetailConfuses = view.findViewById(R.id.txtWordDetailConfuses);
+        chipTrueCount = view.findViewById(R.id.chipTrueCount);
+        chipFalseCount = view.findViewById(R.id.chipFalseCount);
+        txtWordDetailConfusesTitle = view.findViewById(R.id.txtWordDetailConfusesTitle);
 
         /* "AlertDialog" building. */
         builder.setView(view);
-        builder.setTitle("Başlık");
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setTitle(word.getStrange());
+        builder.setPositiveButton(R.string.word_detail_alert_button_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
 
         /* Giving values to UI components. */
-        txtWordDetailTrueCount.setText(word.getTrueSelect()+"");
-        txtWordDetailFalseCount.setText(word.getFalseSelect()+"");
-        String message = "Karıştırdıkların : \n";
+        chipTrueCount.setText(word.getTrueSelect()+"");
+        chipTrueCount.setClickable(false);
+        chipFalseCount.setText(word.getFalseSelect()+"");
+        chipFalseCount.setClickable(false);
+        String message = wordActivity.getResources().getString(R.string.word_confuse)+" : \n\n";
         for(ConfuseTempModel cm : getConfuses()){
-            message +="\t"+cm.times+ " Kez : "+ WordService.getWordById(wordActivity,cm.strangeId).getStrange()+"\n";
+            message +="\t\t"+cm.times+ "\t"+wordActivity.getResources().getString(R.string.word_confuse_times)+" :\t\t"+ WordService.getWordById(wordActivity,cm.strangeId).getStrange()+"\n";
         }
-        txtWordDetailConfuses.setText(message);
+        txtWordDetailConfusesTitle.setText(message);
 
         return builder.create();  // Prepared Customize "AlertDialog" return.
     }
