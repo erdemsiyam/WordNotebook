@@ -39,7 +39,7 @@ public class CategorySelectActionModeCallBack implements ActionMode.Callback {
         /*  Menu changes in case of ActionMode,
             The only item at menu is "Exam : Take the exam for selected categories". */
         mode.getMenuInflater().inflate(R.menu.menu_category_selecting,menu); // Including the menu.
-        mode.setTitle("Kategori Seç"); // Setting title.
+        mode.setTitle(R.string.exam_category_select_title); // Setting title.
 
         return true; // This should be "TRUE".
     }
@@ -65,15 +65,15 @@ public class CategorySelectActionModeCallBack implements ActionMode.Callback {
     public AlertDialog createAlertDialogForSelectingWordTypesToExam(ActionMode mode){
         /* AlertDialog is prepared which words we want to choose. */
         AlertDialog.Builder builder = new AlertDialog.Builder(categoryActivity);
-        builder.setTitle("Sınav Seçiniz");
-        String[] options = ExamWordType.getKeysAsStringArray(); // Enum options are taken as Array of String type.
+        builder.setTitle(R.string.exam_words_select_alert_title);
+        String[] options = ExamWordType.getValuesAsStringArray(categoryActivity); // Enum options are taken as Array of String type.
         builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 examSelectIndex = i; // The index is keeping at each click to options at AlertDialog.
             }
         });
-        builder.setPositiveButton("Başla", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.exam_words_select_alert_button_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(categoryActivity, ExamActivity.class); // if clicks positive then shows ExamAvtivity to Exam.
@@ -83,7 +83,7 @@ public class CategorySelectActionModeCallBack implements ActionMode.Callback {
                 categoryActivity.startActivity(intent);
             }
         });
-        builder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.exam_words_select_alert_button_negative, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mode.finish(); // The ActionMode is terminated.

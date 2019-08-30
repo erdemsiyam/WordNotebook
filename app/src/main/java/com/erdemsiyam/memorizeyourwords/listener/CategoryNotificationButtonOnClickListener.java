@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 
@@ -33,7 +34,7 @@ public class CategoryNotificationButtonOnClickListener implements View.OnClickLi
     public class MyTimeHandler implements TimePickerDialog.OnTimeSetListener {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            Toast.makeText(context, "Soon.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.soon, Toast.LENGTH_SHORT).show();
             /*
             category.setAlarm(hourOfDay+minute); // gerekeni yap
             // servise ve db'ye yüklenir ?
