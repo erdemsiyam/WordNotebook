@@ -1,5 +1,102 @@
 <resources>
-    <string name="app_name">Word Memorize</string>
+
+    <!-- Back-End. -->
+
+    <string name="app_name">Word Notebook</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="soon">Soon</string>
+
+    <string name="exam_word_size_error">Must have at least 4 words</string>
+    <string name="word_sort_alert_title">Select Sorting</string>
+    <string name="word_sort_alert_button_positive">Sort</string>
+    <string name="word_sort_alert_button_negative">Cancel</string>
+
+    <string name="category_selecting_title">item selected</string>
+
+    <string name="word_context_menu_delete">Delete</string>
+    <string name="word_context_menu_edit">Edit</string>
+
+    <string name="word_delete_alert_title">Are you sure you want to delete it?</string>
+    <string name="word_delete_alert_button_positive">Yes</string>
+    <string name="word_delete_alert_button_negative">Cancel</string>
+
+    <string name="exception_no_content">You must enter text.</string>
+    <string name="exception_content_limit_exceeded">Must be 30 characters or less.</string>
+
+    <string name="category_delete_alert_title">Are you sure you want to delete it?</string>
+    <string name="category_delete_alert_message">List :</string>
+
+    <string name="category_delete_alert_button_positive">Yes</string>
+    <string name="category_delete_alert_button_negative">No</string>
+
+    <string name="word_detail_alert_button_positive">Ok</string>
+
+    <string name="word_confuse">Confuses</string>
+    <string name="word_confuse_times">Times</string>
+
+    <string name="exam_category_select_title">Select Category</string>
+
+    <string name="exam_words_select_alert_title">Select Words</string>
+    <string name="exam_words_select_alert_button_positive">Start</string>
+    <string name="exam_words_select_alert_button_negative">Cancel</string>
+
+    <string name="type_exam_word_all">All</string>
+    <string name="type_exam_word_learned">Learned</string>
+    <string name="type_exam_word_marked">Marked</string>
+    <string name="type_exam_word_notlearned">Not Learned</string>
+
+    <string name="type_word_sort_mostcorrectlyselected">Most correctly selected</string>
+    <string name="type_word_sort_mostincorrectlyselected">Most incorrectly selected</string>
+    <string name="type_word_sort_strangeaz">Foreign lang. A to Z</string>
+    <string name="type_word_sort_strangeza">Foreign lang. Z to A</string>
+    <string name="type_word_sort_explainaz">Native lang. A to Z</string>
+    <string name="type_word_sort_Explainza">Native lang. Z to A</string>
+
+    <string name="excelimport_alert_title">Select Excel File</string>
+    <string name="excelimport_message_loading">Words are loading. Please wait.</string>
+    <string name="excelimport_message_incorrect_file">ERROR: Excel File Format is incorrect!</string>
+    <string name="excelimport_message_loaded">Words are loaded.</string>
+    <string name="excelimport_message_no_sd_card">No SD card found.</string>
+
+
+    <!-- Front-End. -->
+
+    <string name="ui_category_toolbar_title">Lists</string>
+    <string name="ui_word_toolbar_title">Words</string>
+
+    <string name="ui_exam_pass_button" translatable="false">-></string>
+
+    <string name="ui_mark">Mark</string>
+    <string name="ui_learned">Learned</string>
+
+    <string name="ui_add_word">Add Word</string>
+    <string name="ui_switch_visibility">Switch Visibility</string>
+
+    <string name="ui_true_count">True Count :</string>
+    <string name="ui_false_count">False Count :</string>
+
+    <string name="ui_excel_import_info">NOTICE : Only \".xlsx\"  acceptable. First column must \"Strange Word\", Second column must \"Explain Word\".</string>
+    <string name="ui_excel_import_path_back">Back File</string>
+    <string name="ui_excel_import_cancel">Cancel</string>
+
+    <string name="ui_category_add_hint">List Name</string>
+
+    <string name="ui_word_add_strange_hint">Strange Word</string>
+    <string name="ui_word_add_explain_hint">Meaning of the word</string>
+    <string name="ui_word_add_button">Add Word</string>
+
+    <string name="ui_word_edit_button_save">Save Word</string>
+
+    <string name="ui_navbar_settings">Settings</string>
+    <string name="ui_navbar_about">About</string>
+
+    <string name="ui_category_menu_search">Search</string>
+    <string name="ui_category_menu_exam">Exam</string>
+
+    <string name="ui_word_menu_exam">Search</string>
+    <string name="ui_word_menu_sort">Sort</string>
+    <string name="ui_word_menu_importexcel">Import Excel</string>
+
 </resources>
