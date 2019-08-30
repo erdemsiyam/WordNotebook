@@ -73,8 +73,12 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         Category category = filteredCategories.get(position); // Get the next category to UI data loading.
         holder.categoryName.setText(category.getName()); // Get name.
         holder.wordCount.setText(CategoryService.getCategoryWordCount(categoryActivity,category)+""); // Get the category's word count from DB.
+        holder.wordCount.setClickable(false); // Not need.
         holder.btnCategoryNotification.setOnClickListener(new CategoryNotificationButtonOnClickListener(categoryActivity,this,category)); // Set notification task. // Will be done later.
         holder.data = category;
+
+        holder.btnCategoryNotification.setClickable(false);// Soon.
+        holder.btnCategoryWordsNotification.setClickable(false);// Soon.
 
         /* Notification and Alarm will be done later. */
         /*
@@ -86,7 +90,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
         /* Change the background color if this item selected.*/
         toggleBackgroundColor(holder,position);
-
     }
     @Override
     public int getItemCount() { return filteredCategories.size(); }
@@ -143,7 +146,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         if( selectedCount == 0){ // if all selects are removed, then Action Mode Will Closed.
             selectingCategoriesActionMode.finish();
         }else{ // if there is selecting items exists, write these count to the title.
-            selectingCategoriesActionMode.setTitle(selectedCount + " Seçildi");
+            selectingCategoriesActionMode.setTitle(selectedCount + " " + categoryActivity.getResources().getString(R.string.category_selecting_title));
             selectingCategoriesActionMode.invalidate();
         }
     }
