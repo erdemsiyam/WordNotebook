@@ -85,17 +85,17 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         /* There is some Actions by which item selected at navigation menu. */
         switch (menuItem.getItemId()){
-            case R.id.nav_about:
-                Toast.makeText(this,"About",Toast.LENGTH_LONG).show();
-
-            case R.id.nav_setting:
-                // Will be done.
+            case R.id.nav_settings: // Soon.
+                Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
                 /*
                 (this).getSupportFragmentManager().beginTransaction()
                         .replace(android.R.id.content, new SettingsFragment())
                         .addToBackStack(null)
-                        .commit();
-                */
+                        .commit(); */
+                break;
+            case R.id.nav_about: // Soon.
+                Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
+                break;
         }
         return true;
     } // This is LeftMenu's items click actions declare place.
@@ -107,6 +107,9 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         recyclerView = findViewById(R.id.recyclerView);
         drawerLayout = findViewById(R.id.category_activity);
         fabAddCategory = findViewById(R.id.categoryAddFAButton);
+
+        /* Hiding the app name "Label at Manifest". */
+        toolBar.setTitle("");
 
         /* Custom Toolbar including to activity.*/
         setSupportActionBar(toolBar);
