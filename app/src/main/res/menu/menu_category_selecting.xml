@@ -4,6 +4,6 @@
     <item
         android:id="@+id/categoriesSelectedForExam"
         android:icon="@drawable/ic_edit"
-        android:title="Exam"
+        android:title="@string/ui_category_menu_exam"
         app:showAsAction="always|withText"/>
 </menu>
