@@ -6,32 +6,83 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtWordDetailTrueCount"
+        android:id="@+id/txtWordDetailTrueTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtWordDetailFalseCount"
+        app:layout_constraintBottom_toTopOf="@+id/txtWordDetailFalseTitle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:text="True Count : "
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:fontFamily="@font/ubuntu"
         />
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtWordDetailFalseCount"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipTrueCount"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/txtWordDetailTrueCount"
-        app:layout_constraintBottom_toTopOf="@+id/txtWordDetailConfuses"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/chipFalseCount"
+        app:layout_constraintLeft_toRightOf="@+id/txtWordDetailTrueTitle"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="125dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:text="00"
+        app:chipBackgroundColor="@color/green"
+        app:chipCornerRadius="18dp"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtWordDetailConfuses"
+        android:id="@+id/txtWordDetailFalseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/txtWordDetailFalseCount"
+        app:layout_constraintTop_toBottomOf="@+id/txtWordDetailTrueTitle"
+        app:layout_constraintBottom_toTopOf="@+id/txtWordDetailConfusesTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/ui_false_count"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:fontFamily="@font/ubuntu"
+        />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipFalseCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/chipTrueCount"
+        app:layout_constraintLeft_toRightOf="@+id/txtWordDetailFalseTitle"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="125dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:text="00"
+        app:chipBackgroundColor="@color/red"
+        app:chipCornerRadius="18dp"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtWordDetailConfusesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/txtWordDetailFalseTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:fontFamily="@font/ubuntu"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
