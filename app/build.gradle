@@ -56,4 +56,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:multidex:1.0.1'
 
+    implementation 'com.google.android.gms:play-services-ads:18.1.1'
+
 }
