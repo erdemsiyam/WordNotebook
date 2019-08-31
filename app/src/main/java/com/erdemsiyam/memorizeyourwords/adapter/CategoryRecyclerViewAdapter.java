@@ -206,8 +206,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         /* Get categories ids which categories are selected. (for starting exam.) */
         List<Integer> positions = getSelectedCategoryPositions();
         long[] ids = new long[positions.size()];
-        for (Integer i : positions) {
-            ids[i] = filteredCategories.get(i).getId();
+        for(int i = 0; i<ids.length;i++){
+            ids[i] = filteredCategories.get(positions.get(i)).getId();
         }
         return ids;
     }
