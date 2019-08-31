@@ -16,7 +16,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:hint="@string/ui_word_add_strange_hint"
-        android:textSize="26sp" />
+        android:textSize="20sp"
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/txtNewWordExplain"
@@ -27,7 +28,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:hint="@string/ui_word_add_explain_hint"
-        android:textSize="26sp" />
+        android:textSize="20sp"
+        android:inputType="text" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCreateWord"
