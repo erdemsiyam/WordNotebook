@@ -15,23 +15,21 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btnCreateCategory"
         android:hint="@string/ui_category_add_hint"
-        android:textSize="26sp" />
+        android:inputType="text"
+        android:textSize="20sp"
+        />
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btnCreateCategory"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="52dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/newCategoryName"
         app:layout_constraintRight_toRightOf="parent"
-        android:textColor="#fff"
-        android:backgroundTint="@color/main_blue_1"
-        app:icon="@drawable/ic_add"
-        app:iconTint="@color/main_blue_4"
-        app:cornerRadius="100dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_add_done"
+        android:background="@null"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

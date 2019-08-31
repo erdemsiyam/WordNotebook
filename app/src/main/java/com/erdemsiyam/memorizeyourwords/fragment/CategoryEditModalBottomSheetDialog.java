@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
@@ -34,9 +35,9 @@ public class CategoryEditModalBottomSheetDialog extends BottomSheetDialogFragmen
     private Category            category;
 
     /* UI components. */
-    private Button      btnEditCategory;
-    private Button      btnDeleteCategory;
-    private EditText    txtEditCategory;
+    private AppCompatImageButton        btnEditCategory;
+    private AppCompatImageButton        btnDeleteCategory;
+    private EditText                    txtEditCategory;
 
     /* Constructor. */
     public CategoryEditModalBottomSheetDialog(CategoryActivity categoryActivity, Category category) {

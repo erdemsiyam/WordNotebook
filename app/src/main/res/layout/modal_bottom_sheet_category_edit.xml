@@ -14,38 +14,33 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btnEditCategory"
         android:hint="List New Name"
-        android:textSize="26sp" />
-    <com.google.android.material.button.MaterialButton
+        android:textSize="20sp"
+        android:inputType="text"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btnEditCategory"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="42dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/txtEditCategoryName"
         app:layout_constraintRight_toLeftOf="@id/btnDeleteCategory"
-        android:textColor="#fff"
-        android:backgroundTint="@color/main_blue_1"
-        app:icon="@drawable/ic_check"
-        app:iconTint="@color/main_blue_2"
-        app:cornerRadius="50dp"
-        />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnDeleteCategory"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="42dp"
-        android:layout_height="60dp"
         android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_check_done"
+        android:background="@null"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btnDeleteCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnEditCategory"
         app:layout_constraintRight_toRightOf="parent"
-        android:textColor="#fff"
-        android:backgroundTint="@color/main_blue_1"
-        app:icon="@drawable/ic_delete"
-        app:iconTint="@color/red"
-        app:cornerRadius="50dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_delete"
+        android:background="@null"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
