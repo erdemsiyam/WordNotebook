@@ -58,7 +58,7 @@
             android:layout_marginTop="5px"
             android:gravity="center|left"
             android:text=""
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="normal"
             app:fontFamily="@font/ubuntu" />
 
@@ -76,7 +76,7 @@
             android:textColor="@color/white"
             android:text="00"
             app:chipBackgroundColor="@color/main_blue_2"
-            app:chipCornerRadius="18dp" />
+            app:chipCornerRadius="14dp" />
 
         <ImageButton
             android:id="@+id/btnCategoryNotification"
