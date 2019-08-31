@@ -65,4 +65,5 @@
     <string name="excelimport_message_loaded">Kelimeler yüklendi.</string>
     <string name="excelimport_message_loading">Kelimeler yükleniyor. Lütfen Bekleyiniz.</string>
     <string name="excelimport_message_no_sd_card">SD kart bulunamadı.</string>
+    <string name="ui_average_response_time">Ortalama Cevap Süresi :</string>
 </resources>

@@ -65,4 +65,5 @@
     <string name="excelimport_message_loaded">يتم تحميل الكلمات.</string>
     <string name="excelimport_message_loading">الكلمات يتم تحميلها. ارجوك انتظر.</string>
     <string name="excelimport_message_no_sd_card">لم يتم العثور على بطاقة SD.</string>
+    <string name="ui_average_response_time">متوسط زمن الاستجابة:</string>
 </resources>

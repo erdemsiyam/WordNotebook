@@ -76,6 +76,7 @@
 
     <string name="ui_true_count">True Count :</string>
     <string name="ui_false_count">False Count :</string>
+    <string name="ui_average_response_time">Average Response Time :</string>
 
     <string name="ui_excel_import_info">NOTICE : Only \".xlsx\"  acceptable. First column must \"Strange Word\", Second column must \"Explain Word\".</string>
     <string name="ui_excel_import_path_back">Back File</string>

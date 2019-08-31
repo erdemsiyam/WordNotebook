@@ -65,4 +65,5 @@
     <string name="excelimport_message_loaded">Слова загружены.</string>
     <string name="excelimport_message_loading">Слова загружаются. Пожалуйста, подождите.</string>
     <string name="excelimport_message_no_sd_card">SD-карта не найдена.</string>
+    <string name="ui_average_response_time">Среднее время отклика:</string>
 </resources>

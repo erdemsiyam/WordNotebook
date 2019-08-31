@@ -65,4 +65,5 @@
     <string name="excelimport_message_loaded">单词被加载。</string>
     <string name="excelimport_message_loading">单词正在加载。 请耐心等待。</string>
     <string name="excelimport_message_no_sd_card">没有找到SD卡。</string>
+    <string name="ui_average_response_time">平均响应时间：</string>
 </resources>

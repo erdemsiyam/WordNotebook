@@ -65,4 +65,5 @@
     <string name="excelimport_message_loaded">Words are loaded.</string>
     <string name="excelimport_message_loading">Words are loading. Please wait.</string>
     <string name="excelimport_message_no_sd_card">No SD card found.</string>
+    <string name="ui_average_response_time">Average Response Time :</string>
 </resources>
