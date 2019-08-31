@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/categoriesSelectedForExam"
-        android:icon="@drawable/ic_edit"
+        android:icon="@drawable/ic_exam"
         android:title="@string/ui_category_menu_exam"
-        app:showAsAction="always|withText"/>
+        app:showAsAction="withText|always"/>
 </menu>
