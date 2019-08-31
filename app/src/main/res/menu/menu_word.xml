@@ -11,7 +11,7 @@
     <item
         android:id="@+id/wordSort"
         android:icon="@drawable/ic_sort"
-        android:title="@string/ui_word_menu_exam"
+        android:title="@string/ui_word_menu_sort"
         app:showAsAction="never" />
     <item
         android:id="@+id/wordImportExcel"
