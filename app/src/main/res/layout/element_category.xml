@@ -13,14 +13,26 @@
         android:background="@color/category_enter_background"
         android:tag="reveal-right">
         <ImageView
+            android:id="@+id/imgSwipeToRightExamIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_forward"
+            android:src="@drawable/ic_exam"
             android:tint="@color/category_enter"
             />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imgSwipeToRightExamIcon"
+            android:layout_marginLeft="10dp"
+            android:text="@string/ui_category_menu_exam"
+            android:textColor="@color/category_enter"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:fontFamily="@font/ubuntu" />
     </RelativeLayout>
 
     <RelativeLayout
