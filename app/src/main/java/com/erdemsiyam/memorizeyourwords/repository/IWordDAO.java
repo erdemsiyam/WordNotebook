@@ -32,7 +32,7 @@ public interface IWordDAO {
     void changeLearned(Long id, boolean status);
     @Query("UPDATE Word SET mark = :status WHERE id =:id")
     void changeMark(Long id, boolean status);
-    @Query("UPDATE Word SET spendTime = ((2/3*spendTime) + :spendTime) WHERE id =:id")
+    @Query("UPDATE Word SET spendTime = spendTime+:spendTime WHERE id =:id")
     void addSpendTime(Long id,long spendTime);
     @Query("UPDATE Word SET strange = :newStrange WHERE id =:id")
     void changeWordStrange(Long id, String newStrange);
