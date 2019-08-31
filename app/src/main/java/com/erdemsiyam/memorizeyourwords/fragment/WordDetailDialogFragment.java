@@ -38,6 +38,7 @@ public class WordDetailDialogFragment extends AppCompatDialogFragment {
     /* UI components. */
     private Chip chipTrueCount;
     private Chip chipFalseCount;
+    private AppCompatTextView txtAverageResponseTime;
     private AppCompatTextView txtWordDetailConfusesTitle;
 
     /* Constructor. */
@@ -60,6 +61,7 @@ public class WordDetailDialogFragment extends AppCompatDialogFragment {
         /* UI components are installed. */
         chipTrueCount = view.findViewById(R.id.chipTrueCount);
         chipFalseCount = view.findViewById(R.id.chipFalseCount);
+        txtAverageResponseTime = view.findViewById(R.id.txtAvgResponseTime);
         txtWordDetailConfusesTitle = view.findViewById(R.id.txtWordDetailConfusesTitle);
 
         /* "AlertDialog" building. */
@@ -72,10 +74,16 @@ public class WordDetailDialogFragment extends AppCompatDialogFragment {
         });
 
         /* Giving values to UI components. */
-        chipTrueCount.setText(word.getTrueSelect()+"");
+        int trueSelect = word.getTrueSelect();
+        int falseSelect = word.getFalseSelect();
+        double average = word.getSpendTime(); // Total spend time.
+        average /= (falseSelect+trueSelect);
+        average = (double) Math.round(average*100)/100; //  Only 2 digits after point.
+        chipTrueCount.setText(trueSelect+"");
         chipTrueCount.setClickable(false);
-        chipFalseCount.setText(word.getFalseSelect()+"");
+        chipFalseCount.setText(falseSelect+"");
         chipFalseCount.setClickable(false);
+        txtAverageResponseTime.setText(average+"");
         String message = wordActivity.getResources().getString(R.string.word_confuse)+" : \n\n";
         for(ConfuseTempModel cm : getConfuses()){
             message +="\t\t"+cm.times+ "\t"+wordActivity.getResources().getString(R.string.word_confuse_times)+" :\t\t"+ WordService.getWordById(wordActivity,cm.strangeId).getStrange()+"\n";
