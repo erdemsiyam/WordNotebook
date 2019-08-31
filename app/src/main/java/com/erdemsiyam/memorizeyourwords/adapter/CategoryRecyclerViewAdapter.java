@@ -110,8 +110,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     }
     @Override
     public boolean swipeRight(Category category) {
-        /* When SwipeRight, "WordActivity" opens to show the words of the selected category. */
-        openTheSelectedCategory(category);
+        /* When SwipeRight, Selecting this item to exam. */
+        selectingCategory(category);
         return true;
     }
     @Override
