@@ -11,10 +11,10 @@ import com.erdemsiyam.memorizeyourwords.repository.ICategoryDAO;
 import com.erdemsiyam.memorizeyourwords.repository.IConfuseDAO;
 import com.erdemsiyam.memorizeyourwords.repository.IWordDAO;
 
-@Database(entities = {Word.class, Category.class, Confuse.class}, version = 2, exportSchema= false)
+@Database(entities = {Word.class, Category.class, Confuse.class}, version = 1, exportSchema= false)
 public abstract class MyDatabase extends RoomDatabase {
 
-    private static final String DB_NAME = "MemorizeYourWords7.db";
+    private static final String DB_NAME = "WordNotebook.db";
     public abstract ICategoryDAO getCategoryDAO();
     public abstract IWordDAO getWordDAO();
     public abstract IConfuseDAO getConfuseDAO();
