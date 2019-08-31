@@ -155,17 +155,19 @@
         android:checked="false"
         />
 
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtFalseCount"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipExamFalseCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnPass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/btnDone"
+        app:layout_constraintTop_toBottomOf="@+id/swAutoPass"
         android:layout_marginRight="10dp"
+        app:chipBackgroundColor="@color/red"
+        android:clickable="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="00"
-        android:textSize="18sp"
+        android:textColor="@color/white"
         android:textStyle="normal"
         app:fontFamily="@font/ubuntu" />
 
@@ -173,7 +175,7 @@
         android:id="@+id/btnDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnPass"
+        app:layout_constraintTop_toBottomOf="@+id/swAutoPass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -182,18 +184,22 @@
         android:src="@drawable/ic_close"
         />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txtTrueCount"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chipExamTrueCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnPass"
+        app:layout_constraintTop_toBottomOf="@+id/swAutoPass"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnDone"
         android:layout_marginLeft="10dp"
+        app:chipBackgroundColor="@color/green"
+        android:clickable="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="00"
-        android:textSize="18sp"
+        android:textColor="@color/white"
         android:textStyle="normal"
         app:fontFamily="@font/ubuntu" />
+
 
 
 

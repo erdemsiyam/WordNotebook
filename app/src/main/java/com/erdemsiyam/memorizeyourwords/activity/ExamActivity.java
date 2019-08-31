@@ -16,6 +16,8 @@ import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.ExamWordType;
+import com.google.android.material.chip.Chip;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -38,7 +40,8 @@ public class ExamActivity extends AppCompatActivity {
 
     /* UI Components */
     private ConstraintLayout        topLayout;
-    private TextView                txtTimer,txtStrange,txtFalseCount,txtTrueCount;
+    private TextView                txtTimer,txtStrange;
+    private Chip                    chipExamFalseCount,chipExamTrueCount;
     private Button                  btnWord1,btnWord2,btnWord3,btnWord4,btnPass;
     private AppCompatImageButton    btnDone;
     private SwitchCompat            swAutoPass;
@@ -58,8 +61,8 @@ public class ExamActivity extends AppCompatActivity {
         topLayout = findViewById(R.id.roundedTopLayout);
         txtTimer = findViewById(R.id.txtTimer);
         txtStrange = findViewById(R.id.txtStrange);
-        txtFalseCount = findViewById(R.id.txtFalseCount);
-        txtTrueCount = findViewById(R.id.txtTrueCount);
+        chipExamFalseCount = findViewById(R.id.chipExamFalseCount);
+        chipExamTrueCount = findViewById(R.id.chipExamTrueCount);
         btnWord1 = findViewById(R.id.btnWord1);
         btnWord2 = findViewById(R.id.btnWord2);
         btnWord3 = findViewById(R.id.btnWord3);
@@ -180,12 +183,14 @@ public class ExamActivity extends AppCompatActivity {
         btnWord4.getBackground().setColorFilter(getResources().getColor(R.color.main_blue_3), PorterDuff.Mode.SRC_ATOP);
 
         /* Total true and false select count printed. */
-        txtFalseCount.setText(falseCount+"");
-        txtTrueCount.setText(trueCount+"");
+        chipExamFalseCount.setText((falseCount<10)?"0"+falseCount:""+falseCount);
+        chipExamTrueCount.setText((trueCount<10)?"0"+trueCount:""+trueCount);
 
         /* The timer starts. */
-        if(!threadTimeCounter.isAlive())
+        if(!threadTimeCounter.isAlive()){
+            threadTimeCounter = new TimeCounterThread();
             threadTimeCounter.start();
+        }
     }
 
 
@@ -206,10 +211,10 @@ public class ExamActivity extends AppCompatActivity {
 
             if(trueAnswer.equals(selectedButton.getText())){ // If the answer in the clicked word is correct.
                 selectedButton.getBackground().setColorFilter(getResources().getColor(R.color.category_enter), PorterDuff.Mode.SRC_ATOP); // Pressed button turns green.
-                txtTrueCount.setText(++trueCount +""); // True count increase 1 at front and back.
+                chipExamTrueCount.setText((++trueCount<10)?"0"+trueCount:""+trueCount); // True count increase 1 at front and back.
                 WordService.trueSelectIncrease(getApplicationContext(),lastAskedWord.getId(),timePassing); // The correct word's "TrueSelect" value is increase at DB.
             } else { // If the answer in the clicked word is not correct.
-                txtFalseCount.setText(++falseCount +"");// False count increase 1 at front and back.
+                chipExamFalseCount.setText((++falseCount<10)?"0"+falseCount:""+falseCount);// False count increase 1 at front and back.
                 selectedButton.getBackground().setColorFilter(getResources().getColor(R.color.red), PorterDuff.Mode.SRC_ATOP); // Pressed button turns red.
 
                 /* The button turns "green" which are contain correct answer. */
@@ -227,28 +232,36 @@ public class ExamActivity extends AppCompatActivity {
             }
 
             /* Start auto pass timer if the AutoPass "Switch" are on. */
-            if(swAutoPass.isChecked())
+            if(swAutoPass.isChecked()) {
+                threadAutoPass = new AutoPassCounterThread();
                 threadAutoPass.start();
+            }
         }
     }
     private class PassButtonOnClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
             /* Close the "AutoPassTimer" if clicked the pass button manually while "AutoPassTimer" working. */
-            if(swAutoPass.isChecked()) threadAutoPass.interrupt();
+            if(threadAutoPass.isAlive())
+                threadAutoPass.interrupt();
+
             startNewWordExam();
         }
     }
     private class SwitchAutoPassOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            /* Close the "AutoPassTimer" if close the "AutoTimeSwitch" while "AutoPassTimer" working. */
-            if(!swAutoPass.isChecked())
-                threadAutoPass.interrupt();
-            else
-            {
-                /* Start the "AutoPassTimer" if clicked "AutoTimeSwitch" after question answered. */
-                if(isAnswered) threadAutoPass.start();
+            /* May timer works when question answered. We will control it. */
+            if(isAnswered){
+                if(swAutoPass.isChecked()){ /* Start  */
+                    if(!threadAutoPass.isAlive()) {
+                        threadAutoPass = new AutoPassCounterThread();
+                        threadAutoPass.start();
+                    }
+                }else{
+                    if(threadAutoPass.isAlive())
+                        threadAutoPass.interrupt();
+                }
             }
         }
     }
