@@ -16,12 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
-
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.CategoryAddModalBottomSheetDialog;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import java.util.List;
@@ -40,6 +41,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     private CategoryRecyclerViewAdapter adapter; // Category list custom adapter.
     private DrawerLayout                drawerLayout; // The Layout for "Left Navigation Menu".
     private FloatingActionButton        fabAddCategory; // "Category Add" Button at bottom left.
+    private AdView                      adViewBannerCategory; // Ad banner.
 
     /* Override Methods. */
     @Override
@@ -107,6 +109,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         recyclerView = findViewById(R.id.recyclerView);
         drawerLayout = findViewById(R.id.category_activity);
         fabAddCategory = findViewById(R.id.categoryAddFAButton);
+        adViewBannerCategory = findViewById(R.id.adViewBannerCategory);
 
         /* Hiding the app name "Label at Manifest". */
         toolBar.setTitle("");
@@ -130,6 +133,10 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 bottomSheetDialog.show(getActivity().getSupportFragmentManager(),CategoryAddModalBottomSheetDialog.TAG);
             }
         });
+
+        /* Advertising load. */
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adViewBannerCategory.loadAd(adRequest);
 
     }
     private void loadData(){

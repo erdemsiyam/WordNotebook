@@ -27,6 +27,9 @@ import com.erdemsiyam.memorizeyourwords.util.WordSortType;
 import com.erdemsiyam.memorizeyourwords.adapter.WordRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.WordAddModalBottomSheetDialog;
 import com.erdemsiyam.memorizeyourwords.fragment.WordEditModalBottomSheetDialog;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -47,6 +50,7 @@ public class WordActivity extends AppCompatActivity {
     private Button    btnToggleFreeze; // A button to change the appearance of words.
     private AppCompatImageButton    btnBackToCategoryFromWord; // Back button to "CategoryActivity".
     private AppCompatTextView       txtCategoryName; // Shows words belongs to which category.
+    private AdView                  adViewBannerWord; // Ad banner.
 
     /* Override Methods. */
     @Override
@@ -163,6 +167,7 @@ public class WordActivity extends AppCompatActivity {
         btnToggleFreeze = findViewById(R.id.btnToggleFreeze);
         btnBackToCategoryFromWord = findViewById(R.id.btnBackToCategoryFromWord);
         txtCategoryName = findViewById(R.id.txtCategoryName);
+        adViewBannerWord = findViewById(R.id.adViewBannerWord);
 
         /* Hiding the app name "Label at Manifest". */
         toolBar.setTitle("");
@@ -191,6 +196,9 @@ public class WordActivity extends AppCompatActivity {
             }
         }); // Return to "CategoryActivity".
 
+        /* Advertising load. */
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adViewBannerWord.loadAd(adRequest);
     }
     private void loadData() {
         /* Get "WordList" from DB. Need information received from intent.  */
