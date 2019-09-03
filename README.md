@@ -1,3 +1,7 @@
+<p align="center">
+  <img height="198" width="198"  src="images/icon512.png">
+</p>
+
 # Summary
 Developed with Android Studio using Java for Android platform.
 Memorize your own strange language words in a hierarchical way.
@@ -22,6 +26,16 @@ Memorize your own strange language words in a hierarchical way.
     - [ ] Font size.
     
 # Screenshots
+<p align="center">
+<img height="385" width="275" src="images/a1.png">
+<img height="385" width="275" src="images/a2.png">
+<img height="385" width="275" src="images/a3.png">
+</p>
+<p align="center">
+<img height="385" width="275" src="images/a4.png">
+<img height="385" width="275" src="images/a5.png">
+<img height="385" width="275" src="images/a6.png">
+</p>
 
 # Download
 
