@@ -1,5 +1,10 @@
 <resources>
 
+    <!-- Constaints -->
+
+    <string name="admob_app_id" translatable="false">ca-app-pub-9261721980516763~5090102044</string>
+    <string name="admob_advertising_id" translatable="false">ca-app-pub-9261721980516763/5062181889</string>
+
     <!-- Back-End. -->
 
     <string name="app_name">Word Notebook</string>

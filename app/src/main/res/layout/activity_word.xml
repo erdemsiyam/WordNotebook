@@ -121,7 +121,7 @@
                     ads:layout_constraintLeft_toLeftOf="parent"
                     ads:layout_constraintRight_toRightOf="parent"
                     ads:adSize="SMART_BANNER"
-                    ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+                    ads:adUnitId="@string/admob_advertising_id">
                 </com.google.android.gms.ads.AdView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
