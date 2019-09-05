@@ -38,6 +38,11 @@ Memorize your own strange language words in a hierarchical way.
 </p>
 
 # Download
+<p align="center">
+  <a href="" target="_blank">
+    <img src="images/googlePlayDownload.png">
+  </a>
+</p>
 
 # Dependencies
 - AndroidX
