@@ -15,7 +15,7 @@ import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
-import com.erdemsiyam.memorizeyourwords.util.ExamWordType;
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
@@ -85,10 +85,10 @@ public class ExamActivity extends AppCompatActivity {
         /* We will get the word type selected when entering the exam.
         *  Than take the words which as specified. */
         Intent intent = getIntent();
-        ExamWordType examWordType = ExamWordType.getTypeByKey(intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0));
+        WordGroupType wordGroupType = WordGroupType.getTypeByKey(intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0));
         long[] selectedCategoryIds = intent.getLongArrayExtra(CategoryActivity.INTENT_SELECTED_CATEGORY_IDS);
         words = new ArrayList<>();
-        switch (examWordType){
+        switch (wordGroupType){
             case All:
                     for(long l : selectedCategoryIds){
                         words.addAll(WordService.getWordsByCategoryId(this,l));
