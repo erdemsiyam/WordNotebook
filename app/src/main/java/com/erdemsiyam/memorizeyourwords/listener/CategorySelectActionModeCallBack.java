@@ -83,7 +83,7 @@ public class CategorySelectActionModeCallBack implements ActionMode.Callback {
                 categoryActivity.startActivity(intent);
             }
         });
-        builder.setNegativeButton(R.string.exam_words_select_alert_button_negative, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mode.finish(); // The ActionMode is terminated.
