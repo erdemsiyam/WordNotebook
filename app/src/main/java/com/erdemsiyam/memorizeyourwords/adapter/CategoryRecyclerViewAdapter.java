@@ -1,5 +1,6 @@
 package com.erdemsiyam.memorizeyourwords.adapter;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.SparseBooleanArray;
@@ -11,17 +12,22 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
+import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
+import com.erdemsiyam.memorizeyourwords.entity.NotificationWord;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.fragment.CategoryEditModalBottomSheetDialog;
-import com.erdemsiyam.memorizeyourwords.listener.CategoryNotificationButtonOnClickListener;
 import com.erdemsiyam.memorizeyourwords.listener.CategorySelectActionModeCallBack;
+import com.erdemsiyam.memorizeyourwords.service.NotificationWordService;
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.google.android.material.chip.Chip;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,22 +80,36 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         holder.categoryName.setText(category.getName()); // Get name.
         holder.wordCount.setText(CategoryService.getCategoryWordCount(categoryActivity,category)+""); // Get the category's word count from DB.
         holder.wordCount.setClickable(false); // Not need.
-        holder.btnCategoryNotification.setOnClickListener(new CategoryNotificationButtonOnClickListener(categoryActivity,this,category)); // Set notification task. // Will be done later.
-        holder.data = category;
 
-        holder.btnCategoryNotification.setClickable(false);// Soon.
-        holder.btnCategoryWordsNotification.setClickable(false);// Soon.
-
-        /* Notification and Alarm will be done later. */
-        /*
-        if(category.getAlarm() > 0)
-            holder.btnCategoryNotification.setColorFilter(Color.argb(255, 0, 255, 0));
-        else
-            holder.btnCategoryNotification.setColorFilter(Color.argb(255, 150, 150, 150));
-        */
+        /* WordNotification Setups. */
+        NotificationWord notificationWord = NotificationWordService.getByCategory(categoryActivity,category.getId()); // Is this category saved in WordNotification?
+        holder.btnCategoryWordsNotification.setImageResource((notificationWord != null)?R.drawable.ic_notification_word_on:R.drawable.ic_notification_word_off);// Yes : put green icon. No : put fade icon.
+        holder.btnCategoryWordsNotification.setOnClickListener(new View.OnClickListener(){ // Listener for click to notification icon : changes notification statu.
+            @Override
+            public void onClick(View v) {
+                if(notificationWord != null) // If there is setup notification. So remove this.
+                    createAlertDialogForRemoveNotification(category,notificationWord,position).show();
+                else // If not exists any notification for this category. So create.
+                    createAlertDialogForSelectingWordTypesToNotification(category,position).show();
+            }
+        });
+        holder.btnCategoryWordsNotification.setOnLongClickListener(new View.OnLongClickListener() { // Listener for long click to notification icon.
+            @Override
+            public boolean onLongClick(View v) {
+                if(notificationWord != null){
+                    /* Shows which word group the saved notification consists of. */
+                    Toast.makeText(categoryActivity,categoryActivity.getResources().getString(WordGroupType.getTypeByKey(notificationWord.getWordType()).value),Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
 
         /* Change the background color if this item selected.*/
         toggleBackgroundColor(holder,position);
+
+        /* Alarm will be done later. */
+        holder.btnCategoryNotification.setClickable(false); // todo Soon.
+        holder.data = category;
     }
     @Override
     public int getItemCount() { return filteredCategories.size(); }
@@ -287,4 +307,62 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         int index = categories.indexOf(category);
         notifyItemChanged(index);
     }
+
+    /*################# WORD NOTIFICATION SECTION #################*/
+
+    /* Indexing Veriable for AlertDialog. */
+    private int wordTypeNotificationSelectIndex=-1;
+
+    /* These methods at below, are belong to "WordNotification" Icon's click listeners. */
+    public AlertDialog createAlertDialogForSelectingWordTypesToNotification(Category category,int position){
+        /* AlertDialog is prepared which "WordGroup" we want to choose for "WordNotification". */
+        AlertDialog.Builder builder = new AlertDialog.Builder(categoryActivity);
+        builder.setTitle(R.string.words_notification_select_alert_title);
+        String[] options = WordGroupType.getValuesAsStringArray(categoryActivity); // Enum options are taken as Array of String type.
+        builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                wordTypeNotificationSelectIndex = i; // The index is keeping at each click to options at AlertDialog.
+            }
+        });
+        builder.setPositiveButton(R.string.words_notification_select_alert_button_positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(wordTypeNotificationSelectIndex<0){ // If not selected any word group then throw message.
+                    Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_error_message_word_group), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                NotificationWordService.addNotificationWord(categoryActivity,category.getId(),wordTypeNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
+                notifyItemChanged(position); // Refreshed this category.
+                categoryActivity.startService(new Intent(categoryActivity,WordNotificationService.class)); // Start the "WordNotificationService" because maybe its not started yet.
+                Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_succes_message), Toast.LENGTH_SHORT).show(); // Say it's done.
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        return builder.create(); // AlertDialog is ready.
+    }
+    public AlertDialog createAlertDialogForRemoveNotification(Category category, NotificationWord notificationWord, int position){
+        /* Shows AlertDialog if user want to delete "WordNotification". */
+        AlertDialog.Builder builder = new AlertDialog.Builder(categoryActivity);
+        builder.setTitle(R.string.words_notification_remove_alert_title);
+        builder.setMessage(category.getName()+ " : "+categoryActivity.getResources().getString(WordGroupType.getTypeByKey(notificationWord.getWordType()).value) );
+        builder.setPositiveButton(R.string.yes,new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                NotificationWordService.delete(categoryActivity,notificationWord); // Delete "WordNotification" from DB if user click "Yes".
+                notifyItemChanged(position); // Refreshed this category.
+            }
+        });
+        builder.setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        return builder.create(); // AlertDialog is ready.
+    }
+
 }
