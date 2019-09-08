@@ -195,18 +195,18 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         AlertDialog.Builder builder = new AlertDialog.Builder(wordActivity);
         builder.setTitle(R.string.word_delete_alert_title);
         builder.setMessage(word.getStrange()+" : "+ word.getExplain());
-        builder.setPositiveButton(R.string.word_delete_alert_button_positive,new DialogInterface.OnClickListener(){
+        builder.setPositiveButton(R.string.yes,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 WordService.deleteWord(wordActivity,word); // word deleting from backend
                 // word deleting from frontend
                 words.remove(word);
                 filteredWords.remove(word);
-                notifyDataSetChanged();
+                notifyDataSetChanged(); // todo alttakiyle değiştir kontrol ederek
                 //notifyItemInserted(categories.size() - 1);
             }
         });
-        builder.setNegativeButton(R.string.word_delete_alert_button_negative,new DialogInterface.OnClickListener(){
+        builder.setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
