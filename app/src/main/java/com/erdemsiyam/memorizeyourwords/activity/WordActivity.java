@@ -145,7 +145,7 @@ public class WordActivity extends AppCompatActivity {
                         wordSortSelectedIndex=-1; // Clearing the index holder for after use.
                     }
                 });
-                builder.setNegativeButton(R.string.word_sort_alert_button_negative, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
