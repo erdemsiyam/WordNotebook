@@ -5,7 +5,7 @@ import android.content.Context;
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationWord;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
-import com.erdemsiyam.memorizeyourwords.util.ExamWordType;
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public final class NotificationWordService {
     public static int getHowManyNotificationWord(Context context){
         return MyDatabase.getMyDatabase(context).getNotificationWordDAO().getHowManyNotificationWord();
     }
-    public static int getWordsCountByCategoryAndWordType(Context context, Long categoryId, ExamWordType wordType){
+    public static int getWordsCountByCategoryAndWordType(Context context, Long categoryId, WordGroupType wordType){
         switch (wordType) {
             case All:
                 return MyDatabase.getMyDatabase(context).getNotificationWordDAO().getWordsCountFromCategoryByAll(categoryId);
@@ -41,7 +41,7 @@ public final class NotificationWordService {
         }
         return -1;
     }
-    public static Word getWordAtIndexFromCategoryByWordType(Context context, Long categoryId, ExamWordType wordType, int index ){
+    public static Word getWordAtIndexFromCategoryByWordType(Context context, Long categoryId, WordGroupType wordType, int index ){
         switch (wordType) {
             case All:
                 return MyDatabase.getMyDatabase(context).getNotificationWordDAO().getWordAtIndexFromCategoryByAll(categoryId,index);

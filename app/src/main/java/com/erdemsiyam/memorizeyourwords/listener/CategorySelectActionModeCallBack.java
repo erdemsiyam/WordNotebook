@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.activity.ExamActivity;
 import com.erdemsiyam.memorizeyourwords.R;
-import com.erdemsiyam.memorizeyourwords.util.ExamWordType;
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 
 import static com.erdemsiyam.memorizeyourwords.activity.CategoryActivity.INTENT_EXAM_SELECT_INDEX;
@@ -66,7 +66,7 @@ public class CategorySelectActionModeCallBack implements ActionMode.Callback {
         /* AlertDialog is prepared which words we want to choose. */
         AlertDialog.Builder builder = new AlertDialog.Builder(categoryActivity);
         builder.setTitle(R.string.exam_words_select_alert_title);
-        String[] options = ExamWordType.getValuesAsStringArray(categoryActivity); // Enum options are taken as Array of String type.
+        String[] options = WordGroupType.getValuesAsStringArray(categoryActivity); // Enum options are taken as Array of String type.
         builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
