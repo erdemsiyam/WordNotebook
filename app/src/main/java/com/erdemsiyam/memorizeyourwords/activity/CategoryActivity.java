@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 import com.erdemsiyam.memorizeyourwords.R;
+import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
@@ -25,10 +27,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
 import java.util.List;
 import co.dift.ui.SwipeToAction;
 
-public class CategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class CategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     /* Constants */
     public static final String INTENT_CATEGORY_ID = "category_id";
@@ -87,15 +90,12 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         /* There is some Actions by which item selected at navigation menu. */
         switch (menuItem.getItemId()){
-            case R.id.nav_settings: // Soon.
-                Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
-                /*
-                (this).getSupportFragmentManager().beginTransaction()
-                        .replace(android.R.id.content, new SettingsFragment())
-                        .addToBackStack(null)
-                        .commit(); */
+            case R.id.nav_settings:
+                /* Go to the SettingActivity. */
+                Intent intent = new Intent(this,SettingActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.nav_about: // Soon.
+            case R.id.nav_about: // todo Soon.
                 Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
                 break;
         }
@@ -154,6 +154,9 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
         /* SwipeToAction including to RecyclerView and SwipeListener added (inside at CustomAdapter). */
         new SwipeToAction(recyclerView, adapter);
+
+        /* Starting "WordNotificationService" for notify words. */
+        startService(new Intent(this, WordNotificationService.class));
     }
 
     /* Getter-Setter. */
