@@ -67,7 +67,7 @@ public class WordDetailDialogFragment extends AppCompatDialogFragment {
         /* "AlertDialog" building. */
         builder.setView(view);
         builder.setTitle(word.getStrange());
-        builder.setPositiveButton(R.string.word_detail_alert_button_positive, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

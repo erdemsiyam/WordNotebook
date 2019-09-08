@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -96,14 +95,14 @@ public class CategoryEditModalBottomSheetDialog extends BottomSheetDialogFragmen
                 AlertDialog.Builder builder = new AlertDialog.Builder(categoryActivity);
                 builder.setTitle(R.string.category_delete_alert_title);
                 builder.setMessage(categoryActivity.getResources().getString(R.string.category_delete_alert_message)+ " " + category.getName());
-                builder.setPositiveButton(R.string.category_delete_alert_button_positive, new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         CategoryService.deleteCategory(categoryActivity, category); // Category is deleted from DB.
                         categoryActivity.getAdapter().deleteCategory(category); // Category deleted from frontend.
                     }
                 });
-                builder.setNegativeButton(R.string.category_delete_alert_button_negative, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dismiss(); // Close the "ModalBottomSheetDialog".
