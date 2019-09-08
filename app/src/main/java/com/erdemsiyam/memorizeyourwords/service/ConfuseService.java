@@ -7,7 +7,7 @@ import com.erdemsiyam.memorizeyourwords.entity.Confuse;
 
 import java.util.List;
 
-public class ConfuseService {
+public final class ConfuseService {
     public static void addConfuse(Context context, Long id, Long targetId){
         Confuse confuse = MyDatabase.getMyDatabase(context).getConfuseDAO().getConfuse(id,targetId);
         if(confuse != null){
