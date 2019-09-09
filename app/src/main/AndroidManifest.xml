@@ -2,12 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.erdemsiyam.memorizeyourwords">
 
+    <!-- Permission to Excel import export. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Permission to advertising. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <!-- Permission to start Alarm on device reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -17,35 +20,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id"/>
+        <meta-data android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".activity.SettingsActivity"></activity>
-        <activity
-            android:name=".activity.ExamActivity"
+        <activity android:name=".activity.SettingActivity">
+        </activity>
+        <activity android:name=".activity.ExamActivity"
             android:parentActivityName=".activity.CategoryActivity" />
-        <activity
-            android:name=".activity.WordActivity"
+        <activity android:name=".activity.WordActivity"
             android:parentActivityName=".activity.CategoryActivity" />
-        <activity
-            android:name=".activity.CategoryActivity">
+        <activity android:name=".activity.CategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.SplashActivity"
+        <activity android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+
+        <receiver android:name=".broadcastreceiver.DeviceBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".androidservice.WordNotificationService"
+            android:enabled="true"
+            android:exported="false"></service>
     </application>
 
 </manifest>
