@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.TextViewCompat;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,11 +19,9 @@ import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.google.android.material.chip.Chip;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 public class ExamActivity extends AppCompatActivity {
 
@@ -80,6 +80,14 @@ public class ExamActivity extends AppCompatActivity {
         btnDone.setOnClickListener(new DoneButtonOnClickListener());
         swAutoPass.setOnClickListener(new SwitchAutoPassOnClickListener());
 
+        /* FontSize loading from Setting. */
+        float fontSize = getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2); // FontSize loading from Setting.
+        txtTimer.setTextSize((12)+ 2*fontSize);
+        txtStrange.setTextSize((12)+ 2*fontSize);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord1, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord2, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord3, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord4, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
     }
     private void loadData() {
         /* We will get the word type selected when entering the exam.

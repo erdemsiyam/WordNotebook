@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.R;
@@ -87,6 +89,8 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         holder.btnCheck.setImageResource((word.isLearned())?R.drawable.ic_check_on:R.drawable.ic_check_off); // Set "check_on" if is this word learned.
         holder.txtStrange.setText((freezeType != FreezeType.STRANGE || unFreezeIndexs.contains(position))?word.getStrange():""); // The word's Strange : show if not freeze.
         holder.txtExplain.setText((freezeType != FreezeType.EXPLAIN || unFreezeIndexs.contains(position))?word.getExplain():""); // The word's Explain : show if not freeze.
+        holder.txtStrange.setTextSize(((12)+2*(wordActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2)))); // FontSize loading from Setting.
+        holder.txtExplain.setTextSize(((12)+2*(wordActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2)))); // FontSize loading from Setting.
 
         /* Giving the listeners for each word. */
         holder.btnStar.setOnClickListener(new View.OnClickListener() {
