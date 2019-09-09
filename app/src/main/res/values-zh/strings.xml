@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">单词笔记本</string>
-    <string name="category_delete_alert_button_negative">没有</string>
-    <string name="category_delete_alert_button_positive">是</string>
+    <string name="no">没有</string>
+    <string name="yes">是</string>
     <string name="category_delete_alert_message">清单：</string>
     <string name="category_delete_alert_title">你确定你要删除吗？</string>
     <string name="category_selecting_title">项目已选中</string>
     <string name="exam_category_select_title">选择类别</string>
     <string name="exam_word_size_error">必须至少有4个单词</string>
-    <string name="exam_words_select_alert_button_negative">取消</string>
+    <string name="cancel">取消</string>
     <string name="exam_words_select_alert_button_positive">开始</string>
     <string name="exam_words_select_alert_title">选择单词</string>
     <string name="exception_content_limit_exceeded">不得超过30个字符。</string>
@@ -53,11 +53,8 @@
     <string name="word_confuse_times">时</string>
     <string name="word_context_menu_delete">删除</string>
     <string name="word_context_menu_edit">编辑</string>
-    <string name="word_delete_alert_button_negative">取消</string>
-    <string name="word_delete_alert_button_positive">是</string>
     <string name="word_delete_alert_title">你确定你要删除吗？</string>
-    <string name="word_detail_alert_button_positive">好</string>
-    <string name="word_sort_alert_button_negative">取消</string>
+    <string name="ok">好</string>
     <string name="word_sort_alert_button_positive">分类</string>
     <string name="word_sort_alert_title">选择排序</string>
     <string name="excelimport_message_incorrect_file">错误：Excel文件格式不正确！</string>

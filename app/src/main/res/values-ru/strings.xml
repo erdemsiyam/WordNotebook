@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Тетрадь слов</string>
-    <string name="category_delete_alert_button_negative">нет</string>
-    <string name="category_delete_alert_button_positive">да</string>
+    <string name="no">нет</string>
+    <string name="yes">да</string>
     <string name="category_delete_alert_title">Вы уверены, что хотите это удалить?</string>
     <string name="category_delete_alert_message">Список:</string>
     <string name="category_selecting_title">пункт выбран</string>
     <string name="exam_category_select_title">выбрать категорию</string>
     <string name="exam_word_size_error">Должно быть как минимум 4 слова</string>
-    <string name="exam_words_select_alert_button_negative">отменить</string>
+    <string name="cancel">отменить</string>
     <string name="exam_words_select_alert_button_positive">Начните</string>
     <string name="exam_words_select_alert_title">Выберите слова</string>
     <string name="exception_content_limit_exceeded">Должно быть 30 символов или меньше.</string>
@@ -53,11 +53,8 @@
     <string name="word_confuse_times">раза</string>
     <string name="word_context_menu_delete">удалять</string>
     <string name="word_context_menu_edit">редактировать</string>
-    <string name="word_delete_alert_button_negative">отменить</string>
-    <string name="word_delete_alert_button_positive">да</string>
     <string name="word_delete_alert_title">Вы уверены, что хотите это удалить?</string>
-    <string name="word_detail_alert_button_positive">Хорошо</string>
-    <string name="word_sort_alert_button_negative">отменить</string>
+    <string name="ok">Хорошо</string>
     <string name="word_sort_alert_button_positive">Сортировать</string>
     <string name="word_sort_alert_title">Выберите сортировку</string>
     <string name="excelimport_alert_title">Выберите файл Excel</string>

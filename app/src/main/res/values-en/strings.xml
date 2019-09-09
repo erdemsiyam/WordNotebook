@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Word Book</string>
-    <string name="category_delete_alert_button_negative">No</string>
-    <string name="category_delete_alert_button_positive">Yes</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
     <string name="category_delete_alert_message">List :</string>
     <string name="category_delete_alert_title">Are you sure you want to delete it?</string>
     <string name="exam_category_select_title">Select Category</string>
     <string name="exam_word_size_error">Must have at least 4 words</string>
-    <string name="exam_words_select_alert_button_negative">Cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="exam_words_select_alert_button_positive">Start</string>
     <string name="exam_words_select_alert_title">Select Words</string>
     <string name="exception_content_limit_exceeded">Must be 30 characters or less.</string>
@@ -52,11 +52,8 @@
     <string name="word_confuse_times">Times</string>
     <string name="word_context_menu_delete">Delete</string>
     <string name="word_context_menu_edit">Edit</string>
-    <string name="word_delete_alert_button_negative">Cancel</string>
-    <string name="word_delete_alert_button_positive">Yes</string>
     <string name="word_delete_alert_title">Are you sure you want to delete it?</string>
-    <string name="word_detail_alert_button_positive">Ok</string>
-    <string name="word_sort_alert_button_negative">Cancel</string>
+    <string name="ok">Ok</string>
     <string name="word_sort_alert_button_positive">Sort</string>
     <string name="word_sort_alert_title">Select Sorting</string>
     <string name="category_selecting_title">item selected</string>

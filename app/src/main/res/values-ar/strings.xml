@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">دفتر كلماتي</string>
-    <string name="category_delete_alert_button_negative">لا</string>
-    <string name="category_delete_alert_button_positive">نعم فعلا</string>
+    <string name="no">لا</string>
+    <string name="yes">نعم فعلا</string>
     <string name="category_delete_alert_message">القائمة:</string>
     <string name="category_delete_alert_title">هل أنت متأكد أنك تريد حذف ذلك؟</string>
     <string name="category_selecting_title">العنصر المحدد</string>
     <string name="exam_category_select_title">اختر الفئة</string>
     <string name="exam_word_size_error">يجب أن تحتوي على 4 كلمات على الأقل</string>
-    <string name="exam_words_select_alert_button_negative">إلغاء</string>
+    <string name="cancel">إلغاء</string>
     <string name="exam_words_select_alert_button_positive">بداية</string>
     <string name="exam_words_select_alert_title">اختيار الكلمات</string>
     <string name="exception_content_limit_exceeded">يجب أن يكون 30 حرفًا أو أقل.</string>
@@ -53,11 +53,8 @@
     <string name="word_confuse_times">مرات</string>
     <string name="word_context_menu_delete">حذف</string>
     <string name="word_context_menu_edit">تصحيح</string>
-    <string name="word_delete_alert_button_negative">إلغاء</string>
-    <string name="word_delete_alert_button_positive">نعم فعلا</string>
     <string name="word_delete_alert_title">هل أنت متأكد أنك تريد حذف ذلك؟</string>
-    <string name="word_detail_alert_button_positive">حسنا</string>
-    <string name="word_sort_alert_button_negative">إلغاء</string>
+    <string name="ok">حسنا</string>
     <string name="word_sort_alert_button_positive">فرز</string>
     <string name="word_sort_alert_title">اختر الفرز</string>
     <string name="excelimport_alert_title">حدد ملف اكسل</string>

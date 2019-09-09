@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kelime Defterim</string>
-    <string name="category_delete_alert_button_negative">Hayır</string>
-    <string name="category_delete_alert_button_positive">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="yes">Evet</string>
     <string name="category_delete_alert_message">Liste :</string>
     <string name="category_delete_alert_title">Silmek istediğinize emin misiniz?</string>
     <string name="exam_category_select_title">Kategori Seç</string>
     <string name="exam_word_size_error">En az 4 kelime olmalı</string>
-    <string name="exam_words_select_alert_button_negative">İptal</string>
+    <string name="cancel">İptal</string>
     <string name="exam_words_select_alert_button_positive">Başla</string>
     <string name="exam_words_select_alert_title">Kelimeleri Seçiniz</string>
     <string name="exception_content_limit_exceeded">30 karakter ve aşağısı olmalı.</string>
@@ -52,11 +52,8 @@
     <string name="word_confuse_times">Kez</string>
     <string name="word_context_menu_delete">Sil</string>
     <string name="word_context_menu_edit">Düzenle</string>
-    <string name="word_delete_alert_button_negative">İptal</string>
-    <string name="word_delete_alert_button_positive">Evet</string>
     <string name="word_delete_alert_title">Silmek istediğinize emin misiniz?</string>
-    <string name="word_detail_alert_button_positive">Tamam</string>
-    <string name="word_sort_alert_button_negative">İptal</string>
+    <string name="ok">Tamam</string>
     <string name="word_sort_alert_button_positive">Sırala</string>
     <string name="word_sort_alert_title">Sıralama Seç</string>
     <string name="category_selecting_title">tane seçildi</string>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cahier de mot</string>
-    <string name="category_delete_alert_button_negative">Non</string>
-    <string name="category_delete_alert_button_positive">Oui</string>
+    <string name="no">Non</string>
+    <string name="yes">Oui</string>
     <string name="category_delete_alert_message">Liste :</string>
     <string name="category_delete_alert_title">Es-tu sûr de vouloir le supprimer?</string>
     <string name="category_selecting_title">élément sélectionné</string>
     <string name="exam_category_select_title">Choisir une catégorie</string>
     <string name="exam_word_size_error">Doit avoir au moins 4 mots</string>
-    <string name="exam_words_select_alert_button_negative">Annuler</string>
+    <string name="cancel">Annuler</string>
     <string name="exam_words_select_alert_button_positive">Début</string>
     <string name="exam_words_select_alert_title">Sélectionnez des mots</string>
     <string name="exception_content_limit_exceeded">Doit comporter 30 caractères ou moins.</string>
@@ -53,11 +53,8 @@
     <string name="word_confuse_times">Fois</string>
     <string name="word_context_menu_delete">Effacer</string>
     <string name="word_context_menu_edit">modifier</string>
-    <string name="word_delete_alert_button_negative">Annuler</string>
-    <string name="word_delete_alert_button_positive">Oui</string>
     <string name="word_delete_alert_title">Es-tu sûr de vouloir le supprimer?</string>
-    <string name="word_detail_alert_button_positive">D\'accord</string>
-    <string name="word_sort_alert_button_negative">Annuler</string>
+    <string name="ok">D\'accord</string>
     <string name="word_sort_alert_button_positive">Trier</string>
     <string name="word_sort_alert_title">Sélectionner le tri</string>
     <string name="excelimport_alert_title">Sélectionner un fichier Excel</string>

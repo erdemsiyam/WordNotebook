@@ -12,31 +12,34 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="soon">Soon</string>
+    <string name="ok">Ok</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="minute" translatable="false">minute</string>
 
     <string name="exam_word_size_error">Must have at least 4 words</string>
     <string name="word_sort_alert_title">Select Sorting</string>
     <string name="word_sort_alert_button_positive">Sort</string>
-    <string name="word_sort_alert_button_negative">Cancel</string>
 
     <string name="category_selecting_title">item selected</string>
 
     <string name="word_context_menu_delete">Delete</string>
     <string name="word_context_menu_edit">Edit</string>
 
+    <string name="words_notification_remove_alert_title" translatable="false">Are you sure you want to remove this category\'s words notification? </string>
+    <string name="words_notification_select_alert_title" translatable="false">Which word type do you want to notification?</string>
+    <string name="words_notification_select_alert_button_positive" translatable="false">Set</string>
+    <string name="words_notification_error_message_word_group" translatable="false">You must select a word group.</string>
+    <string name="words_notification_succes_message" translatable="false">Notification setted up.</string>
+
     <string name="word_delete_alert_title">Are you sure you want to delete it?</string>
-    <string name="word_delete_alert_button_positive">Yes</string>
-    <string name="word_delete_alert_button_negative">Cancel</string>
 
     <string name="exception_no_content">You must enter text.</string>
     <string name="exception_content_limit_exceeded">Must be 30 characters or less.</string>
 
     <string name="category_delete_alert_title">Are you sure you want to delete it?</string>
     <string name="category_delete_alert_message">List :</string>
-
-    <string name="category_delete_alert_button_positive">Yes</string>
-    <string name="category_delete_alert_button_negative">No</string>
-
-    <string name="word_detail_alert_button_positive">Ok</string>
 
     <string name="word_confuse">Confuses</string>
     <string name="word_confuse_times">Times</string>
@@ -45,7 +48,6 @@
 
     <string name="exam_words_select_alert_title">Select Words</string>
     <string name="exam_words_select_alert_button_positive">Start</string>
-    <string name="exam_words_select_alert_button_negative">Cancel</string>
 
     <string name="type_exam_word_all">All</string>
     <string name="type_exam_word_learned">Learned</string>
@@ -65,6 +67,9 @@
     <string name="excelimport_message_loaded">Words are loaded.</string>
     <string name="excelimport_message_no_sd_card">No SD card found.</string>
 
+    <string name="setting_word_notification_alert_title_cycle_time" translatable="false">Select cycle time</string>
+    <string name="setting_word_notification_alert_title_font_size" translatable="false">Select font size</string>
+    <string name="setting_word_notification_alert_title_set_time" translatable="false">Set time</string>
 
     <!-- Front-End. -->
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Word-Notizbuch</string>
-    <string name="category_delete_alert_button_negative">Nein</string>
-    <string name="category_delete_alert_button_positive">Ja</string>
+    <string name="no">Nein</string>
+    <string name="yes">Ja</string>
     <string name="category_delete_alert_message">Liste :</string>
     <string name="category_delete_alert_title">Möchten Sie es wirklich löschen?</string>
     <string name="category_selecting_title">ausgewählt</string>
     <string name="exam_category_select_title">Kategorie Auswählen</string>
     <string name="exam_word_size_error">Muss mindestens 4 Wörter haben</string>
-    <string name="exam_words_select_alert_button_negative">Stornierung</string>
+    <string name="cancel">Stornierung</string>
     <string name="exam_words_select_alert_button_positive">Gestartet</string>
     <string name="exam_words_select_alert_title">Wählen Sie Wörter</string>
     <string name="exception_content_limit_exceeded">Darf nicht länger als 30 Zeichen sein.</string>
@@ -53,11 +53,8 @@
     <string name="word_confuse_times">Mal</string>
     <string name="word_context_menu_delete">Löschen</string>
     <string name="word_context_menu_edit">Bearbeiten</string>
-    <string name="word_delete_alert_button_negative">Stornieren</string>
-    <string name="word_delete_alert_button_positive">Ja</string>
     <string name="word_delete_alert_title">Möchten Sie es wirklich löschen?</string>
-    <string name="word_detail_alert_button_positive">Ok</string>
-    <string name="word_sort_alert_button_negative">Stornieren</string>
+    <string name="ok">Ok</string>
     <string name="word_sort_alert_button_positive">Sortieren</string>
     <string name="word_sort_alert_title">Wählen Sie Sortierung</string>
     <string name="excelimport_alert_title">Wählen Sie Excel-Datei</string>
