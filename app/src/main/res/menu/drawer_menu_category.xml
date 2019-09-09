@@ -13,10 +13,22 @@
     <item android:title="Other">
         <menu>
             <item
+                android:id="@+id/nav_rate"
+                android:icon="@drawable/ic_rate"
+                android:title="Rate App"
+                />
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="Feedback"/>
+            <item
+                android:id="@+id/nav_donation"
+                android:icon="@drawable/ic_donation"
+                android:title="Donation :)"/>
+            <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_about"
                 android:title="@string/ui_navbar_about" />
         </menu>
     </item>
-
 </menu>
