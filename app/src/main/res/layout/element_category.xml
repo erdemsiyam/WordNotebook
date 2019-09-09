@@ -30,7 +30,7 @@
             android:layout_marginLeft="10dp"
             android:text="@string/ui_category_menu_exam"
             android:textColor="@color/category_enter"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_low"
             android:textStyle="normal"
             app:fontFamily="@font/ubuntu" />
     </RelativeLayout>
@@ -70,7 +70,7 @@
             android:layout_marginTop="5px"
             android:gravity="center|left"
             android:text=""
-            android:textSize="17sp"
+            android:textSize="@dimen/font_normal"
             android:textStyle="normal"
             app:fontFamily="@font/ubuntu" />
 
@@ -114,7 +114,7 @@
             android:layout_marginLeft="1px"
             android:layout_marginTop="5px"
             android:layout_marginRight="50px"
-            app:srcCompat="@drawable/ic_notifications_none"
+            app:srcCompat="@drawable/ic_notification_word_off"
             tools:ignore="VectorDrawableCompat"
             android:background="?android:selectableItemBackground"/>
 
