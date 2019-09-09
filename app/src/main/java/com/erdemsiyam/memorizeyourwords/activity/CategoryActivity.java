@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,7 +28,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-
 import java.util.List;
 import co.dift.ui.SwipeToAction;
 
@@ -99,6 +99,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
                 break;
         }
+        drawerLayout.closeDrawer(Gravity.LEFT); // Closing "DrawerMenu".
         return true;
     } // This is LeftMenu's items click actions declare place.
 
