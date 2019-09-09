@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -92,8 +93,24 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         switch (menuItem.getItemId()){
             case R.id.nav_settings:
                 /* Go to the SettingActivity. */
-                Intent intent = new Intent(this,SettingActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this,SettingActivity.class));
+                break;
+            case R.id.nav_rate:
+                String appPackageName = "";
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+                break;
+            case R.id.nav_feedback:
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"siyamyazilim@gmail.com"});
+                intent.setDataAndType(Uri.parse("mailto:siyamyazilim@gmail.com"), "text/plain");
+                startActivity(Intent.createChooser(intent,getResources().getString(R.string.feedback_program_chooser_title)));
+                break;
+            case R.id.nav_donation:
+
                 break;
             case R.id.nav_about: // todo Soon.
                 Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
