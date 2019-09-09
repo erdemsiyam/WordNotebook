@@ -25,6 +25,8 @@ public interface INotificationWordDAO {
     NotificationWord getByCategory(Long categoryId);
     @Query("SELECT Count(*) FROM NotificationWord")
     int getHowManyNotificationWord();
+    @Query("Delete FROM NotificationWord")
+    void deleteAll();
 
     @Query("SELECT Count(*) FROM Word WHERE category_id=:categoryId")
     int getWordsCountFromCategoryByAll(Long categoryId);

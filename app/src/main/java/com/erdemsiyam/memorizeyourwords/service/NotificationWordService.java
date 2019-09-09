@@ -57,4 +57,7 @@ public final class NotificationWordService {
     public static void delete(Context context, NotificationWord notificationWord){
         MyDatabase.getMyDatabase(context).getNotificationWordDAO().delete(notificationWord);
     }
+    public static void deleteAll(Context context){
+        MyDatabase.getMyDatabase(context).getNotificationWordDAO().deleteAll();
+    }
 }
