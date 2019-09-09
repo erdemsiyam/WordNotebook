@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
@@ -29,14 +30,16 @@ public class SettingActivity extends AppCompatActivity {
     public static final String  FONT = "font";
 
     /* UI Components. */
-    private LinearLayout lytWordNotificationPeriod;
-    private LinearLayout lytWordNotificationStartTime;
-    private LinearLayout lytWordNotificationEndTime;
-    private LinearLayout lytFont;
-    private AppCompatTextView txtWordNotificationPeriodValue;
-    private AppCompatTextView txtWordNotificationStartTimeValue;
-    private AppCompatTextView txtWordNotificationEndTimeValue;
-    private AppCompatTextView txtFontValue;
+    private LinearLayout         lytWordNotificationPeriod;
+    private LinearLayout         lytWordNotificationStartTime;
+    private LinearLayout         lytWordNotificationEndTime;
+    private LinearLayout         lytFont;
+    private AppCompatTextView    txtWordNotificationPeriodValue;
+    private AppCompatTextView    txtWordNotificationStartTimeValue;
+    private AppCompatTextView    txtWordNotificationEndTimeValue;
+    private AppCompatTextView    txtFontValue;
+    private AppCompatImageButton btnBackToCategoryFromSetting; // Back button to "CategoryActivity".
+
 
     /* Variable. */
     private SharedPreferences sharedPreferences;
@@ -60,6 +63,7 @@ public class SettingActivity extends AppCompatActivity {
         txtWordNotificationStartTimeValue = findViewById(R.id.txtWordNotificationStartTimeValue);
         txtWordNotificationEndTimeValue = findViewById(R.id.txtWordNotificationEndTimeValue);
         txtFontValue = findViewById(R.id.txtFontValue);
+        btnBackToCategoryFromSetting = findViewById(R.id.btnBackToCategoryFromSetting);
     }
     private void loadData() {
         /* Obtaining the "SharedPreferences" object. */
@@ -163,6 +167,11 @@ public class SettingActivity extends AppCompatActivity {
                 });
                 d.show();
             }
+        });
+
+        /* Listener to BackButton. */
+        btnBackToCategoryFromSetting.setOnClickListener(v -> {
+            finish();
         });
     }
 
