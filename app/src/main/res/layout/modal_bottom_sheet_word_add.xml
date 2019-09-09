@@ -29,7 +29,8 @@
         app:layout_constraintRight_toRightOf="parent"
         android:hint="@string/ui_word_add_explain_hint"
         android:textSize="@dimen/font_high"
-        android:inputType="text" />
+        android:inputType="text"
+        android:nextFocusDown="@id/btnCreateWord"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCreateWord"

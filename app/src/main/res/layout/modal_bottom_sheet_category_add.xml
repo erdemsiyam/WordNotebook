@@ -17,6 +17,7 @@
         android:hint="@string/ui_category_add_hint"
         android:inputType="text"
         android:textSize="@dimen/font_high"
+        android:nextFocusDown="@id/btnCreateCategory"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton

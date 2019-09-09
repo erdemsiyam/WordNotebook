@@ -15,7 +15,8 @@
         app:layout_constraintRight_toLeftOf="@id/btnEditCategory"
         android:hint="List New Name"
         android:textSize="@dimen/font_high"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:nextFocusDown="@id/btnEditCategory"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btnEditCategory"
