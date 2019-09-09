@@ -32,6 +32,7 @@
     <string name="words_notification_select_alert_button_positive" translatable="false">Set</string>
     <string name="words_notification_error_message_word_group" translatable="false">You must select a word group.</string>
     <string name="words_notification_succes_message" translatable="false">Notification setted up.</string>
+    <string name="word_notification_stop_button" translatable="false">Stop</string>
 
     <string name="word_delete_alert_title">Are you sure you want to delete it?</string>
 
@@ -70,6 +71,8 @@
     <string name="setting_word_notification_alert_title_cycle_time" translatable="false">Select cycle time</string>
     <string name="setting_word_notification_alert_title_font_size" translatable="false">Select font size</string>
     <string name="setting_word_notification_alert_title_set_time" translatable="false">Set time</string>
+
+    <string name="feedback_program_chooser_title" translatable="false">Select mail program</string>
 
     <!-- Front-End. -->
 
