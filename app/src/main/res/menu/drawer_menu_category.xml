@@ -15,16 +15,16 @@
             <item
                 android:id="@+id/nav_rate"
                 android:icon="@drawable/ic_rate"
-                android:title="Rate App"
+                android:title="@string/ui_navbar_rate"
                 />
             <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_feedback"
-                android:title="Feedback"/>
+                android:title="@string/ui_navbar_feedback"/>
             <item
                 android:id="@+id/nav_donation"
                 android:icon="@drawable/ic_donation"
-                android:title="Donation :)"/>
+                android:title="@string/ui_navbar_donation"/>
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_about"
