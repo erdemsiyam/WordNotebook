@@ -16,7 +16,7 @@
         app:layout_constraintRight_toLeftOf="@id/btnCreateCategory"
         android:hint="@string/ui_category_add_hint"
         android:inputType="text"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_high"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton

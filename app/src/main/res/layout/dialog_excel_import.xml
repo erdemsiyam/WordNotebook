@@ -15,6 +15,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:textSize="@dimen/font_low"
         android:text="@string/ui_excel_import_info"/>
 
     <com.google.android.material.button.MaterialButton

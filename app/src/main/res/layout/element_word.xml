@@ -33,7 +33,7 @@
             app:layout_constraintLeft_toRightOf="@id/btnWordStar"
             android:gravity="center"
             android:text="STRANGE"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_normal"
             android:textStyle="normal"
             app:fontFamily="@font/ubuntu" />
 
@@ -47,7 +47,7 @@
             app:layout_constraintLeft_toRightOf="@id/txtWordStrange"
             android:gravity="center"
             android:text="EXPLAIN"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_normal"
             android:textStyle="normal"
             app:fontFamily="@font/ubuntu" />
 

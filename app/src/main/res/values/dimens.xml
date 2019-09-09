@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_lowest">12sp</dimen>
+    <dimen name="font_low">14sp</dimen>
+    <dimen name="font_normal">16sp</dimen>
+    <dimen name="font_high">18sp</dimen>
+    <dimen name="font_highest">24sp</dimen>
+</resources>

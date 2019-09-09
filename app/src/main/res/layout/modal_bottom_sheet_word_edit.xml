@@ -16,7 +16,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:hint="Strange"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_high"
         android:inputType="text" />
 
     <EditText
@@ -28,7 +28,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:hint="Explain"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_high"
         android:inputType="text" />
 
     <com.google.android.material.button.MaterialButton
