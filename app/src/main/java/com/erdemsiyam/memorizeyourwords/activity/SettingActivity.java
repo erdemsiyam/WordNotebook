@@ -66,7 +66,7 @@ public class SettingActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(PREFERENCE_NAME,PREFERENCE_MODE);
 
         /* Filling UI values. */
-        txtWordNotificationPeriodValue.setText(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30)+" dakika"); // todo string res at dakikaya
+        txtWordNotificationPeriodValue.setText(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30)+" dakika");
         int startHourInt = sharedPreferences.getInt(WORD_NOTIFICATION_START_TIME_HOUR,9);
         int startMinuteInt = sharedPreferences.getInt(WORD_NOTIFICATION_START_TIME_MINUTE,0);
         txtWordNotificationStartTimeValue.setText(((startHourInt<10)?"0"+startHourInt:""+startHourInt)+" : "+((startMinuteInt<10)?"0"+startMinuteInt:""+startMinuteInt));
