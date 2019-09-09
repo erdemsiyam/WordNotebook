@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:categoryActivity=".SettingsActivity"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_word"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtCategoryName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/main_blue_2"
+        android:elevation="0dp">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnBackToCategoryFromSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back"
+            android:background="@null"/>
+
+        <TextView
+            android:id="@+id/wordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textSize="@dimen/font_highest"
+            android:textStyle="normal"
+            android:fontFamily="@font/ubuntu"
+            android:layout_gravity="center"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="Word Notification"
+        android:textSize="@dimen/font_lowest"
+        android:textColor="@color/main_blue_5"/>
+
+    <LinearLayout
+        android:id="@+id/lytWordNotificationPeriod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtWordNotificationPeriod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Word Notification Period"
+                android:textSize="@dimen/font_low"
+                android:textStyle="bold"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtWordNotificationPeriodSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select how many per minute for notify word."
+                android:textSize="@dimen/font_lowest"
+                android:textStyle="italic"
+                />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtWordNotificationPeriodValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="120 dakika"
+            android:textSize="@dimen/font_low"
+            app:fontFamily="@font/ubuntu"
+            android:textStyle="normal"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lytWordNotificationStartTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.8">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtWordNotificationStartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Time"
+                android:textSize="@dimen/font_low"
+                android:textStyle="bold"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtWordNotificationStartTimeSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set notification start time."
+                android:textSize="@dimen/font_lowest"
+                android:textStyle="italic"
+                />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtWordNotificationStartTimeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="05:00"
+            android:textSize="@dimen/font_low"
+            app:fontFamily="@font/ubuntu"
+            android:textStyle="normal"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lytWordNotificationEndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.8">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtWordNotificationEndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Time"
+                android:textSize="@dimen/font_low"
+                android:textStyle="bold"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtWordNotificationEndTimeSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set notification end time."
+                android:textSize="@dimen/font_lowest"
+                android:textStyle="italic"
+                />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtWordNotificationEndTimeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="05:00"
+            android:textSize="@dimen/font_low"
+            app:fontFamily="@font/ubuntu"
+            android:textStyle="normal"
+            />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="Font"
+        android:textSize="@dimen/font_lowest"
+        android:textColor="@color/main_blue_5"/>
+
+    <LinearLayout
+        android:id="@+id/lytFont"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.8">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Font Size"
+                android:textSize="@dimen/font_low"
+                android:textStyle="bold"
+                />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtFontSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set font size."
+                android:textSize="@dimen/font_lowest"
+                android:textStyle="italic"
+                />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtFontValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:text="18sp"
+            android:textSize="@dimen/font_low"
+            app:fontFamily="@font/ubuntu"
+            android:textStyle="normal"
+            />
+    </LinearLayout>
+</LinearLayout>
