@@ -1,6 +1,7 @@
 package com.erdemsiyam.memorizeyourwords.androidservice;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
+import com.erdemsiyam.memorizeyourwords.broadcastreceiver.StopWordNotificationReceiver;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationWord;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.NotificationWordService;
@@ -29,7 +31,10 @@ public class WordNotificationService extends Service {
         Within the time interval specified in the settings.
         Person determines the time of sleep and then does not throws word notify. */
 
-    /* Veriables. */
+    /* Constants. */
+    public static final int WORD_NOTIFICATION_CHANNEL_ID = 1;
+
+    /* Variables. */
     private Handler handler = new Handler(); // The handler for processing what we will do again and again.
 
     /* Override methods of "Service". */
@@ -99,17 +104,25 @@ public class WordNotificationService extends Service {
 
     /* Util Methods. */
     public void sendNotification(String title,String message){
-        String CHANNEL_ID = "word_notification";
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+        /* An intent created for WordNotification's "Stop" Button. To stop Notification. */
+        Intent intent = new Intent(this, StopWordNotificationReceiver.class); // This "BroadcastReceiver" works to stop this "WordkNotificationService".
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, WORD_NOTIFICATION_CHANNEL_ID , intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        /* Prepared notification.*/
+        Notification notification = new NotificationCompat.Builder(this, WORD_NOTIFICATION_CHANNEL_ID+"")
                 .setSmallIcon(R.drawable.ic_logo)
                 .setContentTitle(title)
                 .setContentText(message)
+                .setAutoCancel(true)
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(), 0)) // It's works to hide notification.
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .addAction(R.drawable.ic_notification_close,getResources().getString(R.string.word_notification_stop_button),pendingIntent)
                 .build();
 
+        /* Notification showing. */
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-        notificationManager.notify(1, notification);
+        notificationManager.notify(WORD_NOTIFICATION_CHANNEL_ID, notification);
     }
     public Word getRandomWord(){
 
@@ -146,7 +159,7 @@ public class WordNotificationService extends Service {
     }
     public int getDelayMSfromSharedPreferences(){
         /* Get setted "WordNotification" Period at setting. */
-        return 1000*60*(getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30));
+        return 1000*(getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30));
     }
     public int getStartHour(){
         return getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_HOUR,9);
