@@ -70,7 +70,7 @@ public class SettingActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(PREFERENCE_NAME,PREFERENCE_MODE);
 
         /* Filling UI values. */
-        txtWordNotificationPeriodValue.setText(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30)+" dakika");
+        txtWordNotificationPeriodValue.setText(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30)+" "+getResources().getString(R.string.minute));
         int startHourInt = sharedPreferences.getInt(WORD_NOTIFICATION_START_TIME_HOUR,9);
         int startMinuteInt = sharedPreferences.getInt(WORD_NOTIFICATION_START_TIME_MINUTE,0);
         txtWordNotificationStartTimeValue.setText(((startHourInt<10)?"0"+startHourInt:""+startHourInt)+" : "+((startMinuteInt<10)?"0"+startMinuteInt:""+startMinuteInt));
@@ -84,7 +84,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Dialog d = new Dialog(SettingActivity.this); // Our custom dialog created.
-                d.setTitle(R.string.setting_word_notification_alert_title_cycle_time);
+                d.setTitle(R.string.setting_word_notification_alert_title_loop_time);
                 d.setContentView(R.layout.dialog_setting_number_pick); // Including custom layout to custom dialog.
                 Button btnSettingNumberPickAccept = d.findViewById(R.id.btnSettingNumberPickAccept);
                 NumberPicker np = d.findViewById(R.id.npWordNotificationPeriodValue); // A NumberPicker created.
