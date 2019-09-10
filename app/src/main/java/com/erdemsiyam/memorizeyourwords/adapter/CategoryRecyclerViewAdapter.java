@@ -101,6 +101,9 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 if(notificationWord != null){
                     /* Shows which word group the saved notification consists of. */
                     Toast.makeText(categoryActivity,categoryActivity.getResources().getString(WordGroupType.getTypeByKey(notificationWord.getWordType()).value),Toast.LENGTH_SHORT).show();
+                }else{
+                    /* Gives information about it when long click if not allow. */
+                    Toast.makeText(categoryActivity,R.string.words_notification_about,Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -291,6 +294,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
 
     /*################# Others #################*/
+
     public void addCategory(Category newCategory){
         /* Add category to List. */
         categories.add(newCategory);
@@ -309,6 +313,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         int index = categories.indexOf(category);
         notifyItemChanged(index);
     }
+
 
     /*################# WORD NOTIFICATION SECTION #################*/
 
@@ -366,5 +371,4 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         });
         return builder.create(); // AlertDialog is ready.
     }
-
 }
