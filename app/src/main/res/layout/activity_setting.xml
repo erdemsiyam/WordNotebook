@@ -29,7 +29,7 @@
             android:id="@+id/wordTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/ui_setting_toolbar_title"
             android:textSize="@dimen/font_highest"
             android:textStyle="normal"
             android:fontFamily="@font/ubuntu"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:text="Word Notification"
+        android:text="@string/ui_setting_word_notification_title"
         android:textSize="@dimen/font_lowest"
         android:textColor="@color/main_blue_5"/>
 
@@ -63,7 +63,7 @@
                 android:id="@+id/txtWordNotificationPeriod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Word Notification Period"
+                android:text="@string/ui_setting_word_notification_loop_time"
                 android:textSize="@dimen/font_low"
                 android:textStyle="bold"
                 />
@@ -71,7 +71,7 @@
                 android:id="@+id/txtWordNotificationPeriodSummary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select how many per minute for notify word."
+                android:text="@string/ui_setting_word_notification_loop_time_summary"
                 android:textSize="@dimen/font_lowest"
                 android:textStyle="italic"
                 />
@@ -107,7 +107,7 @@
                 android:id="@+id/txtWordNotificationStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start Time"
+                android:text="@string/ui_setting_word_notification_start_time"
                 android:textSize="@dimen/font_low"
                 android:textStyle="bold"
                 />
@@ -115,7 +115,7 @@
                 android:id="@+id/txtWordNotificationStartTimeSummary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set notification start time."
+                android:text="@string/ui_setting_word_notification_start_time_summary"
                 android:textSize="@dimen/font_lowest"
                 android:textStyle="italic"
                 />
@@ -151,7 +151,7 @@
                 android:id="@+id/txtWordNotificationEndTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End Time"
+                android:text="@string/ui_setting_word_notification_end_time"
                 android:textSize="@dimen/font_low"
                 android:textStyle="bold"
                 />
@@ -159,7 +159,7 @@
                 android:id="@+id/txtWordNotificationEndTimeSummary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set notification end time."
+                android:text="@string/ui_setting_word_notification_end_time_summary"
                 android:textSize="@dimen/font_lowest"
                 android:textStyle="italic"
                 />
@@ -184,7 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
-        android:text="Font"
+        android:text="@string/ui_setting_font_title"
         android:textSize="@dimen/font_lowest"
         android:textColor="@color/main_blue_5"/>
 
@@ -205,7 +205,7 @@
                 android:id="@+id/txtFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Font Size"
+                android:text="@string/ui_setting_font_size"
                 android:textSize="@dimen/font_low"
                 android:textStyle="bold"
                 />
@@ -213,7 +213,7 @@
                 android:id="@+id/txtFontSummary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Set font size."
+                android:text="@string/ui_setting_font_size_summary"
                 android:textSize="@dimen/font_lowest"
                 android:textStyle="italic"
                 />
