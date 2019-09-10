@@ -117,7 +117,7 @@ public class WordNotificationService extends Service {
                 .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(), 0)) // It's works to hide notification.
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                .addAction(R.drawable.ic_notification_close,getResources().getString(R.string.word_notification_stop_button),pendingIntent)
+                .addAction(R.drawable.ic_notification_close,getResources().getString(R.string.words_notification_stop_button),pendingIntent)
                 .build();
 
         /* Notification showing. */
