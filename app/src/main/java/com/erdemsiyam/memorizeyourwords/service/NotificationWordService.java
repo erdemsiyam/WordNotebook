@@ -19,7 +19,7 @@ public final class NotificationWordService {
             NotificationWord notificationWord = new NotificationWord();
             notificationWord.setCategoryId(categoryId);
             notificationWord.setWordType(wordType);
-            MyDatabase.getMyDatabase(context).getNotificationWordDAO().insert(notificationWord);
+            notificationWord.setId(MyDatabase.getMyDatabase(context).getNotificationWordDAO().insert(notificationWord));
         }
     }
     public static NotificationWord getByCategory(Context context, Long categoryId){
