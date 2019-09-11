@@ -53,7 +53,9 @@
         <receiver android:name=".broadcastreceiver.StopWordNotificationReceiver"
             android:enabled="true"
             android:process=":remote">
-
+        </receiver>
+        <receiver android:name=".broadcastreceiver.SendCategoryNotificationReceiver"
+            android:enabled="true">
         </receiver>
 
         <service android:name=".androidservice.WordNotificationService"
