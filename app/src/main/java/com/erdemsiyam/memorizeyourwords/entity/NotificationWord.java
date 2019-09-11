@@ -21,7 +21,7 @@ public class NotificationWord {
     private Long id;
     @ColumnInfo(name = "category_id",index = true)
     private Long categoryId;
-    @ColumnInfo(name = "times")
+    @ColumnInfo(name = "word_type")
     private int wordType;
 
     public Long getId() { return id; }
