@@ -4,6 +4,8 @@
 
     <string name="admob_app_id" translatable="false">ca-app-pub-9261721980516763~5090102044</string>
     <string name="admob_ad_banner_id" translatable="false">ca-app-pub-9261721980516763/5062181889</string>
+    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-9261721980516763/8656115412</string>
+
 
     <!-- Back-End. -->
 
@@ -74,6 +76,11 @@
     <string name="words_notification_succes_message">Notification setup done.</string>
     <string name="words_notification_stop_button">Stop</string>
     <string name="words_notification_about">Sends notification selected words to memorize.</string>
+
+    <string name="category_notification_select_alert_title">Which word group do you want to exam?</string>
+    <string name="category_notification_remove_alert_title">Are you sure you want to remove this list\'s exam notification? </string>
+    <string name="category_notification_select_alert_button_positive">Next</string>
+    <string name="category_notification_select_time_title">Select alert time</string>
 
 
     <!-- Front-End. -->
