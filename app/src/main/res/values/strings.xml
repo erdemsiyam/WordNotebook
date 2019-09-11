@@ -81,7 +81,8 @@
     <string name="category_notification_remove_alert_title">Are you sure you want to remove this list\'s exam notification? </string>
     <string name="category_notification_select_alert_button_positive">Next</string>
     <string name="category_notification_select_time_title">Select alert time</string>
-
+    <string name="category_notification_title">Exam Time</string>
+    <string name="category_notification_content">Click to start : </string>
 
     <!-- Front-End. -->
 
