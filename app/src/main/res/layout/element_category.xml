@@ -100,7 +100,7 @@
             android:layout_marginTop="5px"
             android:layout_marginRight="50px"
             android:layout_toLeftOf="@id/btnCategoryWordsNotification"
-            app:srcCompat="@drawable/ic_alarm_off"
+            app:srcCompat="@drawable/ic_notification_category_off"
             tools:ignore="VectorDrawableCompat"
             android:background="?android:selectableItemBackground"/>
 
