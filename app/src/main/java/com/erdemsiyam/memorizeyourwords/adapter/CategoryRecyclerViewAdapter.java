@@ -361,9 +361,9 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 NotificationWordService.addNotificationWord(categoryActivity,category.getId(), wordTypeToWordNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
                 notifyItemChanged(position); // Refreshed this category.
                 categoryActivity.startService(new Intent(categoryActivity,WordNotificationService.class)); // Start the "WordNotificationService" because maybe its not started yet.
-                Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_succes_message1)
+                Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_success_message1)
                         +" "+getStartEndTimeOfWordNotification()
-                        +" "+categoryActivity.getResources().getString(R.string.words_notification_succes_message2)
+                        +" "+categoryActivity.getResources().getString(R.string.words_notification_success_message2)
                         +" "+getLoopTimeOfWordNotification()
                         +" "+categoryActivity.getResources().getString(R.string.minute), Toast.LENGTH_LONG).show(); // Say it's done.
             }
