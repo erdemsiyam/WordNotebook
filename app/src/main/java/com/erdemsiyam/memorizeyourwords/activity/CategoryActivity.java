@@ -96,18 +96,21 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 startActivity(new Intent(this,SettingActivity.class));
                 break;
             case R.id.nav_rate:
-                String appPackageName = "";
+                String appPackageName = "com.siyamyazilim.kelimeezberle.kelimeezberle"; //context.getPackageName()
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                } catch (android.content.ActivityNotFoundException anfe) {
+                } catch (android.content.ActivityNotFoundException e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
                 }
                 break;
             case R.id.nav_feedback:
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"siyamyazilim@gmail.com"});
-                intent.setDataAndType(Uri.parse("mailto:siyamyazilim@gmail.com"), "text/plain");
-                startActivity(Intent.createChooser(intent,getResources().getString(R.string.feedback_program_chooser_title)));
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:siyamyazilim@gmail.com"));
+                try {
+                    startActivity(emailIntent);
+                } catch (android.content.ActivityNotFoundException e) {
+                    Toast.makeText(this,"E-mail App Not Found. Developer E-Mail is : siyamyazilim@gmail.com", Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.nav_donation:
 
