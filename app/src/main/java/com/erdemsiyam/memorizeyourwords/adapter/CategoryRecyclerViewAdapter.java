@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.SparseBooleanArray;
@@ -360,7 +361,11 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 NotificationWordService.addNotificationWord(categoryActivity,category.getId(), wordTypeToWordNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
                 notifyItemChanged(position); // Refreshed this category.
                 categoryActivity.startService(new Intent(categoryActivity,WordNotificationService.class)); // Start the "WordNotificationService" because maybe its not started yet.
-                Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_succes_message), Toast.LENGTH_SHORT).show(); // Say it's done.
+                Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_succes_message1)
+                        +" "+getStartEndTimeOfWordNotification()
+                        +" "+categoryActivity.getResources().getString(R.string.words_notification_succes_message2)
+                        +" "+getLoopTimeOfWordNotification()
+                        +" "+categoryActivity.getResources().getString(R.string.minute), Toast.LENGTH_LONG).show(); // Say it's done.
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -390,6 +395,19 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         return builder.create(); // AlertDialog is ready.
     }
 
+    /* Util Method for WordNotifications. */
+    public String getStartEndTimeOfWordNotification(){
+        SharedPreferences sp = categoryActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE);
+        int startHour = sp.getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_HOUR,9);
+        int startMinute = sp.getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_MINUTE,0);
+        int endHour = sp.getInt(SettingActivity.WORD_NOTIFICATION_END_TIME_HOUR,23);
+        int endMinute = sp.getInt(SettingActivity.WORD_NOTIFICATION_END_TIME_MINUTE,59);
+        return " "+((startHour<10)?"0"+startHour:""+startHour)+":"+((startMinute<10)?"0"+startMinute:""+startMinute)+"-"+((endHour<10)?"0"+endHour:""+endHour)+":"+((endMinute<10)?"0"+endMinute:""+endMinute);
+    }
+    public String getLoopTimeOfWordNotification(){
+        int startHour = categoryActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30);
+        return ((startHour<10)?"0"+startHour:""+startHour);
+    }
 
     /*################# CATEGORY NOTIFICATION SECTION #################*/
 
@@ -417,7 +435,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                     return;
                 }
 
-                /* Create "TimePicker" to selecting "AlertTime". After selecting "WordGroup"*/
+                /* At below create "TimePicker" to selecting "AlertTime". After selecting "WordGroup"*/
 
                 /* Created TimePickerDialog to catch the "NotificationTime". */
                 class TimePicker implements TimePickerDialog.OnTimeSetListener {
@@ -428,6 +446,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         /* Created "NotificationCategory". */
                         NotificationCategory notificationCategory = NotificationCategoryService.addNotificationCategory(categoryActivity,category.getId(),wordTypeToCategoryNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
                         notifyItemChanged(position); // Refresh this category on "ListView" to show alarm activated.
+
+                        if(notificationCategory == null) return; // At "Android 4.1" have a bug about running this method TWICE. At twice this object comes null, if this null return because that's mean we in 2nd round.
 
                         /* Set "Alarm" to specified time. */
                         AlarmManager alarmManager = (AlarmManager) categoryActivity.getSystemService(Context.ALARM_SERVICE);
@@ -451,7 +471,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         }
 
                         /* The message shows up, alarm set done. */
-                        Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_succes_message), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.category_notification_succes_message), Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -499,4 +519,5 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         });
         builder.create().show(); // AlertDialog shows.
     }
+
 }
