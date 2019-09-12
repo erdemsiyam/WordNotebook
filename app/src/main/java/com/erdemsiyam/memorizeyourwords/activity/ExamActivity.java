@@ -18,6 +18,9 @@ import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.chip.Chip;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,7 @@ public class ExamActivity extends AppCompatActivity {
     private Button                  btnWord1,btnWord2,btnWord3,btnWord4,btnPass;
     private AppCompatImageButton    btnDone;
     private SwitchCompat            swAutoPass;
+    private InterstitialAd          interstitialAd; // Fullscreen Ad.
 
     /* Override Method. */
     @Override
@@ -52,7 +56,7 @@ public class ExamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
         initComponents(); // UI components are installed.
-        loadData(); // Data is loaded into UI components.
+        loadData();
     }
 
     /* Initial Methods. */
@@ -88,6 +92,25 @@ public class ExamActivity extends AppCompatActivity {
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord2, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord3, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord4, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
+
+        /* Fullscreen Ad to show. */
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getString(R.string.admob_ad_interstitial_id));
+        interstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed() {
+                loadData(); // Start exam after ad.
+                super.onAdClosed();
+            }
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if(interstitialAd.isLoaded()){
+                    interstitialAd.show();
+                }
+            }
+        });
+        interstitialAd.loadAd(new AdRequest.Builder().build());
     }
     private void loadData() {
         /* We will get the word type selected when entering the exam.
