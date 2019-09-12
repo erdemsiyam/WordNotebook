@@ -206,8 +206,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
                 // word deleting from frontend
                 words.remove(word);
                 filteredWords.remove(word);
-                notifyDataSetChanged(); // todo alttakiyle değiştir kontrol ederek
-                //notifyItemInserted(categories.size() - 1);
+                notifyItemRemoved(index);
             }
         });
         builder.setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
