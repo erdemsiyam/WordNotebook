@@ -1,6 +1,6 @@
 <resources>
 
-    <!-- Constaints -->
+    <!-- Constants -->
 
     <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_ad_banner_id" translatable="false">ca-app-pub-9261721980516763/5062181889</string>
@@ -73,8 +73,8 @@
     <string name="words_notification_select_alert_title">Which word group do you want to notification?</string>
     <string name="words_notification_select_alert_button_positive">Set</string>
     <string name="words_notification_error_message_word_group">You must select a word group.</string>
-    <string name="words_notification_succes_message1" translatable="false">Notification Set. Time interval :</string>
-    <string name="words_notification_succes_message2" translatable="false">For every :</string>
+    <string name="words_notification_success_message1" translatable="false">Notification Set. Time interval :</string>
+    <string name="words_notification_success_message2" translatable="false">For every :</string>
     <string name="words_notification_stop_button">Stop</string>
     <string name="words_notification_about">Sends notification selected words to memorize.</string>
 
@@ -86,6 +86,24 @@
     <string name="category_notification_content">Click to start : </string>
     <string name="category_notification_succes_message">Exam notification set done.</string>
 
+    <string name="donation_alert_dialog_title">Select My Value :)</string>
+    <string name="donation_alert_dialog_button_positive">Tip</string>
+
+    <string name="donation_two_dolar_joke_1"></string>
+    <string name="donation_two_dolar_joke_2"></string>
+    <string name="donation_two_dolar_joke_3"></string>
+    <string name="donation_five_dolar_joke_1"></string>
+    <string name="donation_five_dolar_joke_2"></string>
+    <string name="donation_five_dolar_joke_3"></string>
+    <string name="donation_twenty_dolar_joke_1"></string>
+    <string name="donation_twenty_dolar_joke_2"></string>
+    <string name="donation_twenty_dolar_joke_3"></string>
+    <string name="donation_fifty_dolar_joke_1"></string>
+    <string name="donation_fifty_dolar_joke_2"></string>
+    <string name="donation_fifty_dolar_joke_3"></string>
+    <string name="donation_fault_joke_1"></string>
+    <string name="donation_fault_joke_2"></string>
+    <string name="donation_fault_joke_3"></string>
 
     <!-- Front-End. -->
 
@@ -118,7 +136,7 @@
 
     <string name="ui_navbar_settings">Settings</string>
     <string name="ui_navbar_about">About</string>
-    <string name="ui_navbar_rate">Rate App</string>
+    <string name="ui_navbar_rate">Please, Rate App</string>
     <string name="ui_navbar_feedback">Feedback</string>
     <string name="ui_navbar_donation">Donation :)</string>
 
