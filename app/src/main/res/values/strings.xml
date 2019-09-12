@@ -2,9 +2,9 @@
 
     <!-- Constaints -->
 
-    <string name="admob_app_id" translatable="false">ca-app-pub-9261721980516763~5090102044</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_ad_banner_id" translatable="false">ca-app-pub-9261721980516763/5062181889</string>
-    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-9261721980516763/8656115412</string>
+    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
 
 
     <!-- Back-End. -->
@@ -73,7 +73,8 @@
     <string name="words_notification_select_alert_title">Which word group do you want to notification?</string>
     <string name="words_notification_select_alert_button_positive">Set</string>
     <string name="words_notification_error_message_word_group">You must select a word group.</string>
-    <string name="words_notification_succes_message">Notification setup done.</string>
+    <string name="words_notification_succes_message1" translatable="false">Notification Set. Time interval :</string>
+    <string name="words_notification_succes_message2" translatable="false">For every :</string>
     <string name="words_notification_stop_button">Stop</string>
     <string name="words_notification_about">Sends notification selected words to memorize.</string>
 
@@ -83,6 +84,8 @@
     <string name="category_notification_select_time_title">Select alert time</string>
     <string name="category_notification_title">Exam Time</string>
     <string name="category_notification_content">Click to start : </string>
+    <string name="category_notification_succes_message">Exam notification set done.</string>
+
 
     <!-- Front-End. -->
 
