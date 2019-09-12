@@ -43,53 +43,52 @@ public class WordNotificationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
         /* Creating a process to "NotifyWord" for again and again. */
         Runnable runnable = new Runnable(){
             @Override
             public void run() {
+                    /* Get current time. */
+                    Calendar calendar = Calendar.getInstance(Locale.getDefault());
+                    int now = calendar.get(Calendar.MINUTE) + (60 * calendar.get(Calendar.HOUR_OF_DAY));
 
-                /* Get current time. */
-                Calendar calendar = Calendar.getInstance(Locale.getDefault());
-                int now = calendar.get(Calendar.MINUTE) + (60 * calendar.get(Calendar.HOUR_OF_DAY));
+                    /* Get "WordNotification" works time interval. As specified at setting (StartTime / EndTime). */
+                    int startMinute = getStartMinute() + (60 * getStartHour());
+                    int endMinute = getEndMinute() + (60 * getEndHour());
 
-                /* Get "WordNotification" works time interval. As specified at setting (StartTime / EndTime). */
-                int startMinute = getStartMinute() + (60 * getStartHour());
-                int endMinute = getEndMinute() + (60 * getEndHour());
+                    /* My algorithm : Are we in time interval? Yes : Start showing notify. No : So, wait until when we reach in time interval. */
 
-                /* My algorithm : Are we in time interval? Yes : Start showing notify. No : So, wait until when we reach in time interval. */
-                try{
                     if( startMinute > endMinute ){
-                        if(!(now >= startMinute || now <= endMinute))
-                            Thread.sleep((startMinute - now)*60*1000);
+                        if(!(now >= startMinute || now <= endMinute)){
+                            handler.postDelayed(this,(startMinute - now)*60*1000);
+                            return;
+                        }
                     }
                     else if( endMinute > startMinute ) {
                         if(!(now <= endMinute && now >= startMinute)){
-                            if (now > endMinute)
-                                Thread.sleep(((24*60-now) + startMinute)*60*1000);
-                            else
-                                Thread.sleep((startMinute - now)*60*1000);
+                            if (now > endMinute){
+                                handler.postDelayed(this,((24*60-now) + startMinute)*60*1000);
+                            }
+                            else {
+                                handler.postDelayed(this,(startMinute - now) * 60 * 1000);
+                            }
+                            return;
                         }
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
-                /* Get a random word from "NotificationWord" table. */
-                Word randomWord = getRandomWord();
+                    /* Get a random word from "NotificationWord" table. */
+                    Word randomWord = getRandomWord();
 
-                /* If there is no word, thats mean no record for notification. So we will stop the service. */
-                if(randomWord == null) {
+                    /* If there is no word, that's mean no record for notification. So we will stop the service. */
+                    if(randomWord == null) {
+                        stopSelf();
+                        return;
+                    }
+
+                    /* If word are come, the push to notification. */
+                    sendNotification(randomWord.getStrange(),randomWord.getExplain());
+
+                    /* Same process calling with specified delay. */
                     handler.postDelayed(this,getDelayMSfromSharedPreferences());
-                    stopSelf();
-                    return;
-                }
-
-                /* If word are come, the push to notification. */
-                sendNotification(randomWord.getStrange(),randomWord.getExplain());
-
-                /* Same process calling with specified delay. */
-                handler.postDelayed(this,getDelayMSfromSharedPreferences());
             }
         };
 
