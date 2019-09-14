@@ -11,6 +11,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- Permission to start Alarm on device reboot. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- Permission to billing for donate. -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <!-- Permission to vibration for Android 4.2 and low versions. -->
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
 
     <application
         android:allowBackup="true"
