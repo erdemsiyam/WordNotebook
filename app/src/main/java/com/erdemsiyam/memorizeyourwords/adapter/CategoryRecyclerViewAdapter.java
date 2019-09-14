@@ -123,7 +123,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         /* Change the background color if this item selected.*/
         toggleBackgroundColor(holder,position);
 
-
         /* CategoryNotification Setups. */
         NotificationCategory notificationCategory = NotificationCategoryService.getByCategory(categoryActivity,category.getId()); // Is this category saved in CategoryNotification?
         holder.btnCategoryNotification.setImageResource((notificationCategory != null)?R.drawable.ic_notification_category_on:R.drawable.ic_notification_category_off);// Yes : put green icon. No : put fade icon.
@@ -132,6 +131,23 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 createAlertDialogsForCreateCategoryNotification(category,position);
             } else {
                 createAlertDialogToRemoveCategoryNotification(category,notificationCategory,position);
+            }
+        });
+        holder.btnCategoryNotification.setOnLongClickListener(new View.OnLongClickListener() { // Listener for long click to notification icon.
+            @Override
+            public boolean onLongClick(View v) {
+                if(notificationCategory != null){
+                    /* Shows which word group the saved notification consists of. */
+                    String message = categoryActivity.getResources().getString(WordGroupType.getTypeByKey(notificationCategory.getWordType()).value)+" ";
+                    int hour = notificationCategory.getHour();
+                    int minute = notificationCategory.getMinute();
+                    message += ((hour<10)?"0"+hour:""+hour)+":"+((minute<10)?"0"+minute:""+minute);
+                    Toast.makeText(categoryActivity,message,Toast.LENGTH_SHORT).show();
+                }else{
+                    /* Gives information about it when long click if not allow. */
+                    Toast.makeText(categoryActivity,R.string.category_notification_about,Toast.LENGTH_SHORT).show();
+                }
+                return true;
             }
         });
     }
@@ -444,7 +460,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         /* Create "NotificationCategory" and set "Alarm" after catch "NotificationTime". */
 
                         /* Created "NotificationCategory". */
-                        NotificationCategory notificationCategory = NotificationCategoryService.addNotificationCategory(categoryActivity,category.getId(),wordTypeToCategoryNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
+                        NotificationCategory notificationCategory = NotificationCategoryService.addNotificationCategory(categoryActivity,category.getId(),wordTypeToCategoryNotificationSelectIndex,hourOfDay,minute); // Add this category as new notification to NotificationWord on DB.
                         notifyItemChanged(position); // Refresh this category on "ListView" to show alarm activated.
 
                         if(notificationCategory == null) return; // At "Android 4.1" have a bug about running this method TWICE. At twice this object comes null, if this null return because that's mean we in 2nd round.
@@ -471,7 +487,9 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         }
 
                         /* The message shows up, alarm set done. */
-                        Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.category_notification_succes_message), Toast.LENGTH_SHORT).show();
+                        String message = categoryActivity.getResources().getString(R.string.category_notification_succes_message)+" ";
+                        message += ((hourOfDay<10)?"0"+hourOfDay:""+hourOfDay)+":"+((minute<10)?"0"+minute:""+minute);
+                        Toast.makeText(categoryActivity,message, Toast.LENGTH_SHORT).show();
                     }
                 }
 
