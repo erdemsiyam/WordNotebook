@@ -25,6 +25,10 @@ public class NotificationCategory {
     private int wordType;
     @ColumnInfo(name = "notification_id")
     private int notificationId;
+    @ColumnInfo(name = "hour")
+    private int hour;
+    @ColumnInfo(name = "minute")
+    private int minute;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -34,4 +38,8 @@ public class NotificationCategory {
     public void setWordType(int wordType) { this.wordType = wordType; }
     public int getNotificationId() { return notificationId; }
     public void setNotificationId(int notificationId) { this.notificationId = notificationId; }
+    public int getHour() { return hour; }
+    public void setHour(int hour) { this.hour = hour; }
+    public int getMinute() { return minute; }
+    public void setMinute(int minute) { this.minute = minute; }
 }
