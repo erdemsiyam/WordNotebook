@@ -85,6 +85,7 @@
     <string name="category_notification_title">Exam Time</string>
     <string name="category_notification_content">Click to start : </string>
     <string name="category_notification_succes_message">Exam notification set done.</string>
+    <string name="category_notification_about">Set alarm to exam.</string>
 
     <string name="donation_alert_dialog_title">Select My Value :)</string>
     <string name="donation_alert_dialog_button_positive">Tip</string>
@@ -155,6 +156,14 @@
     <string name="ui_setting_word_notification_start_time_summary">Set notification start time.</string>
     <string name="ui_setting_word_notification_end_time">End Time</string>
     <string name="ui_setting_word_notification_end_time_summary">Set notification end time.</string>
+    <string name="ui_setting_notification_title">Notification</string>
+    <string name="ui_setting_notification_sound">Sound</string>
+    <string name="ui_setting_notification_sound_summary">On/Off uses phone default sound.</string>
+    <string name="ui_setting_notification_vibrate">Vibrate</string>
+    <string name="ui_setting_notification_vibrate_summary">On/Off for vibration.</string>
+    <string name="ui_setting_notification_heads_up">Heads-Up</string>
+    <string name="ui_setting_notification_heads_up_summary">Show at top of screen.</string>
+
     <string name="ui_setting_font_title">Font</string>
     <string name="ui_setting_font_size">Font Size</string>
     <string name="ui_setting_font_size_summary">Set font size.</string>
