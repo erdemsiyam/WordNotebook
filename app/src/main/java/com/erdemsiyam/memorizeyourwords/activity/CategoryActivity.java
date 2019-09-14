@@ -1,6 +1,8 @@
 package com.erdemsiyam.memorizeyourwords.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,16 +22,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.CategoryAddModalBottomSheetDialog;
+import com.erdemsiyam.memorizeyourwords.util.DonationType;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import java.util.Arrays;
 import java.util.List;
 import co.dift.ui.SwipeToAction;
 
@@ -46,6 +59,9 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     private DrawerLayout                drawerLayout; // The Layout for "Left Navigation Menu".
     private FloatingActionButton        fabAddCategory; // "Category Add" Button at bottom left.
     private AdView                      adViewBannerCategory; // Ad banner.
+
+    /* Indexing Variable */
+    private int selectedDonationIndex = -1; // For donation $ value select index.
 
     /* Override Methods. */
     @Override
@@ -113,9 +129,76 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 }
                 break;
             case R.id.nav_donation:
+                /* AlertDialog is prepared which words we want to choose. */
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.donation_alert_dialog_title);
+                String[] options = DonationType.getValuesAsStringArray(); // Enum options are taken as Array of String type.
+                builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedDonationIndex = i; // The index is keeping at each click to options at AlertDialog.
+                        Toast.makeText(getApplicationContext(),DonationType.getRandomJokeByKey(getApplicationContext(),selectedDonationIndex),Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.setPositiveButton(R.string.donation_alert_dialog_button_positive, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        BillingFlowParams bfp = BillingFlowParams.newBuilder().build();
+                        BillingClient bc = BillingClient.newBuilder(getApplicationContext()).setListener(new PurchasesUpdatedListener() {
+                            @Override
+                            public void onPurchasesUpdated(int responseCode, @Nullable List<Purchase> purchases) {
+                                // satin alinma sonrasi
+                            }
+                        }).build();
+                        bc.startConnection(new BillingClientStateListener() {
+                            @Override
+                            public void onBillingSetupFinished(int responseCode) {
+                                if(responseCode == BillingClient.BillingResponse.OK){
+                                    //baglanti basarili
+                                } else {
+                                    //baglanti basarisiz
+                                }
+                            }
 
+                            @Override
+                            public void onBillingServiceDisconnected() {
+                                //baglanti koptu
+                            }
+                        });
+                        bc.launchBillingFlow(CategoryActivity.this,bfp);
+
+                        if(bc.isReady()){
+                            SkuDetailsParams sdp = SkuDetailsParams
+                                    .newBuilder()
+                                    .setSkusList(Arrays.asList(DonationType.getTypeByKey(selectedDonationIndex).value))
+                                    .setType(BillingClient.SkuType.INAPP)
+                                    .build();
+                            bc.querySkuDetailsAsync(sdp, new SkuDetailsResponseListener() {
+                                @Override
+                                public void onSkuDetailsResponse(int responseCode, List<SkuDetails> skuDetailsList) {
+                                    if(responseCode == BillingClient.BillingResponse.OK){
+                                        // basarili??
+                                    } else {
+                                        // urun sıralamaya alınamadı
+                                    }
+                                }
+                            });
+                        } else {
+
+                        }
+
+                        //donation.
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),DonationType.Fault.getRandomJoke(getApplicationContext()),Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.create().show(); // AlertDialog is ready.
                 break;
-            case R.id.nav_about: // todo Soon.
+            case R.id.nav_about:
                 Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
                 break;
         }
