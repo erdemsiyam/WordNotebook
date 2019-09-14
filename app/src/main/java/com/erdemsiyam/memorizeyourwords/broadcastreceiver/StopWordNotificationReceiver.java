@@ -8,6 +8,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.service.NotificationWordService;
+import com.erdemsiyam.memorizeyourwords.util.NotificationHelper;
 
 public class StopWordNotificationReceiver extends BroadcastReceiver {
 
@@ -16,7 +17,7 @@ public class StopWordNotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationManagerCompat.from(context).cancel(WordNotificationService.WORD_NOTIFICATION_CHANNEL_ID);
+        NotificationManagerCompat.from(context).cancel(NotificationHelper.WORD_NOTIFICATION_ID);
         NotificationWordService.deleteAll(context); // All notification records deleted at DB.
         Intent service = new Intent(context, WordNotificationService.class);
         context.stopService(service); // Stopped service.
