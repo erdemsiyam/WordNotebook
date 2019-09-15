@@ -18,5 +18,9 @@
         android:icon="@drawable/ic_import"
         android:title="@string/ui_word_menu_importexcel"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/wordExportExcel"
+        android:icon="@drawable/ic_import"
+        android:title="@string/ui_word_menu_exportexcel"
+        app:showAsAction="never" />
 </menu>
