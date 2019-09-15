@@ -190,14 +190,16 @@ public class SettingActivity extends AppCompatActivity {
                     .apply();
         });
         lytNotificationHeadsUp.setOnClickListener(v -> {
-            boolean newStatus = !swNotificationHeadsUpValue.isChecked();
-            swNotificationHeadsUpValue.setChecked(newStatus);
-            sharedPreferences.edit()
-                    .putBoolean(NOTIFICATION_HEADS_UP,newStatus)
-                    .putBoolean(NOTIFICATION_IS_CHANGE,true)
-                    .apply();
-            if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT){
-                Toast.makeText(SettingActivity.this,"Error : This feature is for Android 5.0 and above.",Toast.LENGTH_LONG).show();
+            /* Version control. */
+            if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
+                Toast.makeText(SettingActivity.this,R.string.excel_message_version_error,Toast.LENGTH_LONG).show();
+            } else {
+                boolean newStatus = !swNotificationHeadsUpValue.isChecked();
+                swNotificationHeadsUpValue.setChecked(newStatus);
+                sharedPreferences.edit()
+                        .putBoolean(NOTIFICATION_HEADS_UP, newStatus)
+                        .putBoolean(NOTIFICATION_IS_CHANGE, true)
+                        .apply();
             }
         });
         lytFont.setOnClickListener(new View.OnClickListener(){
