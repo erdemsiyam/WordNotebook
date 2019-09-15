@@ -231,7 +231,7 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
         notifyItemChanged(index);
     }
     public void refreshRecyclerView(List<Word> newWords){
-        /* This method works after "ExcelWordsImport". */
+        /* This method works after "ExcelWordsImport" Or "DeleteAllLearned". */
         words = newWords;
         filteredWords = new ArrayList<>(words);
         notifyDataSetChanged();
