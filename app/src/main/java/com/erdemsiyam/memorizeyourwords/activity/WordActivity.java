@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.Toast;
+
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.fragment.ExcelExportDialogFragment;
@@ -100,31 +103,60 @@ public class WordActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         /* Menu item actions defined here. */
         switch (item.getItemId()){
+            case R.id.wordDeleteLearned:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.learned_words_delete_alert_title);
+                builder.setMessage("");
+                builder.setPositiveButton(R.string.yes,new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        WordService.deleteAllLearnedByCategoryId(WordActivity.this,selectedCategoryId);
+                        refreshRecyclerView();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                break;
             case R.id.wordExportExcel:
+                /* Version control. */
+                if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
+                    Toast.makeText(this,R.string.excel_message_version_error,Toast.LENGTH_LONG).show();
+                    break;
+                }
                 /* Adding words with Excel Import */
                 ExcelExportDialogFragment dialogExportExcel = new ExcelExportDialogFragment(this,selectedCategoryId);
                 dialogExportExcel.show(getSupportFragmentManager(), ExcelExportDialogFragment.TAG);
                 break;
             case R.id.wordImportExcel:
+                /* Version control. */
+                if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP){
+                    Toast.makeText(this,R.string.excel_message_version_error,Toast.LENGTH_LONG).show();
+                    break;
+                }
                 /* Adding words with Excel Import */
                 ExcelImportFirstDialogFragment dialogImportExcel = new ExcelImportFirstDialogFragment(this,selectedCategoryId);
                 dialogImportExcel.show(getSupportFragmentManager(), ExcelImportFirstDialogFragment.TAG);
                 break;
             case R.id.wordSort:
                 /* If user wants sorting the words. Then we will ask sort type with "AlertDialog".  */
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.word_sort_alert_title);
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle(R.string.word_sort_alert_title);
                 String[] options = WordSortType.getValuesAsStringArray(this); // Enum options are taken as Array of String type.
-                builder.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
+                builder2.setSingleChoiceItems(options, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         wordSortSelectedIndex = i; // The index is keeping at each click to options at AlertDialog.
                     }
                 });
-                builder.setPositiveButton(R.string.word_sort_alert_button_positive, new DialogInterface.OnClickListener() {
+                builder2.setPositiveButton(R.string.word_sort_alert_button_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /* Get the comparator by selectiong of sorting type. */
+                        /* Get the comparator by selecting of sorting type. */
                         Comparator<Word> comparator = null;
                         switch (WordSortType.getTypeByKey(wordSortSelectedIndex)){
                             case MostCorrectlySelected:
@@ -152,13 +184,13 @@ public class WordActivity extends AppCompatActivity {
                         wordSortSelectedIndex=-1; // Clearing the index holder for after use.
                     }
                 });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                builder2.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-                AlertDialog alertDialog = builder.create(); // AlertDialog is ready.
-                alertDialog.show(); // AlertDialog is work.
+                AlertDialog alertDialog2 = builder2.create(); // AlertDialog is ready.
+                alertDialog2.show(); // AlertDialog is work.
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -250,7 +282,7 @@ public class WordActivity extends AppCompatActivity {
 
     /* Util method. */
     public void refreshRecyclerView(){
-        /* This method works after "ExcelWordsImport". */
+        /* This method works after "ExcelWordsImport" Or "DeleteAllLearned". */
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

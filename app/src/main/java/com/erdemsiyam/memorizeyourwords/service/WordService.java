@@ -49,6 +49,9 @@ public final class WordService {
         MyDatabase.getMyDatabase(context).getWordDAO().deleteWord(removeWord);
         MyDatabase.getMyDatabase(context).getConfuseDAO().deleteConfusesByWordId(removeWord.getId());
     }
+    public static void deleteAllLearnedByCategoryId(Context context, Long categoryId){
+        MyDatabase.getMyDatabase(context).getWordDAO().deleteAllLearnedByCategoryId(categoryId);
+    }
     public static void changeWordStrange(Context context, Long wordId, String newStrange){
         Word word = getWordById(context,wordId);
         MyDatabase.getMyDatabase(context).getWordDAO().changeWordStrange(word.getId(),newStrange);

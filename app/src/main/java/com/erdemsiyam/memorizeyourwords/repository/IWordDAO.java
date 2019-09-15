@@ -38,4 +38,6 @@ public interface IWordDAO {
     void changeWordStrange(Long id, String newStrange);
     @Query("UPDATE Word SET 'explain' = :newExplain WHERE id =:id")
     void changeWordExplain(Long id, String newExplain);
+    @Query("DELETE FROM Word WHERE category_id=:categoryId AND learned=1")
+    void deleteAllLearnedByCategoryId(Long categoryId);
 }
