@@ -376,6 +376,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 }
                 NotificationWordService.addNotificationWord(categoryActivity,category.getId(), wordTypeToWordNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
                 notifyItemChanged(position); // Refreshed this category.
+                categoryActivity.stopService(new Intent(categoryActivity,WordNotificationService.class)); // Stop service if its already exists. Because my changed loop time.
                 categoryActivity.startService(new Intent(categoryActivity,WordNotificationService.class)); // Start the "WordNotificationService" because maybe its not started yet.
                 Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_success_message1)
                         +" "+getStartEndTimeOfWordNotification()
@@ -400,6 +401,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 NotificationWordService.delete(categoryActivity,notificationWord); // Delete "WordNotification" from DB if user click "Yes".
+                /* Notice : We don't stop Service because, maybe other categories have notification. */
                 notifyItemChanged(position); // Refreshed this category.
             }
         });
