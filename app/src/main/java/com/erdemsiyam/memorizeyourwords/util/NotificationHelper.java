@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.os.Build;
+import android.os.Vibrator;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import com.erdemsiyam.memorizeyourwords.R;
@@ -102,7 +103,7 @@ public class NotificationHelper {
 
         /* NotificationBuilder Customize Part. For <= API 25. */
         Notification notification ;
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) { //todo eşittir de olmasın ?
+        if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1) {
 
             /* Set "Heads-Up" setting preference. */
             int priority = (getHeadsUpEnable())?NotificationCompat.PRIORITY_MAX:NotificationCompat.PRIORITY_DEFAULT;
@@ -113,32 +114,13 @@ public class NotificationHelper {
                 notificationBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 
             /* Set "Vibrate" setting preference. */
-            if(getVibrateEnable())
-                notificationBuilder.setVibrate(new long[] {200});
-
-            notification = notificationBuilder.build(); // Building here. for API < 25
-
+            if(getVibrateEnable()) {
+               ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
+                notificationBuilder.setVibrate(new long[]{200});
+            }
         }
-        else if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O){ // todo olmasa olmaz mı
 
-            /* Set "Heads-Up" setting preference. */
-            int priority = (getHeadsUpEnable())?NotificationCompat.PRIORITY_MAX:NotificationCompat.PRIORITY_DEFAULT;
-            notificationBuilder.setPriority(priority);
-
-            notification = notificationBuilder.build(); // Building here. for API < 26
-
-            notification.defaults |= NotificationCompat.DEFAULT_LIGHTS;
-
-            /* Set "Sound" setting preference. */
-            if(getSoundEnable())
-                notification.defaults |= NotificationCompat.DEFAULT_SOUND;
-
-            /* Set "Vibrate" setting preference. */
-            if(getVibrateEnable())
-                notification.defaults |= NotificationCompat.DEFAULT_VIBRATE;
-        } else {
-            notification = notificationBuilder.build(); // Building here. for API >= 26
-        }
+        notification = notificationBuilder.build(); // Building here.
 
         /* Notification showing. */
         notificationManager.notify((type==Type.Word)?WORD_NOTIFICATION_ID:CATEGORY_NOTIFICATION_ID, notification);
@@ -162,6 +144,7 @@ public class NotificationHelper {
 
         /* Set "Vibrate" setting preference. */
         if(getVibrateEnable()) {
+            ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(200);
             notificationChannel.enableVibration(true);
             notificationChannel.setVibrationPattern(new long[] {200});
         }
