@@ -18,7 +18,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
-    <string name="minute">minute</string>
+    <string name="minute" translatable="false">Minute</string>
 
     <string name="exam_word_size_error">Must have at least 4 words</string>
     <string name="word_sort_alert_title">Select Sorting</string>
@@ -57,11 +57,20 @@
     <string name="type_word_sort_explainaz">Native lang. A to Z</string>
     <string name="type_word_sort_Explainza">Native lang. Z to A</string>
 
-    <string name="excelimport_alert_title">Select Excel File</string>
+    <string name="excelimport_first_alert_title">Select Excel File</string>
+    <string name="excelimport_second_alert_title">Select Word Places</string>
     <string name="excelimport_message_loading">Words are loading. Please wait.</string>
-    <string name="excelimport_message_incorrect_file">ERROR: Excel File Format is incorrect!</string>
-    <string name="excelimport_message_loaded">Words are loaded.</string>
-    <string name="excelimport_message_no_sd_card">No SD card found.</string>
+    <string name="excelimport_message_loaded" translatable="false">Words added, total count :</string>
+    <string name="excelimport_message_no_sd_card" translatable="false">Error : No SD card found.</string>
+    <string name="excelimport_message_no_sheet_index">Error : Selected page not found.</string>
+    <string name="excelimport_message_no_word_at_row">Error : No found word at row :</string>
+    <string name="excelimport_message_no_word">Added word : 0. Check out excel file or selected indexes.</string>
+
+    <string name="excelexport_alert_title">Select Path To Export Excel</string>
+    <string name="excelexport_message_no_content">Error : Not found list or words.</string>
+    <string name="excelexport_message_no_path">Error : You must select path.</string>
+    <string name="excelexport_share_title">Send To</string>
+    <string name="excelexport_message_success">Export Success.</string>
 
     <string name="setting_word_notification_alert_title_loop_time">Select loop time</string>
     <string name="setting_word_notification_alert_title_font_size">Select font size</string>
@@ -106,6 +115,8 @@
     <string name="donation_fault_joke_2"></string>
     <string name="donation_fault_joke_3"></string>
 
+    <string name="feedback_title_warning">Do not delete this.</string>
+
     <!-- Front-End. -->
 
     <string name="ui_category_toolbar_title">Lists</string>
@@ -123,9 +134,16 @@
     <string name="ui_false_count">False Count :</string>
     <string name="ui_average_response_time">Average Response Time :</string>
 
-    <string name="ui_excel_import_info">NOTICE : Only \".xlsx\" acceptable. First column must \"Strange Word\", Second column must \"Explain Word\".</string>
+    <string name="ui_excel_import_info" translatable="false">NOTICE : Only \".xlsx\" acceptable. Word character limit 30 or clip.</string>
     <string name="ui_excel_import_path_back">Back File</string>
     <string name="ui_excel_import_cancel">Cancel</string>
+    <string name="ui_excel_import_select_strange_column">Strange Column Index :</string>
+    <string name="ui_excel_import_select_explain_column">Explain Column Index :</string>
+    <string name="ui_excel_import_select_sheet_column">Page Index :</string>
+    <string name="ui_excel_import_button_add_words">Add Words</string>
+
+    <string name="ui_excel_export_info">Select directory to save excel file.</string>
+    <string name="ui_excel_export_path_submit">Select Here</string>
 
     <string name="ui_category_add_hint">List Name</string>
 
@@ -147,6 +165,8 @@
     <string name="ui_word_menu_exam">Search</string>
     <string name="ui_word_menu_sort">Sort</string>
     <string name="ui_word_menu_importexcel">Import Excel</string>
+
+    <string name="ui_word_menu_exportexcel">Export Excel</string>
 
     <string name="ui_setting_toolbar_title">Settings</string>
     <string name="ui_setting_word_notification_title">Word Notification</string>
