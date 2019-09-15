@@ -122,6 +122,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_feedback:
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
                 emailIntent.setData(Uri.parse("mailto:siyamyazilim@gmail.com"));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "WordNotebook Feedback - User : "+android.os.Build.VERSION.SDK_INT+" API ("+getResources().getString(R.string.feedback_title_warning)+")");
                 try {
                     startActivity(emailIntent);
                 } catch (android.content.ActivityNotFoundException e) {
