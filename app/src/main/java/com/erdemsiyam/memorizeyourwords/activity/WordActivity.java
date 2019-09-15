@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,10 +19,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
-import com.erdemsiyam.memorizeyourwords.fragment.ExcelImportDialogFragment;
+import com.erdemsiyam.memorizeyourwords.fragment.ExcelExportDialogFragment;
+import com.erdemsiyam.memorizeyourwords.fragment.ExcelImportFirstDialogFragment;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.WordSortType;
 import com.erdemsiyam.memorizeyourwords.adapter.WordRecyclerViewAdapter;
@@ -29,7 +30,6 @@ import com.erdemsiyam.memorizeyourwords.fragment.WordAddModalBottomSheetDialog;
 import com.erdemsiyam.memorizeyourwords.fragment.WordEditModalBottomSheetDialog;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,6 +51,8 @@ public class WordActivity extends AppCompatActivity {
     private AppCompatImageButton    btnBackToCategoryFromWord; // Back button to "CategoryActivity".
     private AppCompatTextView       txtCategoryName; // Shows words belongs to which category.
     private AdView                  adViewBannerWord; // Ad banner.
+
+
 
     /* Override Methods. */
     @Override
@@ -98,10 +100,15 @@ public class WordActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         /* Menu item actions defined here. */
         switch (item.getItemId()){
+            case R.id.wordExportExcel:
+                /* Adding words with Excel Import */
+                ExcelExportDialogFragment dialogExportExcel = new ExcelExportDialogFragment(this,selectedCategoryId);
+                dialogExportExcel.show(getSupportFragmentManager(), ExcelExportDialogFragment.TAG);
+                break;
             case R.id.wordImportExcel:
                 /* Adding words with Excel Import */
-                ExcelImportDialogFragment dialog = new ExcelImportDialogFragment(this,selectedCategoryId);
-                dialog.show(getSupportFragmentManager(),ExcelImportDialogFragment.TAG);
+                ExcelImportFirstDialogFragment dialogImportExcel = new ExcelImportFirstDialogFragment(this,selectedCategoryId);
+                dialogImportExcel.show(getSupportFragmentManager(), ExcelImportFirstDialogFragment.TAG);
                 break;
             case R.id.wordSort:
                 /* If user wants sorting the words. Then we will ask sort type with "AlertDialog".  */
@@ -156,7 +163,27 @@ public class WordActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        /*  When Excel Import/Export permissions request arrive.
+            User responses are tracked here to continue their works.*/
 
+        /* Waiting for "ReadFilePermission" from "ExcelImportFirstDialogFragment" */
+        if(requestCode == ExcelImportFirstDialogFragment.PERMISSION_REQUEST_CODE && ExcelImportFirstDialogFragment.instance != null){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                ExcelImportFirstDialogFragment.instance.openSdCard(); // If allowed, continue the listing files.
+            else
+                ExcelImportFirstDialogFragment.instance.dismiss(); // If not allowed, close dialog.
+        }
+        if(requestCode == ExcelExportDialogFragment.PERMISSION_REQUEST_CODE && ExcelExportDialogFragment.instance != null){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED)
+                ExcelExportDialogFragment.instance.openSdCard(); // If allowed, continue the listing files.
+            else
+                ExcelExportDialogFragment.instance.dismiss(); // If not allowed, close dialog.
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
     /* Initial Methods. */
     private void initComponents() {
 
