@@ -115,15 +115,17 @@ public class SettingActivity extends AppCompatActivity {
                 d.setContentView(R.layout.dialog_setting_number_pick); // Including custom layout to custom dialog.
                 Button btnSettingNumberPickAccept = d.findViewById(R.id.btnSettingNumberPickAccept);
                 NumberPicker np = d.findViewById(R.id.npWordNotificationPeriodValue); // A NumberPicker created.
-                np.setMaxValue(720);
-                np.setMinValue(10);
-                np.setValue(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30));
+                String[] values = new String[] {"5","10","15","20","30","45","60","90","120","160","180","300","480","600"};
+                np.setMinValue(0);
+                np.setMaxValue(values.length-1);
+                np.setDisplayedValues(values);
+                np.setValue(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,4));
                 np.setWrapSelectorWheel(false);
                 btnSettingNumberPickAccept.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        sharedPreferences.edit().putInt(WORD_NOTIFICATION_PERIOD,np.getValue()).apply(); // WordNotification "CycleTime" changed.
-                        txtWordNotificationPeriodValue.setText(np.getValue() + " " + getResources().getString(R.string.minute)); // UI refreshed.
+                        sharedPreferences.edit().putInt(WORD_NOTIFICATION_PERIOD,Integer.valueOf(values[np.getValue()])).apply(); // WordNotification "CycleTime" changed.
+                        txtWordNotificationPeriodValue.setText(values[np.getValue()] + " " + getResources().getString(R.string.minute)); // UI refreshed.
                         restartWordNotificationService(); // Restarting "WordNotificationService".
                         d.dismiss(); // Dialog closed.
                     }
@@ -206,16 +208,17 @@ public class SettingActivity extends AppCompatActivity {
                 d.setContentView(R.layout.dialog_setting_number_pick); // Including custom layout to custom dialog.
                 Button btnSettingNumberPickAccept = d.findViewById(R.id.btnSettingNumberPickAccept);
                 NumberPicker np = d.findViewById(R.id.npWordNotificationPeriodValue);
+                String[] values = new String[]{"12","14","16","18","20"};
                 np.setMinValue(0);
-                np.setMaxValue(4);
-                np.setDisplayedValues(new String[]{"12","14","16","18","20"});
+                np.setMaxValue(values.length-1);
+                np.setDisplayedValues(values);
                 np.setValue(sharedPreferences.getInt(FONT,2));
                 np.setWrapSelectorWheel(false);
                 btnSettingNumberPickAccept.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                         sharedPreferences.edit().putInt(FONT,np.getValue()).apply(); // "FontSize" changed.
-                        txtFontValue.setText((12 + 2*np.getValue()) + " sp"); // UI refreshed.
+                        txtFontValue.setText(values[np.getValue()] + " sp"); // UI refreshed.
                         d.dismiss(); // Dialog closed.
                     }
                 });
