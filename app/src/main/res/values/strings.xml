@@ -30,6 +30,7 @@
     <string name="word_context_menu_edit">Edit</string>
 
     <string name="word_delete_alert_title">Are you sure you want to delete it?</string>
+    <string name="learned_words_delete_alert_title">Are you sure you want to delete learned words?</string>
 
     <string name="exception_no_content">You must enter text.</string>
     <string name="exception_content_limit_exceeded">Must be 30 characters or less.</string>
@@ -71,6 +72,8 @@
     <string name="excelexport_message_no_path">Error : You must select path.</string>
     <string name="excelexport_share_title">Send To</string>
     <string name="excelexport_message_success">Export Success.</string>
+
+    <string name="excel_message_version_error">This feature is for Android 5.0 and above</string>
 
     <string name="setting_word_notification_alert_title_loop_time">Select loop time</string>
     <string name="setting_word_notification_alert_title_font_size">Select font size</string>
@@ -164,8 +167,8 @@
 
     <string name="ui_word_menu_exam">Search</string>
     <string name="ui_word_menu_sort">Sort</string>
+    <string name="ui_word_menu_delete_learned">Delete Learned</string>
     <string name="ui_word_menu_importexcel">Import Excel</string>
-
     <string name="ui_word_menu_exportexcel">Export Excel</string>
 
     <string name="ui_setting_toolbar_title">Settings</string>
