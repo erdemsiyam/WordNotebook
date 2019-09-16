@@ -200,7 +200,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 builder.create().show(); // AlertDialog is ready.
                 break;
             case R.id.nav_about:
-                Toast.makeText(this,R.string.soon,Toast.LENGTH_LONG).show();
+                Toast.makeText(this,getResources().getString(R.string.developer)+" Erdem Siyam.",Toast.LENGTH_LONG).show();
                 break;
         }
         drawerLayout.closeDrawer(Gravity.LEFT); // Closing "DrawerMenu".
