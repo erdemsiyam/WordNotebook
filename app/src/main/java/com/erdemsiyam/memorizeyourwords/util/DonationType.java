@@ -9,10 +9,10 @@ import com.erdemsiyam.memorizeyourwords.R;
 import java.util.Random;
 
 public enum DonationType {
-    TWO(0,"two","2 $", R.string.donation_two_dolar_joke_1,R.string.donation_two_dolar_joke_2,R.string.donation_two_dolar_joke_3),
-    FIVE(1,"five","5 $",R.string.donation_five_dolar_joke_1,R.string.donation_five_dolar_joke_2,R.string.donation_five_dolar_joke_3),
-    TWENTY(2,"twenty","20 $",R.string.donation_twenty_dolar_joke_1,R.string.donation_twenty_dolar_joke_2,R.string.donation_twenty_dolar_joke_3),
-    FIFTY(3,"fifty","50 $",R.string.donation_fifty_dolar_joke_1,R.string.donation_fifty_dolar_joke_2,R.string.donation_fifty_dolar_joke_3);
+    TWO(0,"two","2 $", R.string.donation_two_dolar_joke_1),
+    FIVE(1,"five","5 $",R.string.donation_five_dolar_joke_1),
+    TWENTY(2,"twenty","20 $",R.string.donation_twenty_dolar_joke_1),
+    FIFTY(3,"fifty","50 $",R.string.donation_fifty_dolar_joke_1);
 
     public int key; // It is an identity
     public String value;
@@ -50,8 +50,7 @@ public enum DonationType {
 
     public enum Fault {
         Joke1(R.string.donation_fault_joke_1),
-        Joke2(R.string.donation_fault_joke_2),
-        Joke3(R.string.donation_fault_joke_3);
+        Joke2(R.string.donation_fault_joke_2);
 
         @StringRes
         public int joke;
