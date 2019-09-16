@@ -125,7 +125,6 @@ public class ExcelImportSecondDialogFragment extends AppCompatDialogFragment {
 
                 /* Control the, Is words right? */
                 if(strange.equals("") || explain.equals("")) { // Pass this row if empty.
-                    toastMessage(R.string.excelimport_message_no_word_at_row,r+1);
                     continue;
                 }
                 if(strange.length()>30) strange = strange.substring(0,29); // Clip word if it is long.
