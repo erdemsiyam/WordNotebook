@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
+import com.erdemsiyam.memorizeyourwords.util.TimePrintHelper;
 
 public class SettingActivity extends AppCompatActivity {
     /*  Setting Page.
@@ -97,10 +99,10 @@ public class SettingActivity extends AppCompatActivity {
         txtWordNotificationPeriodValue.setText(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30)+" "+getResources().getString(R.string.minute));
         int startHourInt = sharedPreferences.getInt(WORD_NOTIFICATION_START_TIME_HOUR,9);
         int startMinuteInt = sharedPreferences.getInt(WORD_NOTIFICATION_START_TIME_MINUTE,0);
-        txtWordNotificationStartTimeValue.setText(((startHourInt<10)?"0"+startHourInt:""+startHourInt)+" : "+((startMinuteInt<10)?"0"+startMinuteInt:""+startMinuteInt));
+        txtWordNotificationStartTimeValue.setText(TimePrintHelper.getTime(this,startHourInt,startMinuteInt));
         int endHourInt = sharedPreferences.getInt(WORD_NOTIFICATION_END_TIME_HOUR,23);
         int endMinuteInt = sharedPreferences.getInt(WORD_NOTIFICATION_END_TIME_MINUTE,59);
-        txtWordNotificationEndTimeValue.setText(((endHourInt<10)?"0"+endHourInt:""+endHourInt)+" : "+((endMinuteInt<10)?"0"+endMinuteInt:""+endMinuteInt));
+        txtWordNotificationEndTimeValue.setText(TimePrintHelper.getTime(this,endHourInt,endMinuteInt));
         swNotificationSoundValue.setChecked(sharedPreferences.getBoolean(NOTIFICATION_SOUND,true));
         swNotificationVibrateValue.setChecked(sharedPreferences.getBoolean(NOTIFICATION_VIBRATE,true));
         swNotificationHeadsUpValue.setChecked(sharedPreferences.getBoolean(NOTIFICATION_HEADS_UP,true));
@@ -119,7 +121,7 @@ public class SettingActivity extends AppCompatActivity {
                 np.setMinValue(0);
                 np.setMaxValue(values.length-1);
                 np.setDisplayedValues(values);
-                np.setValue(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,4));
+                np.setValue(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,3));
                 np.setWrapSelectorWheel(false);
                 btnSettingNumberPickAccept.setOnClickListener(new View.OnClickListener(){
                     @Override
@@ -144,11 +146,11 @@ public class SettingActivity extends AppCompatActivity {
                                 .putInt(WORD_NOTIFICATION_START_TIME_HOUR,hourOfDay)
                                 .putInt(WORD_NOTIFICATION_START_TIME_MINUTE,minute)
                                 .apply(); // Start time value changed.
-                        txtWordNotificationStartTimeValue.setText(((hourOfDay<10)?"0"+hourOfDay:""+hourOfDay)+" : "+((minute<10)?"0"+minute:""+minute)); // UI refreshed.
+                        txtWordNotificationStartTimeValue.setText(TimePrintHelper.getTime(SettingActivity.this,hourOfDay,minute)); // UI refreshed.
                         restartWordNotificationService(); // Restarting "WordNotificationService".
                     }
                 }
-                TimePickerDialog timePickerDialog = new TimePickerDialog(SettingActivity.this, new TimeHandler(), 9, 0, true);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(SettingActivity.this, new TimeHandler(), 9, 0, DateFormat.is24HourFormat(SettingActivity.this));
                 timePickerDialog.setTitle(R.string.setting_word_notification_alert_title_set_time);
                 timePickerDialog.show();
             }
@@ -164,11 +166,11 @@ public class SettingActivity extends AppCompatActivity {
                                 .putInt(WORD_NOTIFICATION_END_TIME_HOUR,hourOfDay)
                                 .putInt(WORD_NOTIFICATION_END_TIME_MINUTE,minute)
                                 .apply(); // End time value changed.
-                        txtWordNotificationEndTimeValue.setText(((hourOfDay<10)?"0"+hourOfDay:""+hourOfDay)+" : "+((minute<10)?"0"+minute:""+minute)); // UI refreshed.
+                        txtWordNotificationEndTimeValue.setText(TimePrintHelper.getTime(SettingActivity.this,hourOfDay,minute)); // UI refreshed.
                         restartWordNotificationService(); // Restarting "WordNotificationService".
                     }
                 }
-                TimePickerDialog timePickerDialog = new TimePickerDialog(SettingActivity.this, new TimeHandler(), 23, 59, true);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(SettingActivity.this, new TimeHandler(), 23, 59, DateFormat.is24HourFormat(SettingActivity.this));
                 timePickerDialog.setTitle(R.string.setting_word_notification_alert_title_set_time);
                 timePickerDialog.show();
             }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.format.DateFormat;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ import com.erdemsiyam.memorizeyourwords.fragment.CategoryEditModalBottomSheetDia
 import com.erdemsiyam.memorizeyourwords.listener.CategorySelectActionModeCallBack;
 import com.erdemsiyam.memorizeyourwords.service.NotificationCategoryService;
 import com.erdemsiyam.memorizeyourwords.service.NotificationWordService;
+import com.erdemsiyam.memorizeyourwords.util.TimePrintHelper;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.google.android.material.chip.Chip;
 import java.util.ArrayList;
@@ -138,10 +140,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
             public boolean onLongClick(View v) {
                 if(notificationCategory != null){
                     /* Shows which word group the saved notification consists of. */
-                    String message = categoryActivity.getResources().getString(WordGroupType.getTypeByKey(notificationCategory.getWordType()).value)+" ";
-                    int hour = notificationCategory.getHour();
-                    int minute = notificationCategory.getMinute();
-                    message += ((hour<10)?"0"+hour:""+hour)+":"+((minute<10)?"0"+minute:""+minute);
+                    String message = categoryActivity.getResources().getString(WordGroupType.getTypeByKey(notificationCategory.getWordType()).value)+" " + TimePrintHelper.getTime(categoryActivity.getApplicationContext(),notificationCategory.getHour(),notificationCategory.getMinute());
                     Toast.makeText(categoryActivity,message,Toast.LENGTH_SHORT).show();
                 }else{
                     /* Gives information about it when long click if not allow. */
@@ -420,7 +419,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         int startMinute = sp.getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_MINUTE,0);
         int endHour = sp.getInt(SettingActivity.WORD_NOTIFICATION_END_TIME_HOUR,23);
         int endMinute = sp.getInt(SettingActivity.WORD_NOTIFICATION_END_TIME_MINUTE,59);
-        return " "+((startHour<10)?"0"+startHour:""+startHour)+":"+((startMinute<10)?"0"+startMinute:""+startMinute)+"-"+((endHour<10)?"0"+endHour:""+endHour)+":"+((endMinute<10)?"0"+endMinute:""+endMinute);
+        return " "+TimePrintHelper.getTime(categoryActivity,startHour,startMinute)+" - "+ TimePrintHelper.getTime(categoryActivity,endHour,endMinute)+" ";
     }
     public String getLoopTimeOfWordNotification(){
         int startHour = categoryActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30);
@@ -481,6 +480,14 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         c.set(Calendar.MINUTE, minute);
                         c.set(Calendar.SECOND, 0);
 
+                        /*  A setting for 12-Hour-Format users...
+                            Example Problem : Suppose, now time 05 am, we set alarm 01 am (but for tomorrow) but alarms get calls immediately.
+                            Because "AlarmManager" thinks time passed. no we set up this is for tomorrow.
+                            Then the solution : if this is early time then add 1 day to alarm time.*/
+                        if (c.before(Calendar.getInstance())) {
+                            c.add(Calendar.DATE, 1);
+                        }
+
                         /* Set alarm by API Versions.*/
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                             alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(), pendingIntent);
@@ -489,14 +496,13 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         }
 
                         /* The message shows up, alarm set done. */
-                        String message = categoryActivity.getResources().getString(R.string.category_notification_succes_message)+" ";
-                        message += ((hourOfDay<10)?"0"+hourOfDay:""+hourOfDay)+":"+((minute<10)?"0"+minute:""+minute);
+                        String message = categoryActivity.getResources().getString(R.string.category_notification_succes_message)+" "+TimePrintHelper.getTime(categoryActivity,hourOfDay,minute);
                         Toast.makeText(categoryActivity,message, Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 /* Call the "TimePicker" class to catch "NotificationTime" and set it on "Alarm". */
-                TimePickerDialog timePickerDialog = new TimePickerDialog(categoryActivity,new TimePicker(),0,0,true);
+                TimePickerDialog timePickerDialog = new TimePickerDialog(categoryActivity,new TimePicker(),0,0, DateFormat.is24HourFormat(categoryActivity));
                 timePickerDialog.setTitle(R.string.category_notification_select_time_title);
                 timePickerDialog.show(); // Shows "TimePicker" to Alarm.
             }
