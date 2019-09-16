@@ -2,9 +2,9 @@
 
     <!-- Constants -->
 
-    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-9261721980516763~5090102044</string>
     <string name="admob_ad_banner_id" translatable="false">ca-app-pub-9261721980516763/5062181889</string>
-    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-9261721980516763/8656115412</string>
 
 
     <!-- Back-End. -->
@@ -64,7 +64,6 @@
     <string name="excelimport_message_loaded" translatable="false">Words added, total count :</string>
     <string name="excelimport_message_no_sd_card" translatable="false">Error : No SD card found.</string>
     <string name="excelimport_message_no_sheet_index">Error : Selected page not found.</string>
-    <string name="excelimport_message_no_word_at_row">Error : No found word at row :</string>
     <string name="excelimport_message_no_word">Added word : 0. Check out excel file or selected indexes.</string>
 
     <string name="excelexport_alert_title">Select Path To Export Excel</string>
