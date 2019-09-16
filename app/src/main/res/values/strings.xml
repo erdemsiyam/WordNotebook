@@ -13,12 +13,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="soon">Soon</string>
     <string name="ok">Ok</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
-    <string name="minute" translatable="false">Minute</string>
+    <string name="minute">Minute</string>
 
     <string name="exam_word_size_error">Must have at least 4 words</string>
     <string name="word_sort_alert_title">Select Sorting</string>
@@ -61,8 +60,8 @@
     <string name="excelimport_first_alert_title">Select Excel File</string>
     <string name="excelimport_second_alert_title">Select Word Places</string>
     <string name="excelimport_message_loading">Words are loading. Please wait.</string>
-    <string name="excelimport_message_loaded" translatable="false">Words added, total count :</string>
-    <string name="excelimport_message_no_sd_card" translatable="false">Error : No SD card found.</string>
+    <string name="excelimport_message_loaded">Words added, total count :</string>
+    <string name="excelimport_message_no_sd_card">Error : No SD card found.</string>
     <string name="excelimport_message_no_sheet_index">Error : Selected page not found.</string>
     <string name="excelimport_message_no_word">Added word : 0. Check out excel file or selected indexes.</string>
 
@@ -84,8 +83,8 @@
     <string name="words_notification_select_alert_title">Which word group do you want to notification?</string>
     <string name="words_notification_select_alert_button_positive">Set</string>
     <string name="words_notification_error_message_word_group">You must select a word group.</string>
-    <string name="words_notification_success_message1" translatable="false">Notification Set. Time interval :</string>
-    <string name="words_notification_success_message2" translatable="false">For every :</string>
+    <string name="words_notification_success_message1">Notification Set. Time interval :</string>
+    <string name="words_notification_success_message2">For every :</string>
     <string name="words_notification_stop_button">Stop</string>
     <string name="words_notification_about">Sends notification selected words to memorize.</string>
 
@@ -101,23 +100,16 @@
     <string name="donation_alert_dialog_title">Select My Value :)</string>
     <string name="donation_alert_dialog_button_positive">Tip</string>
 
-    <string name="donation_two_dolar_joke_1"></string>
-    <string name="donation_two_dolar_joke_2"></string>
-    <string name="donation_two_dolar_joke_3"></string>
-    <string name="donation_five_dolar_joke_1"></string>
-    <string name="donation_five_dolar_joke_2"></string>
-    <string name="donation_five_dolar_joke_3"></string>
-    <string name="donation_twenty_dolar_joke_1"></string>
-    <string name="donation_twenty_dolar_joke_2"></string>
-    <string name="donation_twenty_dolar_joke_3"></string>
-    <string name="donation_fifty_dolar_joke_1"></string>
-    <string name="donation_fifty_dolar_joke_2"></string>
-    <string name="donation_fifty_dolar_joke_3"></string>
-    <string name="donation_fault_joke_1"></string>
-    <string name="donation_fault_joke_2"></string>
-    <string name="donation_fault_joke_3"></string>
+    <string name="donation_two_dolar_joke_1">I will remember you while drinking the coffee you ordered &#128538;</string>
+    <string name="donation_five_dolar_joke_1">A man and a cat will be very happy with the pizza you give &#127829;&#128573;&#127829;&#128104;</string>
+    <string name="donation_twenty_dolar_joke_1">It is time to find your girlfriend to spend this money &#129322;</string>
+    <string name="donation_fifty_dolar_joke_1">I know you will not &#128530;</string>
+    <string name="donation_fault_joke_1">It is the thought that counts &#129402;</string>
+    <string name="donation_fault_joke_2">You wasted my time &#129393;</string>
 
     <string name="feedback_title_warning">Do not delete this.</string>
+
+    <string name="developer">Developer :</string>
 
     <!-- Front-End. -->
 
@@ -136,7 +128,7 @@
     <string name="ui_false_count">False Count :</string>
     <string name="ui_average_response_time">Average Response Time :</string>
 
-    <string name="ui_excel_import_info" translatable="false">NOTICE : Only \".xlsx\" acceptable. Word character limit 30 or clip.</string>
+    <string name="ui_excel_import_info">NOTICE : Only \".xlsx\" acceptable. Word character limit 30 or clip.</string>
     <string name="ui_excel_import_path_back">Back File</string>
     <string name="ui_excel_import_cancel">Cancel</string>
     <string name="ui_excel_import_select_strange_column">Strange Column Index :</string>
