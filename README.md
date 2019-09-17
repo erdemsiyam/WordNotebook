@@ -15,6 +15,7 @@ Memorize your own strange language words in a hierarchical way.
     - [x] Set alarm to exam of selected list.
 2. Word Page.
     - [x] Create, edit, delete your words.
+    - [x] Switch words visibility (All, Only Strange, Only Explain).
     - [x] Sorting or searching by choice.
     - [x] Mark your words as like star or learned.
     - [x] Add words by Import 'Excel File'.
