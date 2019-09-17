@@ -131,4 +131,5 @@
     <string name="words_notification_success_message2" translatable="false">हर एक के लिए :</string>
     <string name="yes">हाँ</string>
     <string name="developer">डेवलपर:</string>
+    <string name="exam_category_size_error">कम से कम एक सूची का चयन करना चाहिए</string>
 </resources>

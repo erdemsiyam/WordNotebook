@@ -131,4 +131,5 @@
     <string name="ui_word_menu_exportexcel">导出Excel</string>
     <string name="words_notification_success_message2" translatable="false">对于每一个：</string>
     <string name="developer">开发者：</string>
+    <string name="exam_category_size_error">必须至少选择一个列表</string>
 </resources>

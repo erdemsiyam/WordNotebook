@@ -131,4 +131,5 @@
     <string name="ui_word_menu_exportexcel">Excel Dışa</string>
     <string name="words_notification_success_message2" translatable="false">Her</string>
     <string name="developer">Geliştirici :</string>
+    <string name="exam_category_size_error">En az 1 liste seçmelisin</string>
 </resources>

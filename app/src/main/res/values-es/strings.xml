@@ -131,4 +131,5 @@
     <string name="words_notification_success_message2" translatable="false">Para cada :</string>
     <string name="yes">Si</string>
     <string name="developer">Desarrollador :</string>
+    <string name="exam_category_size_error">Debe seleccionar al menos una lista</string>
 </resources>

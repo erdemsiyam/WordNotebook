@@ -131,4 +131,5 @@
     <string name="ui_word_menu_exportexcel">Экспорт Excel</string>
     <string name="words_notification_success_message2" translatable="false">Для каждого :</string>
     <string name="developer">Разработчик:</string>
+    <string name="exam_category_size_error">Необходимо выбрать хотя бы один список</string>
 </resources>

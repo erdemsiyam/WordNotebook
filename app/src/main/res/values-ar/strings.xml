@@ -131,4 +131,5 @@
     <string name="donation_five_dolar_joke_1">سوف يكون الرجل والقط سعيدًا جدًا بالبيتزا التي تقدمها &#127829;&#128573;&#127829;&#128104;</string>
     <string name="donation_twenty_dolar_joke_1"> &#129322;لقد حان الوقت لإيجاد صديقتك لإنفاق هذه الأموال</string>
     <string name="developer">:مطور</string>
+    <string name="exam_category_size_error">يجب تحديد قائمة واحدة على الأقل</string>
 </resources>
