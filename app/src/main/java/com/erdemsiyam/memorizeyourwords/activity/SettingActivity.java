@@ -28,7 +28,7 @@ public class SettingActivity extends AppCompatActivity {
     /* Constants : for "SharedPreferences". */
     public static final String  PREFERENCE_NAME = "setting_preference";
     public static final int     PREFERENCE_MODE = MODE_PRIVATE;
-    public static final String  WORD_NOTIFICATION_PERIOD = "word_notification_periot";
+    public static final String  WORD_NOTIFICATION_PERIOD = "word_notification_period";
     public static final String  WORD_NOTIFICATION_START_TIME_HOUR = "word_notification_start_time_hour";
     public static final String  WORD_NOTIFICATION_START_TIME_MINUTE = "word_notification_start_time_minute";
     public static final String  WORD_NOTIFICATION_END_TIME_HOUR = "word_notification_end_time_hour";
@@ -36,8 +36,9 @@ public class SettingActivity extends AppCompatActivity {
     public static final String  NOTIFICATION_SOUND = "notification_sound";
     public static final String  NOTIFICATION_VIBRATE = "notification_vibrate";
     public static final String  NOTIFICATION_HEADS_UP = "notification_heads_up";
-    public static final String  NOTIFICATION_IS_CHANGE = "notification_is_change";
-    public static final String  NOTIFICATION_GENERAL_CHANNEL_ID = "notification_general_channel_id";
+    public static final String  NOTIFICATION_IS_CHANGE = "notification_is_change"; // Background value holder.
+    public static final String  NOTIFICATION_GENERAL_CHANNEL_ID = "notification_general_channel_id"; // Background value holder.
+    public static final String  NOTIFICATION_LAST_WORD_ID = "notification_last_word_id"; // Background value holder.
     public static final String  FONT = "font";
 
     /* UI Components. */
