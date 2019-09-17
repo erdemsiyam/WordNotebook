@@ -19,7 +19,9 @@
     <string name="cancel">Cancel</string>
     <string name="minute">Minute</string>
 
+    <string name="exam_category_size_error">Must select at least one list</string>
     <string name="exam_word_size_error">Must have at least 4 words</string>
+
     <string name="word_sort_alert_title">Select Sorting</string>
     <string name="word_sort_alert_button_positive">Sort</string>
 
