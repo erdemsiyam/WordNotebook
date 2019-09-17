@@ -496,7 +496,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                         }
 
                         /* The message shows up, alarm set done. */
-                        String message = categoryActivity.getResources().getString(R.string.category_notification_succes_message)+" "+TimePrintHelper.getTime(categoryActivity,hourOfDay,minute);
+                        String message = categoryActivity.getResources().getString(R.string.category_notification_success_message)+" "+TimePrintHelper.getTime(categoryActivity,hourOfDay,minute);
                         Toast.makeText(categoryActivity,message, Toast.LENGTH_SHORT).show();
                     }
                 }
