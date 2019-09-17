@@ -94,7 +94,6 @@ public class WordNotificationService extends Service {
     }
 
     /* Util Methods. */
-
     public Word getRandomWord(){
 
         /* Get all "NotificationWord" records from DB. */
@@ -117,7 +116,23 @@ public class WordNotificationService extends Service {
         if(totalWordsCount==0) return null;
 
         /* Get random word from this collected words. */
-        Random random = new Random();
+        Random r = new Random();
+        long lastNotifyWordId = getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getLong(SettingActivity.NOTIFICATION_LAST_WORD_ID,0L);
+        Word randomWord;
+        if(totalWordsCount > 1) { //  Control, is it same word last notify? if there is more than 1 words. We don't want repeat same words.
+            do {
+                randomWord = getWordFromDB(r,totalWordsCount,categoriesWordsCount,notificationWordList);
+                /* Get random word again if this is same word last notify. */
+            } while (lastNotifyWordId == randomWord.getId() );
+        } else {
+            randomWord = getWordFromDB(r,totalWordsCount,categoriesWordsCount,notificationWordList);
+        }
+
+        /* Save this word's ID as last notify word ID. */
+        getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).edit().putLong(SettingActivity.NOTIFICATION_LAST_WORD_ID,randomWord.getId()).apply();
+        return randomWord;
+    }
+    private Word getWordFromDB(Random random,int totalWordsCount, int[] categoriesWordsCount,List<NotificationWord> notificationWordList){
         int randomCount = random.nextInt(totalWordsCount)+1;
         for(int i=0;i<categoriesWordsCount.length;i++){
             if(categoriesWordsCount[i]-randomCount >=0){
@@ -130,7 +145,7 @@ public class WordNotificationService extends Service {
     }
     public int getDelayMS(){
         /* Get "WordNotification" loop time at setting. */
-        return 60*1000*(getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30));
+        return 1000*(getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30));
     }
     public int getStartHour(){
         return getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_HOUR,9);
