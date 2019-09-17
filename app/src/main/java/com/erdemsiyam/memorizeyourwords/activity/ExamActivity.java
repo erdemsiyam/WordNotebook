@@ -118,6 +118,14 @@ public class ExamActivity extends AppCompatActivity {
         Intent intent = getIntent();
         WordGroupType wordGroupType = WordGroupType.getTypeByKey(intent.getIntExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,0));
         long[] selectedCategoryIds = intent.getLongArrayExtra(CategoryActivity.INTENT_SELECTED_CATEGORY_IDS);
+
+        /* Exam finish if no select any category. */
+        if(selectedCategoryIds.length <= 0){
+            Toast.makeText(this, R.string.exam_category_size_error, Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        /* Get words. */
         words = new ArrayList<>();
         switch (wordGroupType){
             case All:
