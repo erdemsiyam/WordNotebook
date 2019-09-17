@@ -145,7 +145,7 @@ public class WordNotificationService extends Service {
     }
     public int getDelayMS(){
         /* Get "WordNotification" loop time at setting. */
-        return 1000*(getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30));
+        return 60*1000*(getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30));
     }
     public int getStartHour(){
         return getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_HOUR,9);
