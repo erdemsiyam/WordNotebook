@@ -9,21 +9,28 @@ Memorize your own strange language words in a hierarchical way.
 # Features
 1. List Page.
     - [x] Create, edit, delete your lists.
+    - [x] Sorting or searching by choice.
     - [x] Select lists and words to put exam.
-    - [ ] Periodically send notification of strange word and description.
+    - [x] Periodically send notification strange words and descriptions of selected lists.
+    - [x] Set alarm to exam of selected list.
 2. Word Page.
     - [x] Create, edit, delete your words.
+    - [x] Switch words visibility (All, Only Strange, Only Explain).
+    - [x] Sorting or searching by choice.
+    - [x] Mark your words as like star or learned.
     - [x] Add words by Import 'Excel File'.
-    - [x] Mark your words as like star or learned
+    - [x] Export words as 'Excel File'.
     - [x] Look at the history of the selected word. 
       - [x] How many right or wrong choices did you make at exam.
       - [x] Which you confused with the words.
       - [x] How fast did you answer, the average of answer time.
-    - [ ] Export words as 'Excel File'.
 3. Exam Page.
     - [x] Auto pass after quetion answered.
 4. Setting Page.
-    - [ ] Font size.
+    - [x] Word notifications time interval.
+    - [x] Word notifications loop time interval.
+    - [x] General notifications settings (Heads-Up, Sound, Vibration).
+    - [x] Font size.
     
 # Screenshots
 <p align="center">
