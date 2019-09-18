@@ -28,8 +28,8 @@ import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
-import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendCategoryNotificationReceiver;
+import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationWord;
@@ -375,8 +375,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 }
                 NotificationWordService.addNotificationWord(categoryActivity,category.getId(), wordTypeToWordNotificationSelectIndex); // Add this category as new notification to NotificationWord on DB.
                 notifyItemChanged(position); // Refreshed this category.
-                categoryActivity.stopService(new Intent(categoryActivity,WordNotificationService.class)); // Stop service if its already exists. Because my changed loop time.
-                categoryActivity.startService(new Intent(categoryActivity,WordNotificationService.class)); // Start the "WordNotificationService" because maybe its not started yet.
+                restartWordNotificationReceiver(); // Restarting "WordNotification BroadcastReceiver".
                 Toast.makeText(categoryActivity, categoryActivity.getResources().getString(R.string.words_notification_success_message1)
                         +" "+getStartEndTimeOfWordNotification()
                         +" "+categoryActivity.getResources().getString(R.string.words_notification_success_message2)
@@ -413,7 +412,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     }
 
     /* Util Method for WordNotifications. */
-    public String getStartEndTimeOfWordNotification(){
+    public  String getStartEndTimeOfWordNotification(){
         SharedPreferences sp = categoryActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE);
         int startHour = sp.getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_HOUR,9);
         int startMinute = sp.getInt(SettingActivity.WORD_NOTIFICATION_START_TIME_MINUTE,0);
@@ -421,9 +420,19 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         int endMinute = sp.getInt(SettingActivity.WORD_NOTIFICATION_END_TIME_MINUTE,59);
         return " "+TimePrintHelper.getTime(categoryActivity,startHour,startMinute)+" - "+ TimePrintHelper.getTime(categoryActivity,endHour,endMinute)+" ";
     }
-    public String getLoopTimeOfWordNotification(){
+    public  String getLoopTimeOfWordNotification(){
         int startHour = categoryActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_PERIOD,30);
         return ((startHour<10)?"0"+startHour:""+startHour);
+    }
+    private void   restartWordNotificationReceiver(){
+        /* "WordNotification" restarting. */
+
+        /* Stop. */
+        SendWordNotificationReceiver.stop(categoryActivity);
+
+        /* Start. */
+        Intent i = new Intent(categoryActivity, SendWordNotificationReceiver.class);
+        categoryActivity.sendBroadcast(i);
     }
 
     /*################# CATEGORY NOTIFICATION SECTION #################*/

@@ -31,7 +31,7 @@ import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.erdemsiyam.memorizeyourwords.R;
-import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
+import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
@@ -260,8 +260,9 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         /* SwipeToAction including to RecyclerView and SwipeListener added (inside at CustomAdapter). */
         new SwipeToAction(recyclerView, adapter);
 
-        /* Starting "WordNotificationService" for notify words. */
-        startService(new Intent(this, WordNotificationService.class));
+        /* Starting "WordNotification BroadcastReceiver" for notify words. */
+        Intent i = new Intent(this, SendWordNotificationReceiver.class);
+        sendBroadcast(i);
     }
 
     /* Getter-Setter. */

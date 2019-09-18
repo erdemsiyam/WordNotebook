@@ -13,12 +13,11 @@ import android.widget.NumberPicker;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.erdemsiyam.memorizeyourwords.R;
-import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
+import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
 import com.erdemsiyam.memorizeyourwords.util.TimePrintHelper;
 
 public class SettingActivity extends AppCompatActivity {
@@ -129,7 +128,7 @@ public class SettingActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         sharedPreferences.edit().putInt(WORD_NOTIFICATION_PERIOD,Integer.valueOf(values[np.getValue()])).apply(); // WordNotification "CycleTime" changed.
                         txtWordNotificationPeriodValue.setText(values[np.getValue()] + " " + getResources().getString(R.string.minute)); // UI refreshed.
-                        restartWordNotificationService(); // Restarting "WordNotificationService".
+                        restartWordNotificationReceiver(); // Restarting "WordNotification BroadcastReceiver".
                         d.dismiss(); // Dialog closed.
                     }
                 });
@@ -148,7 +147,7 @@ public class SettingActivity extends AppCompatActivity {
                                 .putInt(WORD_NOTIFICATION_START_TIME_MINUTE,minute)
                                 .apply(); // Start time value changed.
                         txtWordNotificationStartTimeValue.setText(TimePrintHelper.getTime(SettingActivity.this,hourOfDay,minute)); // UI refreshed.
-                        restartWordNotificationService(); // Restarting "WordNotificationService".
+                        restartWordNotificationReceiver(); // Restarting "WordNotification BroadcastReceiver".
                     }
                 }
                 TimePickerDialog timePickerDialog = new TimePickerDialog(SettingActivity.this, new TimeHandler(), 9, 0, DateFormat.is24HourFormat(SettingActivity.this));
@@ -168,7 +167,7 @@ public class SettingActivity extends AppCompatActivity {
                                 .putInt(WORD_NOTIFICATION_END_TIME_MINUTE,minute)
                                 .apply(); // End time value changed.
                         txtWordNotificationEndTimeValue.setText(TimePrintHelper.getTime(SettingActivity.this,hourOfDay,minute)); // UI refreshed.
-                        restartWordNotificationService(); // Restarting "WordNotificationService".
+                        restartWordNotificationReceiver(); // Restarting "WordNotification BroadcastReceiver".
                     }
                 }
                 TimePickerDialog timePickerDialog = new TimePickerDialog(SettingActivity.this, new TimeHandler(), 23, 59, DateFormat.is24HourFormat(SettingActivity.this));
@@ -238,9 +237,14 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     /* Util Method. */
-    private void restartWordNotificationService(){
+    private void restartWordNotificationReceiver(){
         /* "WordNotification" restarting after changed settings. Because last process may be left. */
-        stopService(new Intent(getApplicationContext(),WordNotificationService.class));
-        startService(new Intent(getApplicationContext(),WordNotificationService.class));
+
+        /* Stop. */
+        SendWordNotificationReceiver.stop(this);
+
+        /* Start. */
+        Intent i = new Intent(this, SendWordNotificationReceiver.class);
+        sendBroadcast(i);
     }
 }

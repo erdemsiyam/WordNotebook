@@ -9,7 +9,7 @@
     <!-- Permission to advertising. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- Permission to start Alarm on device reboot. -->
+    <!-- Permission to start Word Notification on device reboot. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- Permission to billing for donate. -->
     <uses-permission android:name="com.android.vending.BILLING" />
@@ -49,11 +49,6 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".broadcastreceiver.DeviceBootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
         <receiver android:name=".broadcastreceiver.StopWordNotificationReceiver"
             android:enabled="true"
             android:process=":remote">
@@ -61,9 +56,11 @@
         <receiver android:name=".broadcastreceiver.SendCategoryNotificationReceiver"
             android:enabled="true">
         </receiver>
-
-        <service android:name=".androidservice.WordNotificationService"
-            android:enabled="true"
-            android:exported="false"></service>
+        <receiver android:name=".broadcastreceiver.SendWordNotificationReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

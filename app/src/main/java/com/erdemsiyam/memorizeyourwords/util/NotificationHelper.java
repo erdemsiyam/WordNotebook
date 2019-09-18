@@ -92,7 +92,7 @@ public class NotificationHelper {
             notificationBuilder.setContentIntent(PendingIntent.getActivity(context, WORD_NOTIFICATION_ID, new Intent(), 0));
 
             /* Go to stop "WordNotification" with intent When click "Stop". */
-            Intent StopWordNotifyIntent = new Intent(context, StopWordNotificationReceiver.class); // This "BroadcastReceiver" works to stop this "WordkNotificationService".
+            Intent StopWordNotifyIntent = new Intent(context, StopWordNotificationReceiver.class); // This "BroadcastReceiver" works to stop this "WordNotification BroadcastReceiver".
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, WORD_NOTIFICATION_ID, StopWordNotifyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             notificationBuilder.addAction(R.drawable.ic_notification_close,context.getResources().getString(R.string.words_notification_stop_button),pendingIntent);
         }
