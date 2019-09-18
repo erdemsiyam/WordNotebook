@@ -34,14 +34,17 @@ Memorize your own strange language words in a hierarchical way.
     
 # Screenshots
 <p align="center">
-<img height="385" width="275" src="images/a1.png">
-<img height="385" width="275" src="images/a2.png">
-<img height="385" width="275" src="images/a3.png">
+<img height="385" width="275" src="images/en1.png">
+<img height="385" width="275" src="images/en2.png">
+<img height="385" width="275" src="images/en3.png">
 </p>
 <p align="center">
-<img height="385" width="275" src="images/a4.png">
-<img height="385" width="275" src="images/a5.png">
-<img height="385" width="275" src="images/a6.png">
+<img height="385" width="275" src="images/en4.png">
+<img height="385" width="275" src="images/en5.png">
+<img height="385" width="275" src="images/en6.png">
+</p>
+<p align="center">
+<img height="385" width="275" src="images/en7.png">
 </p>
 
 # Download
