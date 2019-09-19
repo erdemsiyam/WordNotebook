@@ -1,7 +1,6 @@
 package com.erdemsiyam.memorizeyourwords.activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +18,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
 import com.erdemsiyam.memorizeyourwords.util.TimePrintHelper;
+import java.util.Arrays;
+import java.util.List;
 
 public class SettingActivity extends AppCompatActivity {
     /*  Setting Page.
@@ -117,17 +118,17 @@ public class SettingActivity extends AppCompatActivity {
                 d.setContentView(R.layout.dialog_setting_number_pick); // Including custom layout to custom dialog.
                 Button btnSettingNumberPickAccept = d.findViewById(R.id.btnSettingNumberPickAccept);
                 NumberPicker np = d.findViewById(R.id.npWordNotificationPeriodValue); // A NumberPicker created.
-                String[] values = new String[] {"5","10","15","20","30","45","60","90","120","160","180","300","480","600"};
+                List<String> values =  Arrays.asList(new String[] {"5","10","15","20","30","45","60","90","120","160","180","300","480","600"});
                 np.setMinValue(0);
-                np.setMaxValue(values.length-1);
-                np.setDisplayedValues(values);
-                np.setValue(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,3));
+                np.setMaxValue(values.size()-1);
+                np.setDisplayedValues(values.toArray(new String[0]));
+                np.setValue(values.indexOf(sharedPreferences.getInt(WORD_NOTIFICATION_PERIOD,30)+""));
                 np.setWrapSelectorWheel(false);
                 btnSettingNumberPickAccept.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        sharedPreferences.edit().putInt(WORD_NOTIFICATION_PERIOD,Integer.valueOf(values[np.getValue()])).apply(); // WordNotification "CycleTime" changed.
-                        txtWordNotificationPeriodValue.setText(values[np.getValue()] + " " + getResources().getString(R.string.minute)); // UI refreshed.
+                        sharedPreferences.edit().putInt(WORD_NOTIFICATION_PERIOD,Integer.valueOf(values.get(np.getValue()))).apply(); // WordNotification "CycleTime" changed.
+                        txtWordNotificationPeriodValue.setText(values.get(np.getValue()) + " " + getResources().getString(R.string.minute)); // UI refreshed.
                         restartWordNotificationReceiver(); // Restarting "WordNotification BroadcastReceiver".
                         d.dismiss(); // Dialog closed.
                     }
@@ -244,7 +245,6 @@ public class SettingActivity extends AppCompatActivity {
         SendWordNotificationReceiver.stop(this);
 
         /* Start. */
-        Intent i = new Intent(this, SendWordNotificationReceiver.class);
-        sendBroadcast(i);
+        SendWordNotificationReceiver.start(this);
     }
 }
