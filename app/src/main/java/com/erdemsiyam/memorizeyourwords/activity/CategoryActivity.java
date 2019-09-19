@@ -58,7 +58,6 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     private CategoryRecyclerViewAdapter adapter; // Category list custom adapter.
     private DrawerLayout                drawerLayout; // The Layout for "Left Navigation Menu".
     private FloatingActionButton        fabAddCategory; // "Category Add" Button at bottom left.
-    private AdView                      adViewBannerCategory; // Ad banner.
 
     /* Indexing Variable */
     private int selectedDonationIndex = -1; // For donation $ value select index.
@@ -214,7 +213,6 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         recyclerView = findViewById(R.id.recyclerView);
         drawerLayout = findViewById(R.id.category_activity);
         fabAddCategory = findViewById(R.id.categoryAddFAButton);
-        adViewBannerCategory = findViewById(R.id.adViewBannerCategory);
 
         /* Hiding the app name "Label at Manifest". */
         toolBar.setTitle("");
@@ -238,11 +236,6 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 bottomSheetDialog.show(getActivity().getSupportFragmentManager(),CategoryAddModalBottomSheetDialog.TAG);
             }
         });
-
-        /* Advertising load. */
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adViewBannerCategory.loadAd(adRequest);
-
     }
     private void loadData(){
         /* Category list is retrieved from DB. */
