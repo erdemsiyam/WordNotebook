@@ -15,8 +15,8 @@ Memorize your own strange language words in a hierarchical way.
     - [x] Set alarm to exam of selected list.
 2. Word Page.
     - [x] Create, edit, delete your words.
-    - [x] Switch words visibility (All, Only Strange, Only Explain).
     - [x] Sorting or searching by choice.
+    - [x] Switch words visibility (All, Only Strange, Only Explain).
     - [x] Mark your words as like star or learned.
     - [x] Add words by Import 'Excel File'.
     - [x] Export words as 'Excel File'.
@@ -25,6 +25,7 @@ Memorize your own strange language words in a hierarchical way.
       - [x] Which you confused with the words.
       - [x] How fast did you answer, the average of answer time.
 3. Exam Page.
+    - [x] Stopwatch for average response time calculation.
     - [x] Auto pass after quetion answered.
 4. Setting Page.
     - [x] Word notifications time interval.
@@ -34,14 +35,17 @@ Memorize your own strange language words in a hierarchical way.
     
 # Screenshots
 <p align="center">
-<img height="385" width="275" src="images/a1.png">
-<img height="385" width="275" src="images/a2.png">
-<img height="385" width="275" src="images/a3.png">
+<img height="385" width="275" src="images/en1.png">
+<img height="385" width="275" src="images/en2.png">
+<img height="385" width="275" src="images/en3.png">
 </p>
 <p align="center">
-<img height="385" width="275" src="images/a4.png">
-<img height="385" width="275" src="images/a5.png">
-<img height="385" width="275" src="images/a6.png">
+<img height="385" width="275" src="images/en4.png">
+<img height="385" width="275" src="images/en5.png">
+<img height="385" width="275" src="images/en6.png">
+</p>
+<p align="center">
+<img height="385" width="275" src="images/en7.png">
 </p>
 
 # Download
