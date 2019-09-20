@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.text.format.DateFormat;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -28,8 +27,8 @@ import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
-import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendCategoryNotificationReceiver;
-import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
+import com.erdemsiyam.memorizeyourwords.androidservice.CategoryNotificationService;
+import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationWord;
@@ -42,7 +41,6 @@ import com.erdemsiyam.memorizeyourwords.util.TimePrintHelper;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.google.android.material.chip.Chip;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import co.dift.ui.SwipeToAction;
 
@@ -425,14 +423,13 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         return ((startHour<10)?"0"+startHour:""+startHour);
     }
     private void   restartWordNotificationReceiver(){
-        /* "WordNotification" restarting. */
+        /* "WordNotificationService" restarting. */
 
         /* Stop. */
-        SendWordNotificationReceiver.stop(categoryActivity);
+        WordNotificationService.stop(categoryActivity);
 
         /* Start. */
-        Intent i = new Intent(categoryActivity, SendWordNotificationReceiver.class);
-        categoryActivity.sendBroadcast(i);
+        WordNotificationService.start(categoryActivity);
     }
 
     /*################# CATEGORY NOTIFICATION SECTION #################*/
@@ -475,34 +472,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
 
                         if(notificationCategory == null) return; // At "Android 4.1" have a bug about running this method TWICE. At twice this object comes null, if this null return because that's mean we in 2nd round.
 
-                        /* Set "Alarm" to specified time. */
-                        AlarmManager alarmManager = (AlarmManager) categoryActivity.getSystemService(Context.ALARM_SERVICE);
-
-                        /* Creating "PendingIntent" for what to do when the alarm time comes. */
-                        Intent intent = new Intent(categoryActivity, SendCategoryNotificationReceiver.class); // When alarm time comes. Go to this "BroadcastReceiver" to send "CategoryNotification".
-                        intent.putExtra(SendCategoryNotificationReceiver.KEY_NOTIFICATION_CATEGORY_ID,category.getId());
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(categoryActivity, notificationCategory.getNotificationId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                        /* Get "NotificationTime" to alarm as "Calendar". Because this is need to Alarm. */
-                        Calendar c = Calendar.getInstance();
-                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        c.set(Calendar.MINUTE, minute);
-                        c.set(Calendar.SECOND, 0);
-
-                        /*  A setting for 12-Hour-Format users...
-                            Example Problem : Suppose, now time 05 am, we set alarm 01 am (but for tomorrow) but alarms get calls immediately.
-                            Because "AlarmManager" thinks time passed. no we set up this is for tomorrow.
-                            Then the solution : if this is early time then add 1 day to alarm time.*/
-                        if (c.before(Calendar.getInstance())) {
-                            c.add(Calendar.DATE, 1);
-                        }
-
-                        /* Set alarm by API Versions.*/
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                            alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(), pendingIntent);
-                        }else{
-                            alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-                        }
+                        /* Creating alarm. This is helper method. */
+                        CategoryNotificationService.setAlarm(categoryActivity,notificationCategory);
 
                         /* The message shows up, alarm set done. */
                         String message = categoryActivity.getResources().getString(R.string.category_notification_success_message)+" "+TimePrintHelper.getTime(categoryActivity,hourOfDay,minute);
@@ -534,8 +505,8 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
                 AlarmManager alarmManager = (AlarmManager) categoryActivity.getSystemService(Context.ALARM_SERVICE);
 
                 /* An intent created for cancel alarm. */
-                Intent intent = new Intent(categoryActivity, SendCategoryNotificationReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(categoryActivity, notificationCategory.getNotificationId(), intent, 0);
+                Intent intent = new Intent(categoryActivity, CategoryNotificationService.class);
+                PendingIntent pendingIntent = PendingIntent.getService(categoryActivity, notificationCategory.getNotificationId(), intent, 0);
 
                 /* Alarm cancelled.*/
                 alarmManager.cancel(pendingIntent);

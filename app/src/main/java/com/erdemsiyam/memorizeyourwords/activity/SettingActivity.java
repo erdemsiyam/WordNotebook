@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import com.erdemsiyam.memorizeyourwords.R;
-import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
+import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.util.TimePrintHelper;
 import java.util.Arrays;
 import java.util.List;
@@ -239,12 +239,12 @@ public class SettingActivity extends AppCompatActivity {
 
     /* Util Method. */
     private void restartWordNotificationReceiver(){
-        /* "WordNotification" restarting after changed settings. Because last process may be left. */
+        /* "WordNotification" restarting after changed settings. Because last alarm may be left. */
 
         /* Stop. */
-        SendWordNotificationReceiver.stop(this);
+        WordNotificationService.stop(this);
 
         /* Start. */
-        SendWordNotificationReceiver.start(this);
+        WordNotificationService.start(this);
     }
 }

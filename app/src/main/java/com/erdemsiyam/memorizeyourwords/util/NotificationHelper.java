@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
-import com.erdemsiyam.memorizeyourwords.broadcastreceiver.StopWordNotificationReceiver;
+import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import java.nio.charset.Charset;
 import java.util.Random;
 
@@ -92,8 +92,8 @@ public class NotificationHelper {
             notificationBuilder.setContentIntent(PendingIntent.getActivity(context, WORD_NOTIFICATION_ID, new Intent(), 0));
 
             /* Go to stop "WordNotification" with intent When click "Stop". */
-            Intent StopWordNotifyIntent = new Intent(context, StopWordNotificationReceiver.class); // This "BroadcastReceiver" works to stop this "WordNotification BroadcastReceiver".
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, WORD_NOTIFICATION_ID, StopWordNotifyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+            Intent StopWordNotifyIntent = new Intent(context, WordNotificationService.StopWordNotificationService.class); // This inner class "Service" works to stop this "WordNotificationService".
+            PendingIntent pendingIntent = PendingIntent.getService(context, WORD_NOTIFICATION_ID, StopWordNotifyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             notificationBuilder.addAction(R.drawable.ic_notification_close,context.getResources().getString(R.string.words_notification_stop_button),pendingIntent);
         }
         else if (type == Type.Category){

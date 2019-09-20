@@ -31,14 +31,12 @@ import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.erdemsiyam.memorizeyourwords.R;
-import com.erdemsiyam.memorizeyourwords.broadcastreceiver.SendWordNotificationReceiver;
+import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.CategoryAddModalBottomSheetDialog;
 import com.erdemsiyam.memorizeyourwords.util.DonationType;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import java.util.Arrays;
@@ -253,9 +251,8 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         /* SwipeToAction including to RecyclerView and SwipeListener added (inside at CustomAdapter). */
         new SwipeToAction(recyclerView, adapter);
 
-        /* Starting "WordNotification BroadcastReceiver" for notify words. */
-        Intent i = new Intent(this, SendWordNotificationReceiver.class);
-        sendBroadcast(i);
+        /* Starting "WordNotificationService" for notify words. */
+        WordNotificationService.start(this);
     }
 
     /* Getter-Setter. */

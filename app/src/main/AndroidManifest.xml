@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.erdemsiyam.memorizeyourwords">
 
     <!-- Permission to Excel import export. -->
@@ -9,12 +10,12 @@
     <!-- Permission to advertising. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- Permission to start Word Notification on device reboot. -->
+    <!-- Permission to start Alarms on device reboot. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <!-- Permission to billing for donate. -->
     <uses-permission android:name="com.android.vending.BILLING" />
     <!-- Permission to vibration for Android 4.2 and low versions. -->
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id"/>
@@ -49,18 +51,18 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".broadcastreceiver.StopWordNotificationReceiver"
-            android:enabled="true"
-            android:process=":remote">
-        </receiver>
-        <receiver android:name=".broadcastreceiver.SendCategoryNotificationReceiver"
-            android:enabled="true">
-        </receiver>
-        <receiver android:name=".broadcastreceiver.SendWordNotificationReceiver"
+        <receiver android:name=".broadcastreceiver.DeviceBootBroadcastReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+<!---->
+        <service android:name=".androidservice.WordNotificationService"
+            android:enabled="true"/>
+        <service android:name=".androidservice.WordNotificationService$StopWordNotificationService"
+            android:enabled="true"/>
+        <service android:name=".androidservice.CategoryNotificationService"
+            android:enabled="true"/>
     </application>
 </manifest>
