@@ -5,6 +5,7 @@ import android.content.Context;
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
 
+import java.util.List;
 import java.util.Random;
 
 public final class NotificationCategoryService {
@@ -30,5 +31,8 @@ public final class NotificationCategoryService {
     }
     public static void deleteAll(Context context){
         MyDatabase.getMyDatabase(context).getNotificationCategoryDAO().deleteAll();
+    }
+    public static List<NotificationCategory> getAll(Context context){
+        return MyDatabase.getMyDatabase(context).getNotificationCategoryDAO().getAll();
     }
 }

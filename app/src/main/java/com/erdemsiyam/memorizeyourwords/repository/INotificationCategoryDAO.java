@@ -8,6 +8,8 @@ import androidx.room.Update;
 
 import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
 
+import java.util.List;
+
 @Dao
 public interface INotificationCategoryDAO {
     @Insert
@@ -16,10 +18,10 @@ public interface INotificationCategoryDAO {
     void update(NotificationCategory notificationCategory);
     @Delete
     void delete(NotificationCategory notificationCategory);
-
     @Query("SELECT * FROM NotificationCategory WHERE category_id=:categoryId")
     NotificationCategory getByCategory(Long categoryId);
-
     @Query("Delete FROM NotificationCategory")
     void deleteAll();
+    @Query("SELECT * FROM NotificationCategory")
+    List<NotificationCategory> getAll();
 }
