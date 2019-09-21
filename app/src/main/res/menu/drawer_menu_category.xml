@@ -10,7 +10,7 @@
             android:title="@string/ui_navbar_settings" />
     </group>
 
-    <item android:title="Other">
+    <item android:title="@string/ui_navbar_other">
         <menu>
             <item
                 android:id="@+id/nav_rate"
