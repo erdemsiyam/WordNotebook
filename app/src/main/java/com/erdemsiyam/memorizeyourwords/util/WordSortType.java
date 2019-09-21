@@ -1,9 +1,7 @@
 package com.erdemsiyam.memorizeyourwords.util;
 
 import android.content.Context;
-
 import androidx.annotation.StringRes;
-
 import com.erdemsiyam.memorizeyourwords.R;
 
 public enum WordSortType {

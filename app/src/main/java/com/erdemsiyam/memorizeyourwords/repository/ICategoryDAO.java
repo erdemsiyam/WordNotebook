@@ -1,9 +1,7 @@
 package com.erdemsiyam.memorizeyourwords.repository;
 
 import androidx.room.*;
-
 import com.erdemsiyam.memorizeyourwords.entity.Category;
-
 import java.util.List;
 
 @Dao

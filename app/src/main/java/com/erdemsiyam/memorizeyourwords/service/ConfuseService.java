@@ -1,10 +1,8 @@
 package com.erdemsiyam.memorizeyourwords.service;
 
 import android.content.Context;
-
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.Confuse;
-
 import java.util.List;
 
 public final class ConfuseService {

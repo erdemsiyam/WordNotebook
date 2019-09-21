@@ -5,11 +5,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.appcompat.widget.AppCompatTextView;
-
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Confuse;
@@ -18,7 +16,6 @@ import com.erdemsiyam.memorizeyourwords.service.ConfuseService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.ConfuseTempModel;
 import com.google.android.material.chip.Chip;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

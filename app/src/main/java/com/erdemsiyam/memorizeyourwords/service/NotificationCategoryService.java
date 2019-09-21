@@ -1,10 +1,8 @@
 package com.erdemsiyam.memorizeyourwords.service;
 
 import android.content.Context;
-
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
-
 import java.util.List;
 import java.util.Random;
 

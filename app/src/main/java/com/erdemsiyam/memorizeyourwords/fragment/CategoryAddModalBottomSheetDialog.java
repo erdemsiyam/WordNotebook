@@ -6,11 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
-
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
@@ -66,7 +64,7 @@ public class CategoryAddModalBottomSheetDialog extends BottomSheetDialogFragment
                     throw new MyException(categoryActivity.getResources().getString(R.string.exception_no_content)); // Throw exception.
                 if(categoryName.length() > 30) // If more than 30 characters.
                     throw new MyException(categoryActivity.getResources().getString(R.string.exception_content_limit_exceeded)); // Throw exception.
-                Category newCategory = CategoryService.addCategory(categoryActivity,categoryName,""); // Create the new category at DB side.
+                Category newCategory = CategoryService.addCategory(categoryActivity,categoryName); // Create the new category at DB side.
                 categoryActivity.getAdapter().addCategory(newCategory); // Add the new category to UI ListView.
                 dismiss(); // Close the "ModalBottomSheetDialog".
             }

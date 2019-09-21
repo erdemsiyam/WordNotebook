@@ -14,7 +14,6 @@ import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.service.NotificationCategoryService;
 import com.erdemsiyam.memorizeyourwords.util.NotificationHelper;
-
 import java.util.Calendar;
 
 public class CategoryNotificationService extends IntentService {
