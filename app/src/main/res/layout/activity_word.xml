@@ -87,24 +87,24 @@
                     android:layout_weight="0.5"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnAddWord"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="10dp"
-                            android:text="@string/ui_add_word"
-                            />
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnToggleFreeze"
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/imgBtnToggleFreeze"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="0.5"
                             android:layout_marginLeft="10dp"
-                            android:text="@string/ui_switch_visibility"
-                            />
+                            android:src="@drawable/ic_word_visibility"
+                            android:background="@null" />
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/imgBtnAddWord"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/ic_word_add"
+                            android:background="@null" />
                 </LinearLayout>
                 <com.google.android.gms.ads.AdView
                     xmlns:ads="http://schemas.android.com/apk/res-auto"

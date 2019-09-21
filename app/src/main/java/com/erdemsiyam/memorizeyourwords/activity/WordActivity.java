@@ -19,9 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.Toast;
-
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.fragment.ExcelExportDialogFragment;
@@ -48,9 +46,9 @@ public class WordActivity extends AppCompatActivity {
 
     /* UI Components */
     private RecyclerView            recyclerViewWord; // Word list.
-    private Button    btnAddWord; // Add category button.
+    private AppCompatImageButton    imgBtnAddWord; // Add category button.
     private WordRecyclerViewAdapter adapter; // Word list custom adapter.
-    private Button    btnToggleFreeze; // A button to change the appearance of words.
+    private AppCompatImageButton    imgBtnToggleFreeze; // A button to change the appearance of words.
     private AppCompatImageButton    btnBackToCategoryFromWord; // Back button to "CategoryActivity".
     private AppCompatTextView       txtCategoryName; // Shows words belongs to which category.
     private AdView                  adViewBannerWord; // Ad banner.
@@ -222,8 +220,8 @@ public class WordActivity extends AppCompatActivity {
         /* Loading UI items. */
         Toolbar toolBar = findViewById(R.id.toolbar_word);
         recyclerViewWord = findViewById(R.id.recyclerViewWord);
-        btnAddWord = findViewById(R.id.btnAddWord);
-        btnToggleFreeze = findViewById(R.id.btnToggleFreeze);
+        imgBtnAddWord = findViewById(R.id.imgBtnAddWord);
+        imgBtnToggleFreeze = findViewById(R.id.imgBtnToggleFreeze);
         btnBackToCategoryFromWord = findViewById(R.id.btnBackToCategoryFromWord);
         txtCategoryName = findViewById(R.id.txtCategoryName);
         adViewBannerWord = findViewById(R.id.adViewBannerWord);
@@ -235,19 +233,33 @@ public class WordActivity extends AppCompatActivity {
         setSupportActionBar(toolBar);
 
         /* Listeners giving to components. */
-        btnAddWord.setOnClickListener(new View.OnClickListener() {
+        imgBtnAddWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WordAddModalBottomSheetDialog bottomSheetDialog = new WordAddModalBottomSheetDialog(getActivity());
                 bottomSheetDialog.show(getActivity().getSupportFragmentManager(),WordAddModalBottomSheetDialog.TAG);
             }
         }); // Click Listener For "AddWord".
-        btnToggleFreeze.setOnClickListener(new View.OnClickListener() {
+        imgBtnAddWord.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(WordActivity.this,R.string.ui_add_word,Toast.LENGTH_LONG).show();
+                return true;
+            }
+        }); // Added information when long click.
+        imgBtnToggleFreeze.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adapter.toggleFreeze();
             }
         }); // Toggle word freeze view listener.
+        imgBtnToggleFreeze.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(WordActivity.this,R.string.ui_switch_visibility,Toast.LENGTH_LONG).show();
+                return true;
+            }
+        }); // Added information when long click.
         btnBackToCategoryFromWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
