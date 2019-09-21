@@ -1,6 +1,5 @@
 package com.erdemsiyam.memorizeyourwords.activity;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,24 +21,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
-import com.android.billingclient.api.BillingFlowParams;
-import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.androidservice.WordNotificationService;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.CategoryAddModalBottomSheetDialog;
+import com.erdemsiyam.memorizeyourwords.util.DonationPurchaseHelper;
 import com.erdemsiyam.memorizeyourwords.util.DonationType;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import java.util.Arrays;
 import java.util.List;
 import co.dift.ui.SwipeToAction;
 
@@ -109,7 +100,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 startActivity(new Intent(this,SettingActivity.class));
                 break;
             case R.id.nav_rate:
-                String appPackageName = "com.siyamyazilim.kelimeezberle.kelimeezberle"; //context.getPackageName()
+                String appPackageName = getPackageName();
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                 } catch (android.content.ActivityNotFoundException e) {
@@ -141,52 +132,10 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 builder.setPositiveButton(R.string.donation_alert_dialog_button_positive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        BillingFlowParams bfp = BillingFlowParams.newBuilder().build();
-                        BillingClient bc = BillingClient.newBuilder(getApplicationContext()).setListener(new PurchasesUpdatedListener() {
-                            @Override
-                            public void onPurchasesUpdated(int responseCode, @Nullable List<Purchase> purchases) {
-                                // satin alinma sonrasi
-                            }
-                        }).build();
-                        bc.startConnection(new BillingClientStateListener() {
-                            @Override
-                            public void onBillingSetupFinished(int responseCode) {
-                                if(responseCode == BillingClient.BillingResponse.OK){
-                                    //baglanti basarili
-                                } else {
-                                    //baglanti basarisiz
-                                }
-                            }
-
-                            @Override
-                            public void onBillingServiceDisconnected() {
-                                //baglanti koptu
-                            }
-                        });
-                        bc.launchBillingFlow(CategoryActivity.this,bfp);
-
-                        if(bc.isReady()){
-                            SkuDetailsParams sdp = SkuDetailsParams
-                                    .newBuilder()
-                                    .setSkusList(Arrays.asList(DonationType.getTypeByKey(selectedDonationIndex).value))
-                                    .setType(BillingClient.SkuType.INAPP)
-                                    .build();
-                            bc.querySkuDetailsAsync(sdp, new SkuDetailsResponseListener() {
-                                @Override
-                                public void onSkuDetailsResponse(int responseCode, List<SkuDetails> skuDetailsList) {
-                                    if(responseCode == BillingClient.BillingResponse.OK){
-                                        // basarili??
-                                    } else {
-                                        // urun sıralamaya alınamadı
-                                    }
-                                }
-                            });
-                        } else {
-
-                        }
-
-                        //donation.
+                        DonationType selectedDonationType = DonationType.getTypeByKey(selectedDonationIndex);
+                        DonationPurchaseHelper.start(CategoryActivity.this,selectedDonationType);
                     }
+
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
