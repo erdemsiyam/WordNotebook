@@ -3,7 +3,7 @@ package com.erdemsiyam.memorizeyourwords.service;
 import android.content.Context;
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
-
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import java.util.List;
 
 public final class CategoryService {
@@ -14,10 +14,10 @@ public final class CategoryService {
     public static Category getCategoryById(Context context, Long id){
         return MyDatabase.getMyDatabase(context).getCategoryDAO().getCategoryById(id);
     }
-    public static Category addCategory(Context context,String name,String color){
+    public static Category addCategory(Context context,String name){
         Category category = new Category();
         category.setName(name);
-        category.setColor(color);
+        category.setVisibilityWordGroupType(WordGroupType.All.key);
         category.setId(MyDatabase.getMyDatabase(context).getCategoryDAO().insertCategory(category));
         return category;
     }
