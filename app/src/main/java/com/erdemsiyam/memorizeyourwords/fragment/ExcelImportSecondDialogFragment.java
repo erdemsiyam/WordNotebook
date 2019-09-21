@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -89,67 +88,74 @@ public class ExcelImportSecondDialogFragment extends AppCompatDialogFragment {
             excelImportModel.setSelectedSheetIndex(Integer.valueOf(txtExcelImpSheetIndex.getText().toString()));
 
             /* Get read words from excel. */
-            readExcelData();
+            readExcelDataAndAddDDB();
         });
 
         return builder.create();  // Prepared Customize "AlertDialog" return.
     }
 
-    private void readExcelData() {
+    private void readExcelDataAndAddDDB() {
         /* Words to DB from Excel. */
+        new Thread ( new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    File inputFile = new File(excelImportModel.getPathExcel()); // Read excel path.
+                    InputStream inputStream = new FileInputStream(inputFile);
+                    XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 
-        try {
-            File inputFile = new File(excelImportModel.getPathExcel()); // Read excel path.
-            InputStream inputStream = new FileInputStream(inputFile);
-            XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+                    /* Get sheet index from model. */
+                    if( excelImportModel.getSelectedSheetIndex() > workbook.getNumberOfSheets() ) { // Selected sheet index much more total sheet count, then send message and stop.
+                        toastMessage(R.string.excelimport_message_no_sheet_index);
+                        return;
+                    }
+                    XSSFSheet sheet = workbook.getSheetAt(excelImportModel.getSelectedSheetIndex()-1);
 
-            /* Get sheet index from model. */
-            if( excelImportModel.getSelectedSheetIndex() > workbook.getNumberOfSheets() ) { // Selected sheet index much more total sheet count, then send message and stop.
-                toastMessage(R.string.excelimport_message_no_sheet_index);
-                return;
-            }
-            XSSFSheet sheet = workbook.getSheetAt(excelImportModel.getSelectedSheetIndex()-1);
+                    /* Counter of added words.*/
+                    int addedWordCount = 0;
 
-            /* Counter of added words.*/
-            int addedWordCount = 0;
+                    /* Loop the rows.*/
+                    int rowsCount = sheet.getLastRowNum();
+                    FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+                    for (int r = 0; r <= rowsCount; r++) { // Loop each row.
+                        Row row = sheet.getRow(r);
 
-            /* Loop the rows.*/
-            int rowsCount = sheet.getLastRowNum();
-            FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
-            for (int r = 0; r <= rowsCount; r++) { // Loop each row.
-                Row row = sheet.getRow(r);
+                        /* Get words. */
+                        String strange = getCellAsString(row, excelImportModel.getStrangeCellIndex()-1, formulaEvaluator).trim();
+                        String explain = getCellAsString(row, excelImportModel.getExplainCellIndex()-1, formulaEvaluator).trim();
 
-                /* Get words. */
-                String strange = getCellAsString(row, excelImportModel.getStrangeCellIndex()-1, formulaEvaluator).trim();
-                String explain = getCellAsString(row, excelImportModel.getExplainCellIndex()-1, formulaEvaluator).trim();
+                        /* Control the, Is words right? */
+                        if(strange.equals("") || explain.equals("")) { // Pass this row if empty.
+                            continue;
+                        }
+                        if(strange.length()>30) strange = strange.substring(0,29); // Clip word if it is long.
+                        if(explain.length()>30) explain = explain.substring(0,29); // Clip word if it is long.
 
-                /* Control the, Is words right? */
-                if(strange.equals("") || explain.equals("")) { // Pass this row if empty.
-                    continue;
+                        /* Add words to DB. */
+                        WordService.addWord(wordActivity,excelImportModel.getCategoryId(),strange,explain);
+                        ++addedWordCount; // Increase one word added.
+                    }
+
+                    /* Warning user if added word count is 0. */
+                    if(addedWordCount == 0){
+                        toastMessage(R.string.excelimport_message_no_word);
+                        return ;
+                    }
+                    /* Send message its done. */
+                    toastMessage(R.string.excelimport_message_loaded,addedWordCount);
+
+                    wordActivity.runOnUiThread(new Runnable() {
+                        public void run() {
+                            /* Refresh word list at "WordActivity". */
+                            wordActivity.refreshRecyclerView();
+                            /* Close this Dialog. */
+                            dismiss();
+                        }
+                    });
                 }
-                if(strange.length()>30) strange = strange.substring(0,29); // Clip word if it is long.
-                if(explain.length()>30) explain = explain.substring(0,29); // Clip word if it is long.
-
-                /* Add words to DB. */
-                WordService.addWord(wordActivity,excelImportModel.getCategoryId(),strange,explain);
-                ++addedWordCount; // Increase one word added.
+                catch (Exception e) { }
             }
-
-            /* Warning user if added word count is 0. */
-            if(addedWordCount == 0){
-                toastMessage(R.string.excelimport_message_no_word);
-                return;
-            }
-            /* Send message its done. */
-            toastMessage(R.string.excelimport_message_loaded,addedWordCount);
-
-            /* Refresh word list at "WordActivity". */
-            wordActivity.refreshRecyclerView();
-
-            /* Close this Dialog. */
-            dismiss();
-        }
-        catch (Exception e) { }
+        }).start();
     }
     private String getCellAsString(Row row, int c, FormulaEvaluator formulaEvaluator) {
         /* Cell conversion to String. */
