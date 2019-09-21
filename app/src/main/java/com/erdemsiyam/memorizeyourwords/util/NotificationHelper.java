@@ -81,7 +81,7 @@ public class NotificationHelper {
 
         /* NotificationBuilder Part. For Every API. */
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, channelId)
-                .setSmallIcon(R.drawable.ic_logo)
+                .setSmallIcon(R.drawable.ic_icon)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setAutoCancel(true)
