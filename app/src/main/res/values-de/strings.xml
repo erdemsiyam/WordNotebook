@@ -129,7 +129,8 @@
     <string name="ui_setting_notification_vibrate_summary">Ein / Aus für Vibration.</string>
     <string name="ui_word_menu_delete_learned">Gelerntes löschen</string>
     <string name="ui_word_menu_exportexcel">Excel exportieren</string>
-    <string name="words_notification_success_message2" translatable="false">Für jeden :</string>
+    <string name="words_notification_success_message2">Für jeden :</string>
     <string name="developer">Entwickler:</string>
     <string name="exam_category_size_error">Muss mindestens eine Liste auswählen</string>
+    <string name="ui_navbar_other">Andere</string>
 </resources>

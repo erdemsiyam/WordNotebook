@@ -129,7 +129,8 @@
     <string name="ui_setting_notification_vibrate_summary">Titreşim Aç/Kapa</string>
     <string name="ui_word_menu_delete_learned">Öğrendiklerini Sil</string>
     <string name="ui_word_menu_exportexcel">Excel Dışa</string>
-    <string name="words_notification_success_message2" translatable="false">Her</string>
+    <string name="words_notification_success_message2">Her</string>
     <string name="developer">Geliştirici :</string>
     <string name="exam_category_size_error">En az 1 liste seçmelisin</string>
+    <string name="ui_navbar_other">Diğer</string>
 </resources>

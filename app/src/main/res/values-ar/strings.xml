@@ -124,7 +124,7 @@
     <string name="ui_setting_notification_vibrate_summary">تشغيل / إيقاف الاهتزاز.</string>
     <string name="ui_word_menu_delete_learned">حذف المستفادة</string>
     <string name="ui_word_menu_exportexcel">تصدير اكسل</string>
-    <string name="words_notification_success_message2" translatable="false">لكل :</string>
+    <string name="words_notification_success_message2">لكل :</string>
     <string name="donation_fault_joke_1">&#129402;فهو يعتقد أن تحصي</string>
     <string name="donation_fault_joke_2">كنت تضيع وقتي &#129393;</string>
     <string name="donation_fifty_dollar_joke_1">أنا أعلم أنك لن تفعل ذلك &#128530;</string>
@@ -132,4 +132,5 @@
     <string name="donation_twenty_dollar_joke_1"> &#129322;لقد حان الوقت لإيجاد صديقتك لإنفاق هذه الأموال</string>
     <string name="developer">:مطور</string>
     <string name="exam_category_size_error">يجب تحديد قائمة واحدة على الأقل</string>
+    <string name="ui_navbar_other">آخر</string>
 </resources>

@@ -128,8 +128,9 @@
     <string name="words_notification_select_alert_title">¿Qué grupo de palabras desea notificar?</string>
     <string name="words_notification_stop_button">Detener</string>
     <string name="words_notification_success_message1">Conjunto de notificaciones Intervalo de tiempo :</string>
-    <string name="words_notification_success_message2" translatable="false">Para cada :</string>
+    <string name="words_notification_success_message2">Para cada :</string>
     <string name="yes">Si</string>
     <string name="developer">Desarrollador :</string>
     <string name="exam_category_size_error">Debe seleccionar al menos una lista</string>
+    <string name="ui_navbar_other">Otro</string>
 </resources>

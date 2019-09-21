@@ -128,8 +128,9 @@
     <string name="words_notification_stop_button">रुकें</string>
     <string name="words_notification_select_alert_title">आप किस शब्द समूह को नोटिफ़िकेशन करना चाहते हैं?</string>
     <string name="words_notification_success_message1">अधिसूचना सेट। समय अंतराल :</string>
-    <string name="words_notification_success_message2" translatable="false">हर एक के लिए :</string>
+    <string name="words_notification_success_message2">हर एक के लिए :</string>
     <string name="yes">हाँ</string>
     <string name="developer">डेवलपर:</string>
     <string name="exam_category_size_error">कम से कम एक सूची का चयन करना चाहिए</string>
+    <string name="ui_navbar_other">अन्य</string>
 </resources>
