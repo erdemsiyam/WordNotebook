@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Word-Notizbuch</string>
+    <string name="app_name">Word Notizbuch</string>
     <string name="no">Nein</string>
     <string name="yes">Ja</string>
     <string name="category_delete_alert_message">Liste :</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Word Notebook</string>
+    <string name="app_name">Cuaderno de palabras</string>
     <string name="cancel">Cancelar</string>
     <string name="category_delete_alert_message">Lista:</string>
     <string name="category_delete_alert_title">¿Seguro que quieres eliminarlo?</string>
