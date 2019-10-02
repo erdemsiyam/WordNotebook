@@ -64,6 +64,8 @@
             android:enabled="true"/>
         <service android:name=".androidservice.WordNotificationService$StopWordNotificationService"
             android:enabled="true"/>
+        <service android:name=".androidservice.WordNotificationService$SetWordAsLearnedService"
+            android:enabled="true"/>
         <service android:name=".androidservice.CategoryNotificationService"
             android:enabled="true"/>
     </application>

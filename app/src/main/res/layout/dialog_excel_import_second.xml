@@ -65,7 +65,7 @@
         android:id="@+id/chkExcelImpDoNotTakeSameWords"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Don't take same words."
+        android:text="@string/ui_excel_import_check_do_not_add_exists_words"
         android:layout_gravity="center"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnExcelImportWords"

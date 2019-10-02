@@ -11,6 +11,7 @@ import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.entity.NotificationWord;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.NotificationWordService;
+import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.NotificationHelper;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import java.util.Calendar;
@@ -28,6 +29,7 @@ public class WordNotificationService extends IntentService {
 
     /* Constant. */
     private static final int ALARM_REQUEST_CODE = 0;
+    public static final String KEY_SET_LEARNED_WORD_ID = "SET_LEARNED_WORD_ID"; // A intent key for set word learned from notification "Learned" button.
 
     /* Override method of "IntentService". */
     @Override
@@ -73,7 +75,7 @@ public class WordNotificationService extends IntentService {
         }
 
         /* Send Notification if word has come. */
-        new NotificationHelper(WordNotificationService.this,NotificationHelper.Type.Word).showNotification(randomWord.getStrange(),randomWord.getExplain());
+        new NotificationHelper(WordNotificationService.this,NotificationHelper.Type.Word).showNotification(randomWord.getStrange(),randomWord.getExplain(),randomWord.getId(),randomWord.isLearned());
 
         /* Repeat Alarm. */
         setAlarm(this,getDelayMS(this));
@@ -181,8 +183,9 @@ public class WordNotificationService extends IntentService {
         return context.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.WORD_NOTIFICATION_END_TIME_MINUTE,59);
     }
 
-    /* An other "IntentService" to stop all notification. */
+    /* Inner IntentServices for Notification Buttons. */
     public static class StopWordNotificationService extends IntentService {
+        /* Button : Stop all word notifications. */
         /*  This Service for removing all WordNotifications from DB.
             It's calls from "Notification"' content's "STOP" button. */
         @Override
@@ -195,6 +198,25 @@ public class WordNotificationService extends IntentService {
         }
         public StopWordNotificationService() {
             super("StopWordNotificationService");
+        }
+    }
+    public static class SetWordAsLearnedService extends IntentService {
+        /* Button : Set as learned the word, which are notified. */
+
+        @Override
+        protected void onHandleIntent(Intent intent) {
+            NotificationManagerCompat.from(this).cancel(NotificationHelper.WORD_NOTIFICATION_ID);
+
+            /* Get word id which are clicked as learned. */
+            long wordId = intent.getLongExtra(KEY_SET_LEARNED_WORD_ID,0L);
+
+            /* Set learned if exists in db.*/
+            if(wordId > 0){
+                WordService.changeLearned(this,wordId,true);
+            }
+        }
+        public SetWordAsLearnedService() {
+            super("SetWordAsLearnedService");
         }
     }
 }

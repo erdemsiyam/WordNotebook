@@ -43,10 +43,13 @@ public class NotificationHelper {
     public enum Type { Word, Category }
 
     /* Main Methods. */
-    public void showNotification(String title, String message) {
-        showNotification(title,message,null,0);
+    public void showNotification(String title, String message, long specialWordId, boolean isWordLearned) {
+        showNotification(title,message,null,0,specialWordId,isWordLearned);
     }
     public void showNotification(String title, String message, Intent intent, int specialNotificationId){
+        showNotification(title,message,intent,specialNotificationId,0L,false);
+    }
+    public void showNotification(String title, String message, Intent intent, int specialNotificationId,long specialWordId,boolean isWordLearned){
         /* "Intent Param" : may you need this to using in notification. For example : "CategoryNotification" need to this for start exam as category. */
         channelId = getChannelId();
 
@@ -91,10 +94,18 @@ public class NotificationHelper {
             /* If this is "WordNotification", add content click ; disappear when click the content. */
             notificationBuilder.setContentIntent(PendingIntent.getActivity(context, WORD_NOTIFICATION_ID, new Intent(), 0));
 
-            /* Go to stop "WordNotification" with intent When click "Stop". */
-            Intent StopWordNotifyIntent = new Intent(context, WordNotificationService.StopWordNotificationService.class); // This inner class "Service" works to stop this "WordNotificationService".
-            PendingIntent pendingIntent = PendingIntent.getService(context, WORD_NOTIFICATION_ID, StopWordNotifyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+            /* Add Button to stop "WordNotification" with intent. When click "Stop" in Notification. */
+            Intent stopWordNotifyIntent = new Intent(context, WordNotificationService.StopWordNotificationService.class); // This inner class "Service" works to stop this "WordNotificationService".
+            PendingIntent pendingIntent = PendingIntent.getService(context, WORD_NOTIFICATION_ID, stopWordNotifyIntent, PendingIntent.FLAG_CANCEL_CURRENT);
             notificationBuilder.addAction(R.drawable.ic_notification_close,context.getResources().getString(R.string.words_notification_stop_button),pendingIntent);
+
+            /* Add Button to set learned "The Word", with intent. When click "Learned" in Notification. If word is not learned */
+            if(!isWordLearned) {
+                Intent setWordAsLearnedService = new Intent(context, WordNotificationService.SetWordAsLearnedService.class); // This inner class "Service" works to stop this "WordNotificationService".
+                setWordAsLearnedService.putExtra(WordNotificationService.KEY_SET_LEARNED_WORD_ID, specialWordId); // Word's id sending to process.
+                PendingIntent pendingIntent2 = PendingIntent.getService(context, WORD_NOTIFICATION_ID, setWordAsLearnedService, PendingIntent.FLAG_CANCEL_CURRENT);
+                notificationBuilder.addAction(R.drawable.ic_word_add, context.getResources().getString(R.string.words_notification_learned_button), pendingIntent2);
+            }
         }
         else if (type == Type.Category){
             /* If this is "WordNotification", add content click ; Start "ExamActivity" to Exam. */

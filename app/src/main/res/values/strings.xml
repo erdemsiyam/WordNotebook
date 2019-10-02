@@ -88,6 +88,7 @@
     <string name="words_notification_success_message1">Notification Set. Time interval :</string>
     <string name="words_notification_success_message2">For every :</string>
     <string name="words_notification_stop_button">Stop</string>
+    <string name="words_notification_learned_button">Learned</string>
     <string name="words_notification_about">Sends notification selected words to memorize.</string>
 
     <string name="category_notification_select_alert_title">Which word group do you want to exam?</string>
@@ -137,6 +138,7 @@
     <string name="ui_excel_import_select_explain_column">Explain Column Index :</string>
     <string name="ui_excel_import_select_sheet_column">Page Index :</string>
     <string name="ui_excel_import_button_add_words">Add Words</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">Do not add exists words in list.</string>
 
     <string name="ui_excel_export_info">Select directory to save excel file.</string>
     <string name="ui_excel_export_path_submit">Select Here</string>
