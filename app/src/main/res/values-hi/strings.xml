@@ -133,4 +133,6 @@
     <string name="developer">डेवलपर:</string>
     <string name="exam_category_size_error">कम से कम एक सूची का चयन करना चाहिए</string>
     <string name="ui_navbar_other">अन्य</string>
+    <string name="words_notification_learned_button">सीखा</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">सूची में मौजूद शब्दों को न जोड़ें।</string>
 </resources>

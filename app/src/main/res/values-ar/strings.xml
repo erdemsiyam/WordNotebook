@@ -133,4 +133,6 @@
     <string name="developer">:مطور</string>
     <string name="exam_category_size_error">يجب تحديد قائمة واحدة على الأقل</string>
     <string name="ui_navbar_other">آخر</string>
+    <string name="words_notification_learned_button">تعلمت</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">لا تضيف كلمات موجودة في القائمة.</string>
 </resources>

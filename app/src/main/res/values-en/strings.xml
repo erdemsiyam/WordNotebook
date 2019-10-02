@@ -133,4 +133,6 @@
     <string name="developer">Developer :</string>
     <string name="exam_category_size_error">Must select at least one list</string>
     <string name="ui_navbar_other">Other</string>
+    <string name="words_notification_learned_button">Learned</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">Do not add exists words in list.</string>
 </resources>

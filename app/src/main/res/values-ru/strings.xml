@@ -133,4 +133,6 @@
     <string name="developer">Разработчик:</string>
     <string name="exam_category_size_error">Необходимо выбрать хотя бы один список</string>
     <string name="ui_navbar_other">Другие</string>
+    <string name="words_notification_learned_button">Научился</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">Не добавлять существующие слова в список.</string>
 </resources>

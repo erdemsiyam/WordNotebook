@@ -133,4 +133,6 @@
     <string name="developer">Entwickler:</string>
     <string name="exam_category_size_error">Muss mindestens eine Liste auswählen</string>
     <string name="ui_navbar_other">Andere</string>
+    <string name="words_notification_learned_button">Seltsamer Spaltenindex:</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">Fügen Sie keine vorhandenen Wörter in die Liste ein.</string>
 </resources>

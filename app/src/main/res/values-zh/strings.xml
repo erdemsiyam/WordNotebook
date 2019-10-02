@@ -133,4 +133,6 @@
     <string name="developer">开发者：</string>
     <string name="exam_category_size_error">必须至少选择一个列表</string>
     <string name="ui_navbar_other">其他</string>
+    <string name="words_notification_learned_button">学到了</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">不要在列表中添加存在的单词</string>
 </resources>

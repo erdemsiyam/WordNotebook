@@ -133,4 +133,6 @@
     <string name="developer">Geliştirici :</string>
     <string name="exam_category_size_error">En az 1 liste seçmelisin</string>
     <string name="ui_navbar_other">Diğer</string>
+    <string name="words_notification_learned_button">Öğrendim</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">Listede varolan kelimeleri ekleme.</string>
 </resources>

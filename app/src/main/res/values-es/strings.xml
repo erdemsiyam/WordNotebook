@@ -133,4 +133,6 @@
     <string name="developer">Desarrollador :</string>
     <string name="exam_category_size_error">Debe seleccionar al menos una lista</string>
     <string name="ui_navbar_other">Otro</string>
+    <string name="words_notification_learned_button">Aprendido</string>
+    <string name="ui_excel_import_check_do_not_add_exists_words">No agregue palabras existentes en la lista.</string>
 </resources>
