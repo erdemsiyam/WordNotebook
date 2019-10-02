@@ -6,8 +6,8 @@ import com.erdemsiyam.memorizeyourwords.R;
 
 public enum WordGroupType {
     All(0,R.string.type_exam_word_all),
-    Learned(1,R.string.type_exam_word_learned),
     Marked(2,R.string.type_exam_word_marked),
+    Learned(1,R.string.type_exam_word_learned),
     NotLearned(3,R.string.type_exam_word_notlearned);
 
     public int key; // It is an identity
