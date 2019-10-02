@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.appcompat.widget.AppCompatEditText;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
@@ -48,6 +49,7 @@ public class ExcelImportSecondDialogFragment extends AppCompatDialogFragment {
     private AppCompatEditText txtExcelImpExplainColumnIndex;
     private AppCompatEditText txtExcelImpSheetIndex;
     private Button            btnExcelImportWords;
+    private AppCompatCheckBox chkExcelImpDoNotTakeSameWords;
 
     /* Constructor. */
     public ExcelImportSecondDialogFragment(WordActivity wordActivity, ExcelImportModel excelImportModel) {
@@ -71,6 +73,8 @@ public class ExcelImportSecondDialogFragment extends AppCompatDialogFragment {
         txtExcelImpExplainColumnIndex = view.findViewById(R.id.txtExcelImpExplainColumnIndex);
         txtExcelImpSheetIndex = view.findViewById(R.id.txtExcelImpSheetIndex);
         btnExcelImportWords = view.findViewById(R.id.btnExcelImportWords);
+        chkExcelImpDoNotTakeSameWords = view.findViewById(R.id.chkExcelImpDoNotTakeSameWords);
+
 
         /* "AlertDialog" building. */
         builder.setView(view);
@@ -130,6 +134,13 @@ public class ExcelImportSecondDialogFragment extends AppCompatDialogFragment {
                         }
                         if(strange.length()>30) strange = strange.substring(0,29); // Clip word if it is long.
                         if(explain.length()>30) explain = explain.substring(0,29); // Clip word if it is long.
+
+                        /* Control word, is it exists in db if user checked "Do not import same words." */
+                        if(chkExcelImpDoNotTakeSameWords.isChecked()){
+                           if(WordService.isThisWordExistsOnThisCategory(wordActivity,excelImportModel.getCategoryId(),strange)){
+                               continue; // Skip this word if this word exists already.
+                           }
+                        }
 
                         /* Add words to DB. */
                         WordService.addWord(wordActivity,excelImportModel.getCategoryId(),strange,explain);

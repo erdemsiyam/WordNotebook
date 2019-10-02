@@ -24,6 +24,8 @@ public interface IWordDAO {
     List<Word> getNotLearnedWordsByCategoryId(Long id);
     @Query("SELECT * FROM Word")
     List<Word> getAllWord();
+    @Query("SELECT Count(*)>0 FROM Word WHERE category_id=:categoryId AND strange=:strange")
+    boolean isThisWordExistsOnThisCategory(Long categoryId, String strange);
     @Query("UPDATE Word SET trueSelect = trueSelect + 1 WHERE id =:id")
     void trueSelectIncrease(Long id);
     @Query("UPDATE Word SET falseSelect = falseSelect + 1 WHERE id =:id")

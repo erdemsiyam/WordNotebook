@@ -61,6 +61,12 @@
             android:text="1"
             />
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chkExcelImpDoNotTakeSameWords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't take same words."
+        android:layout_gravity="center"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnExcelImportWords"
         android:layout_width="wrap_content"

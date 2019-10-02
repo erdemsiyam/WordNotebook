@@ -75,4 +75,7 @@ public final class WordService {
         MyDatabase.getMyDatabase(context).getWordDAO().changeMark(wordId,status);
     }
 
+    public static boolean isThisWordExistsOnThisCategory(Context context, Long categoryId, String strange) {
+        return MyDatabase.getMyDatabase(context).getWordDAO().isThisWordExistsOnThisCategory(categoryId,strange);
+    }
 }

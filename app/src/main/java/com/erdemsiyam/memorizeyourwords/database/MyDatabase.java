@@ -15,7 +15,7 @@ import com.erdemsiyam.memorizeyourwords.repository.INotificationCategoryDAO;
 import com.erdemsiyam.memorizeyourwords.repository.INotificationWordDAO;
 import com.erdemsiyam.memorizeyourwords.repository.IWordDAO;
 
-@Database(entities = {Word.class, Category.class, Confuse.class, NotificationWord.class, NotificationCategory.class}, version = 1, exportSchema= false)
+@Database(entities = {Word.class, Category.class, Confuse.class, NotificationWord.class, NotificationCategory.class}, version = 2, exportSchema= false)
 public abstract class MyDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "WordNotebook.db";
