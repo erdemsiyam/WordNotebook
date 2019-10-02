@@ -78,13 +78,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.175"
+            android:layout_weight="0.140"
             android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:orientation="horizontal"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.35"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp">
                         <androidx.appcompat.widget.AppCompatImageButton
@@ -111,7 +111,7 @@
                     android:id="@+id/adViewBannerWord"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.65"
                     android:layout_gravity="bottom"
                     ads:adSize="SMART_BANNER"
                     ads:adUnitId="@string/admob_ad_banner_id">
