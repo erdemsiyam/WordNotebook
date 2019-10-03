@@ -16,6 +16,8 @@
     <uses-permission android:name="com.android.vending.BILLING" />
     <!-- Permission to vibration for Android 4.2 and low versions. -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Permission to wake up device to show notification. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -32,11 +34,13 @@
             android:resource="@array/preloaded_fonts" />
 
         <!-- Activities. -->
-        <activity android:name=".activity.SettingActivity">  </activity>
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.ExamActivity"
-            android:parentActivityName=".activity.CategoryActivity" />
+            android:parentActivityName=".activity.CategoryActivity"
+            tools:targetApi="jelly_bean" />
         <activity android:name=".activity.WordActivity"
-            android:parentActivityName=".activity.CategoryActivity" />
+            android:parentActivityName=".activity.CategoryActivity"
+            tools:targetApi="jelly_bean" />
         <activity android:name=".activity.CategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
