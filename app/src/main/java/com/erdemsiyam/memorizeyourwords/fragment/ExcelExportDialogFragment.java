@@ -66,6 +66,7 @@ public class ExcelExportDialogFragment extends AppCompatDialogFragment {
 
     /* Constructor. */
     public ExcelExportDialogFragment(WordActivity wordActivity, long categoryId) {
+        instance = this;
         this.wordActivity = wordActivity;
         this.categoryId = categoryId;
     }
@@ -258,6 +259,8 @@ public class ExcelExportDialogFragment extends AppCompatDialogFragment {
     public  void    shareFile(String filePath) {
         Uri fileUri = Uri.parse("content://"+filePath);
         Intent shareIntent = new Intent();
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         shareIntent.setType("application/octet-stream");
