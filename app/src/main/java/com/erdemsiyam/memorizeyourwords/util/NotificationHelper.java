@@ -133,6 +133,9 @@ public class NotificationHelper {
 
         notification = notificationBuilder.build(); // Building here.
 
+        /* Wake up device before notification call to show notification for not to bother the user. */
+        WakeLockerHelper.acquire(context);
+
         /* Notification showing. */
         notificationManager.notify((type==Type.Word)?WORD_NOTIFICATION_ID:CATEGORY_NOTIFICATION_ID, notification);
 

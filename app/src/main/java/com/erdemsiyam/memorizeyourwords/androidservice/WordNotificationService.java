@@ -13,7 +13,6 @@ import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.service.NotificationWordService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
 import com.erdemsiyam.memorizeyourwords.util.NotificationHelper;
-import com.erdemsiyam.memorizeyourwords.util.WakeLockerHelper;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import java.util.Calendar;
 import java.util.List;
@@ -74,9 +73,6 @@ public class WordNotificationService extends IntentService {
             stop(this);
             return;
         }
-
-        /* Wake up device to show notification for not to bother the user. */
-        WakeLockerHelper.acquire(this);
 
         /* Send Notification if word has come. */
         new NotificationHelper(WordNotificationService.this,NotificationHelper.Type.Word).showNotification(randomWord.getStrange(),randomWord.getExplain(),randomWord.getId(),randomWord.isLearned());

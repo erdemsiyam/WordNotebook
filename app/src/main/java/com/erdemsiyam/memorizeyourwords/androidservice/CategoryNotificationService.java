@@ -14,7 +14,6 @@ import com.erdemsiyam.memorizeyourwords.entity.NotificationCategory;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.service.NotificationCategoryService;
 import com.erdemsiyam.memorizeyourwords.util.NotificationHelper;
-import com.erdemsiyam.memorizeyourwords.util.WakeLockerHelper;
 import java.util.Calendar;
 
 public class CategoryNotificationService extends IntentService {
@@ -43,9 +42,6 @@ public class CategoryNotificationService extends IntentService {
         Intent intentToExam = new Intent(this, ExamActivity.class);
         intentToExam.putExtra(CategoryActivity.INTENT_EXAM_SELECT_INDEX,notificationCategory.getWordType());
         intentToExam.putExtra(CategoryActivity.INTENT_SELECTED_CATEGORY_IDS, new long[]{notificationCategory.getCategoryId()}); // long array
-
-        /* Wake up device to show notification for not to bother the user. */
-        WakeLockerHelper.acquire(this);
 
         /* Show Notification. */
         String title = this.getResources().getString(R.string.category_notification_title);
