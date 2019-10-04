@@ -93,21 +93,17 @@ public class ExamActivity extends AppCompatActivity {
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord3, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
         TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord4, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
 
-        /* Fullscreen Ad to show. */
+        /* Start exam. */
+        loadData();
+
+        /* Ad preparing. */
         interstitialAd = new InterstitialAd(this);
         interstitialAd.setAdUnitId(getString(R.string.admob_ad_interstitial_id));
         interstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
-                loadData(); // Start exam after ad.
                 super.onAdClosed();
-            }
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                if(interstitialAd.isLoaded()){
-                    interstitialAd.show();
-                }
+                finish(); // Stop this activity after ad.
             }
         });
         interstitialAd.loadAd(new AdRequest.Builder().build());
@@ -307,6 +303,10 @@ public class ExamActivity extends AppCompatActivity {
     private class DoneButtonOnClickListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
+            /* Show Ad before closing activity. */
+            if(interstitialAd.isLoaded()){
+                interstitialAd.show();
+            }
             /* Exam finisher, activity terminate.*/
             finish();
         }
