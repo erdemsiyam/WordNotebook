@@ -50,7 +50,7 @@ Memorize your own strange language words in a hierarchical way.
 
 # Download
 <p align="center">
-  <a href="" target="_blank">
+  <a href="https://play.google.com/store/apps/details?id=com.erdemsiyam.memorizeyourwords" target="_blank">
     <img src="images/googlePlayDownload.png">
   </a>
 </p>
