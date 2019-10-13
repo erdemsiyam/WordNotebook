@@ -85,13 +85,15 @@ public class ExamActivity extends AppCompatActivity {
         swAutoPass.setOnClickListener(new SwitchAutoPassOnClickListener());
 
         /* FontSize loading from Setting. */
-        float fontSize = getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2); // FontSize loading from Setting.
-        txtTimer.setTextSize((12)+ 2*fontSize);
-        txtStrange.setTextSize((12)+ 2*fontSize);
-        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord1, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
-        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord2, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
-        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord3, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
-        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord4, 6+(2*(int)fontSize), 10+(2*(int)fontSize), 2, TypedValue.COMPLEX_UNIT_SP);
+        float fontSize = SettingActivity.getFont(this,0); // FontSize loading from Setting.
+        txtTimer.setTextSize(fontSize);
+        txtStrange.setTextSize(fontSize);
+        int minFont = (int)fontSize-6;
+        int maxFont = (int)fontSize-2;
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord1, minFont, maxFont, 2, TypedValue.COMPLEX_UNIT_SP);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord2, minFont, maxFont, 2, TypedValue.COMPLEX_UNIT_SP);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord3, minFont, maxFont, 2, TypedValue.COMPLEX_UNIT_SP);
+        TextViewCompat.setAutoSizeTextTypeUniformWithConfiguration(btnWord4, minFont, maxFont, 2, TypedValue.COMPLEX_UNIT_SP);
 
         /* Start exam. */
         loadData();

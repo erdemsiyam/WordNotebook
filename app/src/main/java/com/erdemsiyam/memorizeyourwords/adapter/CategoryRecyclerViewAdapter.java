@@ -89,7 +89,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         /* UI datas loading. */
         Category category = filteredCategories.get(position); // Get the next category to UI data loading.
         holder.categoryName.setText(category.getName()); // Get name.
-        holder.categoryName.setTextSize(((12)+2*(categoryActivity.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2)))); // FontSize loading from Setting.
+        holder.categoryName.setTextSize(SettingActivity.getFont(categoryActivity,0)); // FontSize loading from Setting.
         holder.wordCount.setText(CategoryService.getCategoryWordCount(categoryActivity,category)+""); // Get the category's word count from DB.
         holder.wordCount.setClickable(false); // Not need.
         holder.data = category;

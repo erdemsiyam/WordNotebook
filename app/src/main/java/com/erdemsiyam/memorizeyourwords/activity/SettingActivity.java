@@ -1,6 +1,7 @@
 package com.erdemsiyam.memorizeyourwords.activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -246,5 +247,10 @@ public class SettingActivity extends AppCompatActivity {
 
         /* Start. */
         WordNotificationService.start(this);
+    }
+
+    /* Preference Values Service. */
+    public static int getFont(Context context,int increaseCount){
+        return increaseCount+(12)+2*(context.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2));
     }
 }
