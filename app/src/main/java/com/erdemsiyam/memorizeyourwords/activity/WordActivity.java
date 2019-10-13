@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
@@ -29,6 +30,7 @@ import com.erdemsiyam.memorizeyourwords.util.WordSortType;
 import com.erdemsiyam.memorizeyourwords.adapter.WordRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.WordAddModalBottomSheetDialog;
 import com.erdemsiyam.memorizeyourwords.fragment.WordEditModalBottomSheetDialog;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import java.util.Comparator;
@@ -52,8 +54,6 @@ public class WordActivity extends AppCompatActivity {
     private AppCompatImageButton    btnBackToCategoryFromWord; // Back button to "CategoryActivity".
     private AppCompatTextView       txtCategoryName; // Shows words belongs to which category.
     private AdView                  adViewBannerWord; // Ad banner.
-
-
 
     /* Override Methods. */
     @Override
@@ -214,6 +214,7 @@ public class WordActivity extends AppCompatActivity {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
     /* Initial Methods. */
     private void initComponents() {
 
@@ -270,6 +271,7 @@ public class WordActivity extends AppCompatActivity {
         /* Advertising load. */
         AdRequest adRequest = new AdRequest.Builder().build();
         adViewBannerWord.loadAd(adRequest);
+        adViewBannerWord.setAdListener(new BottomAdListener()); // The ad listener customized at below.
     }
     private void loadData() {
         /* Get "WordList" from DB. Need information received from intent.  */
@@ -301,5 +303,30 @@ public class WordActivity extends AppCompatActivity {
                 adapter.refreshRecyclerView(WordService.getWordsByCategoryId(getApplicationContext(),selectedCategoryId));
             }
         });
+    }
+
+    /* Ad Listener Class */
+    private class BottomAdListener extends AdListener {
+        public BottomAdListener() {
+            super();
+
+            /* Hiding ad place when the ad not load yet.*/
+            adViewBannerWord.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                0,
+                0f
+                ));
+        }
+        @Override
+        public void onAdLoaded() {
+            super.onAdLoaded();
+
+            /* Show ad place when the ad loaded. */
+            adViewBannerWord.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    0,
+                    0.65f
+            ));
+        }
     }
 }
