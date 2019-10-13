@@ -3,6 +3,7 @@ package com.erdemsiyam.memorizeyourwords.activity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -59,6 +60,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.activity_category);
         initComponents(); // UI components are installed.
         loadData(); // Data is loaded into UI components.
+        loadFontSizes();
     }
     @Override
     public      boolean onCreateOptionsMenu(Menu menu) {
@@ -202,6 +204,9 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
         /* Starting "WordNotificationService" for notify words. */
         WordNotificationService.start(this);
+    }
+    private void loadFontSizes() {
+        ((AppCompatTextView)findViewById(R.id.txtToolbarCategoryTitle)).setTextSize(SettingActivity.getFont(this,8));
     }
 
     /* Getter-Setter. */

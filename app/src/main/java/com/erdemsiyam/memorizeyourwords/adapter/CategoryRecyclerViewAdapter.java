@@ -86,13 +86,16 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     }
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
-        /* UI datas loading. */
+        /* UI data loading. */
         Category category = filteredCategories.get(position); // Get the next category to UI data loading.
         holder.categoryName.setText(category.getName()); // Get name.
-        holder.categoryName.setTextSize(SettingActivity.getFont(categoryActivity,0)); // FontSize loading from Setting.
         holder.wordCount.setText(CategoryService.getCategoryWordCount(categoryActivity,category)+""); // Get the category's word count from DB.
         holder.wordCount.setClickable(false); // Not need.
         holder.data = category;
+
+        /* UI Font Sizes loading. */
+        holder.categoryName.setTextSize(SettingActivity.getFont(categoryActivity,0)); // FontSize loading from Setting.
+        holder.wordCount.setTextSize(SettingActivity.getFont(categoryActivity,0)); // Not need.
 
         /* WordNotification Setups. */
         NotificationWord notificationWord = NotificationWordService.getByCategory(categoryActivity,category.getId()); // Is this category saved in WordNotification?

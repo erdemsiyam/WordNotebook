@@ -80,12 +80,14 @@ public class WordRecyclerViewAdapter extends RecyclerView.Adapter<WordRecyclerVi
     }
     @Override
     public void onBindViewHolder(WordViewHolder holder, int position) {
-        /* UI datas loading. */
+        /* UI data loading. */
         Word word = filteredWords.get(position); // Get the next word to UI data loading.
         holder.btnStar.setImageResource((word.isMark())?R.drawable.ic_star_on:R.drawable.ic_star_off); // Set "star_on" if this word marked.
         holder.btnCheck.setImageResource((word.isLearned())?R.drawable.ic_check_on:R.drawable.ic_check_off); // Set "check_on" if is this word learned.
         holder.txtStrange.setText((freezeType != FreezeType.STRANGE || unFreezeIndexs.contains(position))?word.getStrange():""); // The word's Strange : show if not freeze.
         holder.txtExplain.setText((freezeType != FreezeType.EXPLAIN || unFreezeIndexs.contains(position))?word.getExplain():""); // The word's Explain : show if not freeze.
+
+        /* UI Font Sizes loading. */
         holder.txtStrange.setTextSize(SettingActivity.getFont(wordActivity,0)); // FontSize loading from Setting.
         holder.txtExplain.setTextSize(SettingActivity.getFont(wordActivity,0)); // FontSize loading from Setting.
 
