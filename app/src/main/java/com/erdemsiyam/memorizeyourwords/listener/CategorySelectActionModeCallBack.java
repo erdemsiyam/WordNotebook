@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.app.AlertDialog;
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
@@ -11,7 +12,6 @@ import com.erdemsiyam.memorizeyourwords.activity.ExamActivity;
 import com.erdemsiyam.memorizeyourwords.R;
 import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.erdemsiyam.memorizeyourwords.adapter.CategoryRecyclerViewAdapter;
-
 import static com.erdemsiyam.memorizeyourwords.activity.CategoryActivity.INTENT_EXAM_SELECT_INDEX;
 import static com.erdemsiyam.memorizeyourwords.activity.CategoryActivity.INTENT_SELECTED_CATEGORY_IDS;
 
@@ -76,7 +76,12 @@ public class CategorySelectActionModeCallBack implements ActionMode.Callback {
         builder.setPositiveButton(R.string.exam_words_select_alert_button_positive, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(categoryActivity, ExamActivity.class); // if clicks positive then shows ExamAvtivity to Exam.
+                if(examSelectIndex == -1){
+                    Toast.makeText(categoryActivity, categoryActivity.getString(R.string.exam_words_non_select_error), Toast.LENGTH_SHORT).show();
+                    createAlertDialogForSelectingWordTypesToExam(mode).show(); // Call this AlertDialog again.
+                    return;
+                }
+                Intent intent = new Intent(categoryActivity, ExamActivity.class); // if clicks positive then shows ExamActivity to Exam.
                 intent.putExtra(INTENT_EXAM_SELECT_INDEX,examSelectIndex); // Sending index.
                 intent.putExtra(INTENT_SELECTED_CATEGORY_IDS,categoryActivity.getAdapter().getSelectedCategoryIds()); // Sending selected categories.
                 mode.finish(); // The ActionMode is terminated.
