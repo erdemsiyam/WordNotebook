@@ -135,4 +135,5 @@
     <string name="ui_navbar_other">अन्य</string>
     <string name="words_notification_learned_button">सीखा</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">सूची में मौजूद शब्दों को न जोड़ें।</string>
+    <string name="exam_words_non_select_error">आपको एक शब्द समूह का चयन करना होगा</string>
 </resources>

@@ -3,8 +3,10 @@
     <!-- Constants -->
 
     <string name="admob_app_id" translatable="false">ca-app-pub-9261721980516763~5090102044</string>
-    <string name="admob_ad_banner_id" translatable="false">ca-app-pub-9261721980516763/5062181889</string>
-    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-9261721980516763/8656115412</string><!--test : ca-app-pub-3940256099942544/1033173712-->
+    <string name="admob_ad_banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_ad_interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <!-- Test Banner : ca-app-pub-3940256099942544/6300978111 | Real Banner : ca-app-pub-9261721980516763/5062181889-->
+    <!-- Test Interstitial : ca-app-pub-3940256099942544/1033173712 | Real Interstitial : ca-app-pub-9261721980516763/8656115412-->
 
 
     <!-- Back-End. -->
@@ -46,6 +48,7 @@
 
     <string name="exam_words_select_alert_title">Select Words</string>
     <string name="exam_words_select_alert_button_positive">Start</string>
+    <string name="exam_words_non_select_error">You must select a word group</string>
 
     <string name="type_exam_word_all">All</string>
     <string name="type_exam_word_learned">Learned</string>
