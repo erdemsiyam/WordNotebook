@@ -291,7 +291,6 @@ public class WordActivity extends AppCompatActivity {
         recyclerViewWord.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
     private void loadFontSizes() {
-        ((AppCompatTextView)findViewById(R.id.wordTitle)).setTextSize(SettingActivity.getFont(this,8)); // Setting font of The Nav Element Header Text.
         txtCategoryName.setTextSize(SettingActivity.getFont(this,-3));
         ((AppCompatTextView)findViewById(R.id.txtMarkTitle)).setTextSize(SettingActivity.getFont(this,-3)); // Setting font of The Nav Element Header Text.
         ((AppCompatTextView)findViewById(R.id.txtLearnedTitle)).setTextSize(SettingActivity.getFont(this,-3)); // Setting font of The Nav Element Header Text.
