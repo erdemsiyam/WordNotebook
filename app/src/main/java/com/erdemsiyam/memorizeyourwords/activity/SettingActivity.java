@@ -59,7 +59,6 @@ public class SettingActivity extends AppCompatActivity {
     private AppCompatTextView    txtFontValue;
     private AppCompatImageButton btnBackToCategoryFromSetting; // Back button to "CategoryActivity".
 
-
     /* Variable. */
     private SharedPreferences sharedPreferences;
 
@@ -70,6 +69,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         initComponents(); // UI components are installed.
         loadData(); // Data is loaded into UI components.
+        loadFontSizes();
     }
 
     /* Initial Methods. */
@@ -225,6 +225,7 @@ public class SettingActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         sharedPreferences.edit().putInt(FONT,np.getValue()).apply(); // "FontSize" changed.
                         txtFontValue.setText(values[np.getValue()] + " sp"); // UI refreshed.
+                        loadFontSizes();// All page refreshed.
                         d.dismiss(); // Dialog closed.
                     }
                 });
@@ -236,6 +237,40 @@ public class SettingActivity extends AppCompatActivity {
         btnBackToCategoryFromSetting.setOnClickListener(v -> {
             finish();
         });
+    }
+    private void loadFontSizes(){
+        float fontSize = getFont(this);
+        /* Section Titles. */
+        ((AppCompatTextView)findViewById(R.id.txtSettingsWordNotificationSectionTitle)).setTextSize(fontSize-4);
+        ((AppCompatTextView)findViewById(R.id.txtSettingsNotificationSectionTitle)).setTextSize(fontSize-4);
+        ((AppCompatTextView)findViewById(R.id.txtSettingsFontSectionTitle)).setTextSize(fontSize-4);
+
+        /* Word Notification Section's. */
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationPeriod)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationPeriodSummary)).setTextSize(fontSize-4);
+        txtWordNotificationPeriodValue.setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationStartTime)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationStartTimeSummary)).setTextSize(fontSize-4);
+        txtWordNotificationStartTimeValue.setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationStartTime)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationStartTimeSummary)).setTextSize(fontSize-4);
+        txtWordNotificationStartTimeValue.setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationEndTime)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtWordNotificationEndTimeSummary)).setTextSize(fontSize-4);
+        txtWordNotificationEndTimeValue.setTextSize(fontSize-2);
+
+        /* Notification Section's. */
+        ((AppCompatTextView)findViewById(R.id.txtNotificationSound)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtNotificationSoundSummary)).setTextSize(fontSize-4);
+        ((AppCompatTextView)findViewById(R.id.txtNotificationVibrate)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtNotificationVibrateSummary)).setTextSize(fontSize-4);
+        ((AppCompatTextView)findViewById(R.id.txtNotificationHeadsUp)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtNotificationHeadsUpSummary)).setTextSize(fontSize-4);
+
+        /* Font Section's. */
+        ((AppCompatTextView)findViewById(R.id.txtFont)).setTextSize(fontSize-2);
+        ((AppCompatTextView)findViewById(R.id.txtFontSummary)).setTextSize(fontSize-4);
+        txtFontValue.setTextSize(fontSize-2);
     }
 
     /* Util Method. */
@@ -250,7 +285,10 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     /* Preference Values Service. */
-    public static int getFont(Context context,int increaseCount){
-        return increaseCount+(12)+2*(context.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2));
+    public static int getFont(Context context){
+        return getFont(context,0);
+    }
+    public static int getFont(Context context,int increaseSize){
+        return increaseSize+(12)+2*(context.getSharedPreferences(SettingActivity.PREFERENCE_NAME,SettingActivity.PREFERENCE_MODE).getInt(SettingActivity.FONT,2));
     }
 }

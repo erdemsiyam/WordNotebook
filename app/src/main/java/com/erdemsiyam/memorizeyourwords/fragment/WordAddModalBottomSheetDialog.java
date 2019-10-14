@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.erdemsiyam.memorizeyourwords.R;
+import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.exception.MyException;
@@ -25,7 +26,7 @@ public class WordAddModalBottomSheetDialog  extends BottomSheetDialogFragment {
     /* Constants. */
     public static final String TAG = "mbsd_word_add";
 
-    /* Veriables.*/
+    /* Property. */
     private WordActivity wordActivity;
 
     /* UI components. */
@@ -43,17 +44,29 @@ public class WordAddModalBottomSheetDialog  extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         /* Including layout of ModelBottomSheet's. */
-        View v = inflater.inflate(R.layout.modal_bottom_sheet_word_add,container,false);
+        View view = inflater.inflate(R.layout.modal_bottom_sheet_word_add,container,false);
 
-        /* Loading UI items. */
-        txtNewWordStrange = v.findViewById(R.id.txtNewWordStrange);
-        txtNewWordExplain = v.findViewById(R.id.txtNewWordExplain);
-        btnCreateWord = v.findViewById(R.id.btnCreateWord);
+        initComponents(view); // Loading UI items.
+        loadData(); // Loading Listeners.
+        loadFontSizes(); // Loading Font Sizes.
 
+        return view; // Prepared layout return.
+    }
+
+    /* Initial Methods. */
+    private void initComponents(View view) {
+        txtNewWordStrange = view.findViewById(R.id.txtNewWordStrange);
+        txtNewWordExplain = view.findViewById(R.id.txtNewWordExplain);
+        btnCreateWord = view.findViewById(R.id.btnCreateWord);
+    }
+    private void loadData() {
         /* Listener giving to "CreateWordButton". */
         btnCreateWord.setOnClickListener(new CreateWordListener()); // The listener at below.
-
-        return v; // Prepared layout return.
+    }
+    private void loadFontSizes() {
+        txtNewWordStrange.setTextSize(SettingActivity.getFont(wordActivity));
+        txtNewWordExplain.setTextSize(SettingActivity.getFont(wordActivity));
+        btnCreateWord.setTextSize(SettingActivity.getFont(wordActivity));
     }
 
     /* Listener of the button create word. (inner class) */

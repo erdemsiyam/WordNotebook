@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
+import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.exception.MyException;
@@ -25,11 +26,11 @@ public class CategoryAddModalBottomSheetDialog extends BottomSheetDialogFragment
     /* Constants. */
     public static final String TAG = "mbsd_category_add";
 
-    /* Veriables.*/
+    /* Property. */
     private CategoryActivity categoryActivity;
 
     /* UI components. */
-    private AppCompatImageButton    btnCreateCateogry;
+    private AppCompatImageButton    btnCreateCategory;
     private EditText                txtNewCategoryName;
 
     /* Constructor. */
@@ -41,17 +42,28 @@ public class CategoryAddModalBottomSheetDialog extends BottomSheetDialogFragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         /* Including layout of ModelBottomSheet's. */
-        View v = inflater.inflate(R.layout.modal_bottom_sheet_category_add,container,false);
+        View view = inflater.inflate(R.layout.modal_bottom_sheet_category_add,container,false);
 
-        /* Loading UI items. */
-        btnCreateCateogry = v.findViewById(R.id.btnCreateCategory);
-        txtNewCategoryName = v.findViewById(R.id.newCategoryName);
+        initComponents(view); // Loading UI items.
+        loadData(); // Loading Listeners.
+        loadFontSizes(); // Loading Font Sizes.
 
+        return view; // Prepared layout return.
+    }
+
+    /* Initial Methods. */
+    private void initComponents(View view) {
+        btnCreateCategory = view.findViewById(R.id.btnCreateCategory);
+        txtNewCategoryName = view.findViewById(R.id.newCategoryName);
+    }
+    private void loadData() {
         /* Listener giving to "CreateCategoryButton". */
-        btnCreateCateogry.setOnClickListener(new CreateCategoryListener()); // The listener at below.
-
-        return v; // Prepared layout return.
+        btnCreateCategory.setOnClickListener(new CreateCategoryListener()); // The listener at below.
+    }
+    private void loadFontSizes() {
+        txtNewCategoryName.setTextSize(SettingActivity.getFont(categoryActivity));
     }
 
     /* Listener of the button create category. (inner class) */

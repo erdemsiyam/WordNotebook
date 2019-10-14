@@ -57,6 +57,7 @@ public class ExamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_exam);
         initComponents(); // UI components are installed.
         loadData();
+        loadFontSizes();
     }
 
     /* Initial Methods. */
@@ -158,7 +159,14 @@ public class ExamActivity extends AppCompatActivity {
         }
 
     }
-
+    private void loadFontSizes(){
+        txtTimer.setTextSize(SettingActivity.getFont(this,2));
+        txtStrange.setTextSize(SettingActivity.getFont(this,2));
+        btnWord1.setTextSize(SettingActivity.getFont(this,-3));
+        btnWord2.setTextSize(SettingActivity.getFont(this,-3));
+        btnWord3.setTextSize(SettingActivity.getFont(this,-3));
+        btnWord4.setTextSize(SettingActivity.getFont(this,-3));
+    }
     /* Util Methods. */
     private List<Word> getRandom4Word(){
         /* Random 4 words selecting from "WordList". */

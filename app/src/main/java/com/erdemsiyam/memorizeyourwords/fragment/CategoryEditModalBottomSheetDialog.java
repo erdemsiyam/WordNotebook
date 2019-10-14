@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageButton;
 import com.erdemsiyam.memorizeyourwords.activity.CategoryActivity;
 import com.erdemsiyam.memorizeyourwords.R;
+import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.exception.MyException;
 import com.erdemsiyam.memorizeyourwords.service.CategoryService;
@@ -27,7 +28,7 @@ public class CategoryEditModalBottomSheetDialog extends BottomSheetDialogFragmen
     /* Constants. */
     public static final String TAG = "mbsd_category_edit";
 
-    /* Veriables.*/
+    /* Property. */
     private CategoryActivity    categoryActivity;
     private Category            category;
 
@@ -47,21 +48,31 @@ public class CategoryEditModalBottomSheetDialog extends BottomSheetDialogFragmen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         /* Including layout of ModelBottomSheet's. */
-        View v = inflater.inflate(R.layout.modal_bottom_sheet_category_edit,container,false);
+        View view = inflater.inflate(R.layout.modal_bottom_sheet_category_edit,container,false);
 
-        /* Loading UI items. */
-        txtEditCategory = v.findViewById(R.id.txtEditCategoryName);
-        btnEditCategory = v.findViewById(R.id.btnEditCategory);
-        btnDeleteCategory  = v.findViewById(R.id.btnDeleteCategory);
+        initComponents(view); // Loading UI items.
+        loadData(); // Loading Listeners.
+        loadFontSizes(); // Loading Font Sizes.
 
+        return view; // Prepared layout return.
+    }
+
+    /* Initial Methods. */
+    private void initComponents(View view){
+        txtEditCategory = view.findViewById(R.id.txtEditCategoryName);
+        btnEditCategory = view.findViewById(R.id.btnEditCategory);
+        btnDeleteCategory  = view.findViewById(R.id.btnDeleteCategory);
+    }
+    private void loadData() {
         /* Shows which category changed. */
         txtEditCategory.setText(category.getName());
 
         /* Listeners giving to EditDone and Delete Buttons. */
         btnEditCategory.setOnClickListener(new EditCategoryListener());     // The listener at below.
         btnDeleteCategory.setOnClickListener(new DeleteCategoryListener()); // The listener at below.
-
-        return v; // Prepared layout return.
+    }
+    private void loadFontSizes() {
+        txtEditCategory.setTextSize(SettingActivity.getFont(categoryActivity));
     }
 
     /* Listeners of buttons on UI. (inner class) */

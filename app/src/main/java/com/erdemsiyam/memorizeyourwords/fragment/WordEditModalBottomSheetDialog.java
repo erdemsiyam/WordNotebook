@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.erdemsiyam.memorizeyourwords.R;
+import com.erdemsiyam.memorizeyourwords.activity.SettingActivity;
 import com.erdemsiyam.memorizeyourwords.activity.WordActivity;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.exception.MyException;
@@ -25,7 +26,7 @@ public class WordEditModalBottomSheetDialog extends BottomSheetDialogFragment {
     /* Constants. */
     public static final String TAG = "mbsd_word_edit";
 
-    /* Veriables.*/
+    /* Property. */
     private WordActivity    wordActivity;
     private Word            word;   // Selected word. (To edit.)
     private int             index;  // Selected word index.
@@ -47,21 +48,33 @@ public class WordEditModalBottomSheetDialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         /* Including layout of ModelBottomSheet's. */
-        View v = inflater.inflate(R.layout.modal_bottom_sheet_word_edit,container,false);
+        View view = inflater.inflate(R.layout.modal_bottom_sheet_word_edit,container,false);
 
-        /* Loading UI items. */
-        btnEditWord  = v.findViewById(R.id.btnEditWord);
-        txtEditWordStrange = v.findViewById(R.id.txtEditWordStrange);
-        txtEditWordExplain = v.findViewById(R.id.txtEditWordExplain);
+        initComponents(view); // Loading UI items.
+        loadData(); // Loading Listeners.
+        loadFontSizes(); // Loading Font Sizes.
 
+        return view; // Prepared layout return.
+    }
+
+    /* Initial Methods. */
+    private void initComponents(View view) {
+        btnEditWord  = view.findViewById(R.id.btnEditWord);
+        txtEditWordStrange = view.findViewById(R.id.txtEditWordStrange);
+        txtEditWordExplain = view.findViewById(R.id.txtEditWordExplain);
+    }
+    private void loadData() {
         /* Shows word's old values. */
         txtEditWordStrange.setText(word.getStrange());
         txtEditWordExplain.setText(word.getExplain());
 
         /* Listener giving to "EditDoneButton". */
         btnEditWord.setOnClickListener(new EditWordListener()); // The listener at below.
-
-        return v; // Prepared layout return.
+    }
+    private void loadFontSizes() {
+        txtEditWordStrange.setTextSize(SettingActivity.getFont(wordActivity));
+        txtEditWordExplain.setTextSize(SettingActivity.getFont(wordActivity));
+        btnEditWord.setTextSize(SettingActivity.getFont(wordActivity));
     }
 
     /* Listener of "EditWordButton" on UI. (inner class) */
