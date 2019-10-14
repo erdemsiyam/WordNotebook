@@ -38,6 +38,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtSettingsWordNotificationSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -45,7 +46,6 @@
         android:text="@string/ui_setting_word_notification_title"
         android:textSize="@dimen/font_lowest"
         android:textColor="@color/main_blue_5"/>
-
     <LinearLayout
         android:id="@+id/lytWordNotificationPeriod"
         android:layout_width="match_parent"
@@ -178,7 +178,9 @@
             android:textStyle="normal"
             />
     </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtSettingsNotificationSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -186,7 +188,6 @@
         android:text="@string/ui_setting_notification_title"
         android:textSize="@dimen/font_lowest"
         android:textColor="@color/main_blue_5"/>
-
     <LinearLayout
         android:id="@+id/lytNotificationSound"
         android:layout_width="match_parent"
@@ -226,7 +227,6 @@
             android:checked="true"
             />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/lytNotificationVibrate"
         android:layout_width="match_parent"
@@ -266,7 +266,6 @@
             android:checked="true"
             />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/lytNotificationHeadsUp"
         android:layout_width="match_parent"
@@ -308,6 +307,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtSettingsFontSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -315,7 +315,6 @@
         android:text="@string/ui_setting_font_title"
         android:textSize="@dimen/font_lowest"
         android:textColor="@color/main_blue_5"/>
-
     <LinearLayout
         android:id="@+id/lytFont"
         android:layout_width="match_parent"
@@ -360,4 +359,5 @@
             android:textStyle="normal"
             />
     </LinearLayout>
+
 </LinearLayout>
