@@ -40,8 +40,10 @@
             tools:targetApi="jelly_bean" />
         <activity android:name=".activity.WordActivity"
             android:parentActivityName=".activity.CategoryActivity"
+            android:windowSoftInputMode="adjustPan"
             tools:targetApi="jelly_bean" />
-        <activity android:name=".activity.CategoryActivity">
+        <activity android:name=".activity.CategoryActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
