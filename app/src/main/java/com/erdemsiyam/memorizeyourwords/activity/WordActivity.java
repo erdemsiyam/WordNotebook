@@ -197,6 +197,42 @@ public class WordActivity extends AppCompatActivity {
                 AlertDialog alertDialog2 = builder2.create(); // AlertDialog is ready.
                 alertDialog2.show(); // AlertDialog is work.
                 break;
+            case R.id.wordVisibility:
+                /* If user wants change visibility of the words. Then we will ask which words, with "AlertDialog". */
+                AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+                builder3.setTitle(R.string.word_visibility_alert_title);
+                String[] options2 = WordGroupType.getValuesAsStringArray(this); // Enum options are taken as Array of String type.
+                builder3.setSingleChoiceItems(options2, selectedCategory.getVisibilityWordGroupType(), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        wordVisibilitySelectedIndex = i; // The index is keeping at each click to options at AlertDialog.
+                    }
+                });
+                builder3.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        /* Get the comparator by selecting of sorting type. */
+                        if(wordVisibilitySelectedIndex == -1) return;
+
+                        /* Changing visibility words of the category. */
+                        selectedCategory.setVisibilityWordGroupType(wordVisibilitySelectedIndex);
+                        CategoryService.updateCategory(WordActivity.this,selectedCategory);
+
+                        /* Refreshed words after selecting word visibility. */
+                        List<Word> words = WordService.getWordsByCategoryIdAndWordWordVisibilityType(WordActivity.this,selectedCategory.getId(),WordGroupType.getTypeByKey(selectedCategory.getVisibilityWordGroupType()));
+                        getAdapter().refreshRecyclerView(words);
+
+                        wordVisibilitySelectedIndex=-1; // Clearing the index holder for after use.
+                    }
+                });
+                builder3.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                AlertDialog alertDialog3 = builder3.create(); // AlertDialog is ready.
+                alertDialog3.show(); // AlertDialog is work.
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -283,9 +319,14 @@ public class WordActivity extends AppCompatActivity {
     private void loadData() {
         /* Get "WordList" from DB. Need information received from intent.  */
         Intent intent = getIntent();
-        selectedCategoryId = intent.getLongExtra(CategoryActivity.INTENT_CATEGORY_ID,0L);
-        txtCategoryName.setText(intent.getStringExtra(CategoryActivity.INTENT_CATEGORY_NAME));
-        List<Word> words = WordService.getWordsByCategoryId(this,selectedCategoryId);
+        long selectedCategoryId = intent.getLongExtra(CategoryActivity.INTENT_CATEGORY_ID,0L);
+        selectedCategory = CategoryService.getCategoryById(this,selectedCategoryId);
+        if(selectedCategory == null) {
+            Toast.makeText(this,getString(R.string.word_page_error_category_not_found),Toast.LENGTH_LONG);
+            finish();
+        }
+        txtCategoryName.setText(selectedCategory.getName());
+        List<Word> words = WordService.getWordsByCategoryIdAndWordWordVisibilityType(this,selectedCategoryId,WordGroupType.getTypeByKey(selectedCategory.getVisibilityWordGroupType()));
 
         /* RecyclerView is prepared and CustomAdapter is added. */
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);

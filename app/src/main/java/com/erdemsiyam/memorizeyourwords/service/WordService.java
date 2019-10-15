@@ -3,12 +3,28 @@ package com.erdemsiyam.memorizeyourwords.service;
 import android.content.Context;
 import com.erdemsiyam.memorizeyourwords.database.MyDatabase;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class WordService {
 
     public static List<Word> getWordsByCategoryId(Context context, Long categoryId){
         return MyDatabase.getMyDatabase(context).getWordDAO().getWordsByCategoryId(categoryId);
+    }
+    public static List<Word> getWordsByCategoryIdAndWordWordVisibilityType(Context context, Long categoryId, WordGroupType visibilityType){
+        switch (visibilityType) {
+            case All:
+                return MyDatabase.getMyDatabase(context).getWordDAO().getWordsByCategoryId(categoryId);
+            case Marked:
+                return MyDatabase.getMyDatabase(context).getWordDAO().getMarkedWordsByCategoryId(categoryId);
+            case Learned:
+                return MyDatabase.getMyDatabase(context).getWordDAO().getLearnedWordsByCategoryId(categoryId);
+            case NotLearned:
+                return MyDatabase.getMyDatabase(context).getWordDAO().getNotLearnedWordsByCategoryId(categoryId);
+            default:
+                return new ArrayList<>();
+        }
     }
     public static List<Word> getLearnedWordsByCategoryId(Context context, Long categoryId){
         return MyDatabase.getMyDatabase(context).getWordDAO().getLearnedWordsByCategoryId(categoryId);
