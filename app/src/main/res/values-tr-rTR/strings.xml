@@ -43,7 +43,7 @@
     <string name="ui_word_add_explain_hint">Kelime Anlamı</string>
     <string name="ui_word_add_strange_hint">Yabancı Kelime</string>
     <string name="ui_word_edit_button_save">Kaydet</string>
-    <string name="ui_word_menu_exam">Ara</string>
+    <string name="ui_word_menu_search">Ara</string>
     <string name="ui_word_menu_importexcel">Excel İçe</string>
     <string name="ui_word_menu_sort">Sırala</string>
     <string name="ui_word_toolbar_title">Kelimeler</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">Öğrendim</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">Listede varolan kelimeleri ekleme.</string>
     <string name="exam_words_non_select_error">Kelime grubu seçmelisin</string>
+    <string name="ui_word_menu_words_visibility">Görünürlük</string>
+    <string name="word_page_error_category_not_found">Liste bulunamadı.</string>
+    <string name="word_visibility_alert_title">Hangi kelimelerin gösterileceğini seçiniz</string>
 </resources>

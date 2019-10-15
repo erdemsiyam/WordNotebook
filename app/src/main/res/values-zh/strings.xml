@@ -44,7 +44,7 @@
     <string name="ui_word_add_explain_hint">这个词的意思</string>
     <string name="ui_word_add_strange_hint">奇怪的话</string>
     <string name="ui_word_edit_button_save">保存字</string>
-    <string name="ui_word_menu_exam">搜索</string>
+    <string name="ui_word_menu_search">搜索</string>
     <string name="ui_word_menu_importexcel">导入Excel</string>
     <string name="ui_word_menu_sort">分类</string>
     <string name="ui_word_toolbar_title">话</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">学到了</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">不要在列表中添加存在的单词</string>
     <string name="exam_words_non_select_error">您必须选择一个单词组</string>
+    <string name="word_visibility_alert_title">选择要显示的单词</string>
+    <string name="word_page_error_category_not_found">找不到清单。</string>
+    <string name="ui_word_menu_words_visibility">能见度</string>
 </resources>

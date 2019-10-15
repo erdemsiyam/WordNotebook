@@ -44,7 +44,7 @@
     <string name="ui_word_add_explain_hint">معنى كلمة</string>
     <string name="ui_word_add_strange_hint">كلمة غريبة</string>
     <string name="ui_word_edit_button_save">حفظ الكلمة</string>
-    <string name="ui_word_menu_exam">بحث</string>
+    <string name="ui_word_menu_search">بحث</string>
     <string name="ui_word_menu_importexcel">استيراد اكسل</string>
     <string name="ui_word_menu_sort">فرز</string>
     <string name="ui_word_toolbar_title">كلمات</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">تعلمت</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">لا تضيف كلمات موجودة في القائمة.</string>
     <string name="exam_words_non_select_error">يجب عليك اختيار مجموعة كلمات</string>
+    <string name="ui_word_menu_words_visibility">رؤية</string>
+    <string name="word_page_error_category_not_found">القائمة غير موجودة.</string>
+    <string name="word_visibility_alert_title">اختيار الكلمات التي لعرضها</string>
 </resources>

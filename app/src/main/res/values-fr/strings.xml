@@ -44,7 +44,7 @@
     <string name="ui_word_add_explain_hint">Sens du mot</string>
     <string name="ui_word_add_strange_hint">Mot étrange</string>
     <string name="ui_word_edit_button_save">Enregistrer le mot</string>
-    <string name="ui_word_menu_exam">Chercher</string>
+    <string name="ui_word_menu_search">Chercher</string>
     <string name="ui_word_menu_importexcel">Importer Excel</string>
     <string name="ui_word_menu_sort">Trier</string>
     <string name="ui_word_toolbar_title">Mots</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">Mots appris</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">Ne pas ajouter des mots existants dans la liste.</string>
     <string name="exam_words_non_select_error">Vous devez sélectionner un groupe de mots</string>
+    <string name="ui_word_menu_words_visibility">Visibilité</string>
+    <string name="word_page_error_category_not_found">Liste non trouvée.</string>
+    <string name="word_visibility_alert_title">Choisissez les mots à afficher</string>
 </resources>

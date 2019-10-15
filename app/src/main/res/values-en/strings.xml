@@ -43,7 +43,7 @@
     <string name="ui_word_add_explain_hint">Meaning of the word</string>
     <string name="ui_word_add_strange_hint">Strange Word</string>
     <string name="ui_word_edit_button_save">Save Word</string>
-    <string name="ui_word_menu_exam">Search</string>
+    <string name="ui_word_menu_search">Search</string>
     <string name="ui_word_menu_importexcel">Import Excel</string>
     <string name="ui_word_menu_sort">Sort</string>
     <string name="ui_word_toolbar_title">Words</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">Learned</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">Do not add exists words in list.</string>
     <string name="exam_words_non_select_error">You must select a word group</string>
+    <string name="ui_word_menu_words_visibility">Visibility</string>
+    <string name="word_page_error_category_not_found">List not found.</string>
+    <string name="word_visibility_alert_title">Choose which words to display</string>
 </resources>

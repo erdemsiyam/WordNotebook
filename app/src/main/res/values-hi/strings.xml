@@ -109,7 +109,7 @@
     <string name="ui_word_add_strange_hint">अजीब शब्द</string>
     <string name="ui_word_edit_button_save">वर्ड सेव करें</string>
     <string name="ui_word_menu_delete_learned">हटाए गए जानें</string>
-    <string name="ui_word_menu_exam">खोज</string>
+    <string name="ui_word_menu_search">खोज</string>
     <string name="ui_word_menu_exportexcel">एक्सेल निर्यात करें</string>
     <string name="ui_word_menu_importexcel">एक्सेल आयात करें</string>
     <string name="ui_word_menu_sort">तरह</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">सीखा</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">सूची में मौजूद शब्दों को न जोड़ें।</string>
     <string name="exam_words_non_select_error">आपको एक शब्द समूह का चयन करना होगा</string>
+    <string name="ui_word_menu_words_visibility">दृश्यता</string>
+    <string name="word_page_error_category_not_found">सूची नहीं मिली।</string>
+    <string name="word_visibility_alert_title">जो शब्द प्रदर्शित करने के लिए चुनें</string>
 </resources>

@@ -44,7 +44,7 @@
     <string name="ui_word_add_explain_hint">Смысл слова</string>
     <string name="ui_word_add_strange_hint">Странное Слово</string>
     <string name="ui_word_edit_button_save">Сохранить слово</string>
-    <string name="ui_word_menu_exam">Поиск</string>
+    <string name="ui_word_menu_search">Поиск</string>
     <string name="ui_word_menu_importexcel">Импортировать Excel</string>
     <string name="ui_word_menu_sort">Сортировать</string>
     <string name="ui_word_toolbar_title">слова</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">Научился</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">Не добавлять существующие слова в список.</string>
     <string name="exam_words_non_select_error">Вы должны выбрать группу слов</string>
+    <string name="word_visibility_alert_title">Выберите, какие слова отображать</string>
+    <string name="word_page_error_category_not_found">Список не найден.</string>
+    <string name="ui_word_menu_words_visibility">видимость</string>
 </resources>

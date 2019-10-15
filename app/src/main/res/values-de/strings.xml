@@ -44,7 +44,7 @@
     <string name="ui_word_add_explain_hint">Wortbedeutung</string>
     <string name="ui_word_add_strange_hint">Fremdwort</string>
     <string name="ui_word_edit_button_save">Speichern</string>
-    <string name="ui_word_menu_exam">Suchen</string>
+    <string name="ui_word_menu_search">Suchen</string>
     <string name="ui_word_menu_importexcel">Excel importieren</string>
     <string name="ui_word_menu_sort">Sortieren</string>
     <string name="ui_word_toolbar_title">Wörter</string>
@@ -136,4 +136,7 @@
     <string name="words_notification_learned_button">Seltsamer Spaltenindex:</string>
     <string name="ui_excel_import_check_do_not_add_exists_words">Fügen Sie keine vorhandenen Wörter in die Liste ein.</string>
     <string name="exam_words_non_select_error">Sie müssen eine Wortgruppe auswählen</string>
+    <string name="word_visibility_alert_title">Wählen Sie aus, welche Wörter angezeigt werden sollen</string>
+    <string name="word_page_error_category_not_found">Liste nicht gefunden.</string>
+    <string name="ui_word_menu_words_visibility">Sichtweite</string>
 </resources>

@@ -27,6 +27,10 @@
     <string name="word_sort_alert_title">Select Sorting</string>
     <string name="word_sort_alert_button_positive">Sort</string>
 
+    <string name="word_visibility_alert_title">Choose which words to display</string>
+
+    <string name="word_page_error_category_not_found">"List not found."</string>
+
     <string name="category_selecting_title">item selected</string>
 
     <string name="word_context_menu_delete">Delete</string>
@@ -164,7 +168,8 @@
     <string name="ui_category_menu_search">Search</string>
     <string name="ui_category_menu_exam">Exam</string>
 
-    <string name="ui_word_menu_exam">Search</string>
+    <string name="ui_word_menu_search">Search</string>
+    <string name="ui_word_menu_words_visibility">Visibility</string>
     <string name="ui_word_menu_sort">Sort</string>
     <string name="ui_word_menu_delete_learned">Delete Learned</string>
     <string name="ui_word_menu_importexcel">Import Excel</string>
