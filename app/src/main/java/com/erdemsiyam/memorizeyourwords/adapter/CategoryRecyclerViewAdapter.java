@@ -195,7 +195,6 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
         /* When click to category, "WordActivity" opens to show the words of the selected category. */
         Intent intent = new Intent(categoryActivity, WordActivity.class);
         intent.putExtra(CategoryActivity.INTENT_CATEGORY_ID,category.getId());
-        intent.putExtra(CategoryActivity.INTENT_CATEGORY_NAME,category.getName());
         categoryActivity.startActivity(intent);
     }
     private void selectingCategory(Category category){
