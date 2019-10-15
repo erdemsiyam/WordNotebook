@@ -22,10 +22,13 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.erdemsiyam.memorizeyourwords.R;
+import com.erdemsiyam.memorizeyourwords.entity.Category;
 import com.erdemsiyam.memorizeyourwords.entity.Word;
 import com.erdemsiyam.memorizeyourwords.fragment.ExcelExportDialogFragment;
 import com.erdemsiyam.memorizeyourwords.fragment.ExcelImportFirstDialogFragment;
+import com.erdemsiyam.memorizeyourwords.service.CategoryService;
 import com.erdemsiyam.memorizeyourwords.service.WordService;
+import com.erdemsiyam.memorizeyourwords.util.WordGroupType;
 import com.erdemsiyam.memorizeyourwords.util.WordSortType;
 import com.erdemsiyam.memorizeyourwords.adapter.WordRecyclerViewAdapter;
 import com.erdemsiyam.memorizeyourwords.fragment.WordAddModalBottomSheetDialog;
@@ -44,7 +47,10 @@ public class WordActivity extends AppCompatActivity {
 
     /* Indexing Variables */
     public static int   wordSortSelectedIndex=-1;
-    public long         selectedCategoryId;
+    public static int   wordVisibilitySelectedIndex=-1;
+
+    /* Property. */
+    public Category     selectedCategory;
 
     /* UI Components */
     private RecyclerView            recyclerViewWord; // Word list.
@@ -109,7 +115,7 @@ public class WordActivity extends AppCompatActivity {
                 builder.setPositiveButton(R.string.yes,new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        WordService.deleteAllLearnedByCategoryId(WordActivity.this,selectedCategoryId);
+                        WordService.deleteAllLearnedByCategoryId(WordActivity.this,selectedCategory.getId());
                         refreshRecyclerView();
                     }
                 });
@@ -128,7 +134,7 @@ public class WordActivity extends AppCompatActivity {
                     break;
                 }
                 /* Adding words with Excel Import */
-                ExcelExportDialogFragment dialogExportExcel = new ExcelExportDialogFragment(this,selectedCategoryId);
+                ExcelExportDialogFragment dialogExportExcel = new ExcelExportDialogFragment(this,selectedCategory.getId());
                 dialogExportExcel.show(getSupportFragmentManager(), ExcelExportDialogFragment.TAG);
                 break;
             case R.id.wordImportExcel:
@@ -138,7 +144,7 @@ public class WordActivity extends AppCompatActivity {
                     break;
                 }
                 /* Adding words with Excel Import */
-                ExcelImportFirstDialogFragment dialogImportExcel = new ExcelImportFirstDialogFragment(this,selectedCategoryId);
+                ExcelImportFirstDialogFragment dialogImportExcel = new ExcelImportFirstDialogFragment(this,selectedCategory.getId());
                 dialogImportExcel.show(getSupportFragmentManager(), ExcelImportFirstDialogFragment.TAG);
                 break;
             case R.id.wordSort:
@@ -306,7 +312,7 @@ public class WordActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                adapter.refreshRecyclerView(WordService.getWordsByCategoryId(getApplicationContext(),selectedCategoryId));
+                adapter.refreshRecyclerView(WordService.getWordsByCategoryId(getApplicationContext(),selectedCategory.getId()));
             }
         });
     }
