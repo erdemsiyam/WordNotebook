@@ -66,26 +66,24 @@ Memorize your own strange language words in a hierarchical way.
 
 # Versions
 ### Version 1.0.1
-<p>-New Feature : Notification added for words and lists.</p>
-<p>-New Feature : Excel export added.</p>
--New Feature : Settings added for notification and font.
--Bug Fixed : A lot of bug fixed.
+- New Feature : Notification added for words and lists.
+- New Feature : Excel export added.
+- New Feature : Settings added for notification and font.
+- Bug Fixed : A lot of bug fixed.
 
 ### Version 1.0.2
-<p>
--Bug Fixed : Phone available wake up when notification received.
--Bug Fixed : Excel exporting file listing works now.
--New Feature : Added option to Excel importing : "Do not import same words if exists already in the list".
--New Feature : Added "I learned this word" button to word notification.
--Redesign : Word page's buttons resized.
--Redesign : Word group list sorting changed for nice look.
--Redesign : Ads moved to end of exam instead of start.
-</p>
+
+- Bug Fixed : Phone available wake up when notification received.
+- Bug Fixed : Excel exporting file listing works now.
+- New Feature : Added option to Excel importing : "Do not import same words if exists already in the list".
+- New Feature : Added "I learned this word" button to word notification.
+- Redesign : Word page's buttons resized.
+- Redesign : Word group list sorting changed for nice look.
+- Redesign : Ads moved to end of exam instead of start.
+
 
 ### Version 1.0.3
-<p>
--Bug Fixed : Handled of crashing app at start.
--New Feature : You can change now of word groups visibility.
--Redesign : Word page resize according ad.
--Redesign : Font setting effect enlarged.
-</p>
+- Bug Fixed : Handled of crashing app at start.
+- New Feature : You can change now of word groups visibility.
+- Redesign : Word page resize according ad.
+- Redesign : Font setting effect enlarged.
