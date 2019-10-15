@@ -6,8 +6,8 @@ android {
         applicationId "com.erdemsiyam.memorizeyourwords"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 8
-        versionName "1.0.2"
+        versionCode 9
+        versionName "1.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
