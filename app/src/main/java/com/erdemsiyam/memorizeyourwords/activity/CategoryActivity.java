@@ -39,7 +39,6 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
     /* Constants */
     public static final String INTENT_CATEGORY_ID = "category_id";
-    public static final String INTENT_CATEGORY_NAME = "category_name";
     public static final String INTENT_EXAM_SELECT_INDEX = "examSelectIndex";
     public static final String INTENT_SELECTED_CATEGORY_IDS = "selectedCategoryIds";
 
